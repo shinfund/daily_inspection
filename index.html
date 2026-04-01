@@ -767,12 +767,12 @@ body{
 
   </div>
 
-  <!-- ══ 분석 결과 · 탭별 자동 반영 ══ -->
+  <!-- ══ 분석 결과 · 즉시 자동 반영 ══ -->
   <div id="scanResultWrap" style="display:none">
 
-    <!-- 결과 요약 카드 -->
+    <!-- 결과 요약 -->
     <div class="ai-result" id="ocrResultSummary">
-      <div class="ai-result-title" id="ocrResultTitle">✅ 인식 완료</div>
+      <div class="ai-result-title" id="ocrResultTitle">✅ 인식 완료 · 모든 탭 자동 반영</div>
       <div class="ai-result-list" id="ocrMatchList"></div>
     </div>
 
@@ -782,144 +782,57 @@ body{
       <pre class="ai-raw-text" id="ocrRawText"></pre>
     </div>
 
-    <!-- 편집 가능 데이터 테이블 -->
-    <div class="sec-label" style="margin-top:16px">📋 인식 데이터 · 수정 후 적용</div>
-
-    <!-- 태양광 -->
-    <div class="inp-card-group">
-    <div class="card">
-      <div class="card-header"><div class="card-title"><span style="color:#f59e0b">☀</span> 태양광 누적 발전량</div></div>
-      <div class="inp-grid" style="grid-template-columns:1fr 1fr">
-        <div class="inp-grp"><label class="inp-lbl">인버터 #1 (KWh)</label><input class="inp-val" id="in_solar1" type="number" step="0.01" value="24769.48"></div>
-        <div class="inp-grp"><label class="inp-lbl">인버터 #2 (KWh)</label><input class="inp-val" id="in_solar2" type="number" step="0.01" value="8944.01"></div>
+    <!-- 탭별 수정 바로가기 -->
+    <div style="background:#f0f6fc;border:1px solid #b8d0e8;border-radius:var(--r);padding:12px 14px;margin-top:8px">
+      <div style="font-size:11px;font-weight:700;color:#1a365d;margin-bottom:8px">✏ 오인식 시 해당 탭에서 직접 수정하세요</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <button onclick="switchTab('hv', null)"
+          style="padding:6px 12px;background:#1a365d;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--sans)">
+          ⚡ 고압 HV 수정
+        </button>
+        <button onclick="switchTab('lv', null)"
+          style="padding:6px 12px;background:#1d4ed8;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--sans)">
+          🔵 저압 LV 수정
+        </button>
+        <button onclick="switchTab('overview', null)"
+          style="padding:6px 12px;background:#276749;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--sans)">
+          📊 개요 확인
+        </button>
+        <button onclick="switchTab('diagram', null)"
+          style="padding:6px 12px;background:#0f766e;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--sans)">
+          📐 계통도 확인
+        </button>
       </div>
-    </div>
-    </div>
-
-    <!-- HV -->
-    <div class="sec-label">⚡ 고압 계측값 HV</div>
-    <div class="inp-card-group">
-    <div class="card">
-      <div class="card-header"><div class="card-title">HV-104 · VCB 630A</div><span class="card-badge blue">ID 01</span></div>
-      <div class="inp-grid">
-        <div class="inp-grp"><label class="inp-lbl r">R-S 전압 (kV)</label><input class="inp-val" id="hv104_vrs" type="number" step="0.001" value="22.952"></div>
-        <div class="inp-grp"><label class="inp-lbl s">S-T 전압 (kV)</label><input class="inp-val" id="hv104_vst" type="number" step="0.001" value="22.927"></div>
-        <div class="inp-grp"><label class="inp-lbl t">T-R 전압 (kV)</label><input class="inp-val" id="hv104_vtr" type="number" step="0.001" value="23.014"></div>
-        <div class="inp-grp"><label class="inp-lbl r">R 전류 (A)</label><input class="inp-val" id="hv104_ir" type="number" step="0.1" value="2.2"></div>
-        <div class="inp-grp"><label class="inp-lbl s">S 전류 (A)</label><input class="inp-val" id="hv104_is" type="number" step="0.1" value="2.3"></div>
-        <div class="inp-grp"><label class="inp-lbl t">T 전류 (A)</label><input class="inp-val" id="hv104_it" type="number" step="0.1" value="2.2"></div>
-        <div class="inp-grp"><label class="inp-lbl">역률 PF</label><input class="inp-val" id="hv104_pf" type="number" step="0.01" value="0.99"></div>
-        <div class="inp-grp"><label class="inp-lbl">전력 (KW)</label><input class="inp-val" id="hv104_kw" type="number" step="0.1" value="87.4"></div>
-        <div class="inp-grp"><label class="inp-lbl">전력량 (MWh)</label><input class="inp-val" id="hv104_mwh" type="number" step="0.01" value="300.98"></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header"><div class="card-title">HV-105 · VCB 630A</div><span class="card-badge blue">ID 02</span></div>
-      <div class="inp-grid">
-        <div class="inp-grp"><label class="inp-lbl r">R-S 전압 (kV)</label><input class="inp-val" id="hv105_vrs" type="number" step="0.001" value="22.940"></div>
-        <div class="inp-grp"><label class="inp-lbl s">S-T 전압 (kV)</label><input class="inp-val" id="hv105_vst" type="number" step="0.001" value="22.929"></div>
-        <div class="inp-grp"><label class="inp-lbl t">T-R 전압 (kV)</label><input class="inp-val" id="hv105_vtr" type="number" step="0.001" value="23.021"></div>
-        <div class="inp-grp"><label class="inp-lbl r">R 전류 (A)</label><input class="inp-val" id="hv105_ir" type="number" step="0.1" value="1.5"></div>
-        <div class="inp-grp"><label class="inp-lbl s">S 전류 (A)</label><input class="inp-val" id="hv105_is" type="number" step="0.1" value="1.5"></div>
-        <div class="inp-grp"><label class="inp-lbl t">T 전류 (A)</label><input class="inp-val" id="hv105_it" type="number" step="0.1" value="1.6"></div>
-        <div class="inp-grp"><label class="inp-lbl">역률 PF</label><input class="inp-val" id="hv105_pf" type="number" step="0.01" value="0.99"></div>
-        <div class="inp-grp"><label class="inp-lbl">전력 (KW)</label><input class="inp-val" id="hv105_kw" type="number" step="0.1" value="60.9"></div>
-        <div class="inp-grp"><label class="inp-lbl">전력량 (MWh)</label><input class="inp-val" id="hv105_mwh" type="number" step="0.01" value="206.31"></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header"><div class="card-title">HV-106 · VCB 630A</div><span class="card-badge blue">ID 03</span></div>
-      <div class="inp-grid">
-        <div class="inp-grp"><label class="inp-lbl r">R-S 전압 (kV)</label><input class="inp-val" id="hv106_vrs" type="number" step="0.001" value="22.959"></div>
-        <div class="inp-grp"><label class="inp-lbl s">S-T 전압 (kV)</label><input class="inp-val" id="hv106_vst" type="number" step="0.001" value="22.932"></div>
-        <div class="inp-grp"><label class="inp-lbl t">T-R 전압 (kV)</label><input class="inp-val" id="hv106_vtr" type="number" step="0.001" value="23.022"></div>
-        <div class="inp-grp"><label class="inp-lbl r">R 전류 (A)</label><input class="inp-val" id="hv106_ir" type="number" step="0.1" value="0.7"></div>
-        <div class="inp-grp"><label class="inp-lbl s">S 전류 (A)</label><input class="inp-val" id="hv106_is" type="number" step="0.1" value="0.7"></div>
-        <div class="inp-grp"><label class="inp-lbl t">T 전류 (A)</label><input class="inp-val" id="hv106_it" type="number" step="0.1" value="0.6"></div>
-        <div class="inp-grp"><label class="inp-lbl">역률 PF</label><input class="inp-val" id="hv106_pf" type="number" step="0.01" value="0.99"></div>
-        <div class="inp-grp"><label class="inp-lbl">전력 (KW)</label><input class="inp-val" id="hv106_kw" type="number" step="0.1" value="25.9"></div>
-        <div class="inp-grp"><label class="inp-lbl">전력량 (MWh)</label><input class="inp-val" id="hv106_mwh" type="number" step="0.01" value="87.25"></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header"><div class="card-title">HV-107 · VCB 630A</div><span class="card-badge blue">ID 04</span></div>
-      <div class="inp-grid">
-        <div class="inp-grp"><label class="inp-lbl r">R-S 전압 (kV)</label><input class="inp-val" id="hv107_vrs" type="number" step="0.001" value="22.949"></div>
-        <div class="inp-grp"><label class="inp-lbl s">S-T 전압 (kV)</label><input class="inp-val" id="hv107_vst" type="number" step="0.001" value="22.927"></div>
-        <div class="inp-grp"><label class="inp-lbl t">T-R 전압 (kV)</label><input class="inp-val" id="hv107_vtr" type="number" step="0.001" value="23.027"></div>
-        <div class="inp-grp"><label class="inp-lbl r">R 전류 (A)</label><input class="inp-val" id="hv107_ir" type="number" step="0.1" value="0.0"></div>
-        <div class="inp-grp"><label class="inp-lbl s">S 전류 (A)</label><input class="inp-val" id="hv107_is" type="number" step="0.1" value="0.0"></div>
-        <div class="inp-grp"><label class="inp-lbl t">T 전류 (A)</label><input class="inp-val" id="hv107_it" type="number" step="0.1" value="0.0"></div>
-        <div class="inp-grp"><label class="inp-lbl">역률 PF</label><input class="inp-val" id="hv107_pf" type="number" step="0.01" value="0.00"></div>
-        <div class="inp-grp"><label class="inp-lbl">전력 (KW)</label><input class="inp-val" id="hv107_kw" type="number" step="0.1" value="0.0"></div>
-        <div class="inp-grp"><label class="inp-lbl">전력량 (MWh)</label><input class="inp-val" id="hv107_mwh" type="number" step="0.01" value="4.67"></div>
-      </div>
-    </div>
     </div>
 
-    <!-- LV -->
-    <div class="sec-label">🔵 저압 계측값 LV</div>
-    <div class="inp-card-group">
-    <div class="card">
-      <div class="card-header"><div class="card-title">LV-101 · ACB 630A</div><span class="card-badge green">ID 05</span></div>
-      <div class="inp-grid">
-        <div class="inp-grp"><label class="inp-lbl r">R-S 전압 (V)</label><input class="inp-val" id="lv101_vrs" type="number" step="1" value="381"></div>
-        <div class="inp-grp"><label class="inp-lbl s">S-T 전압 (V)</label><input class="inp-val" id="lv101_vst" type="number" step="1" value="381"></div>
-        <div class="inp-grp"><label class="inp-lbl t">T-R 전압 (V)</label><input class="inp-val" id="lv101_vtr" type="number" step="1" value="381"></div>
-        <div class="inp-grp"><label class="inp-lbl r">R 전류 (A)</label><input class="inp-val" id="lv101_ir" type="number" step="0.1" value="88.4"></div>
-        <div class="inp-grp"><label class="inp-lbl s">S 전류 (A)</label><input class="inp-val" id="lv101_is" type="number" step="0.1" value="94.7"></div>
-        <div class="inp-grp"><label class="inp-lbl t">T 전류 (A)</label><input class="inp-val" id="lv101_it" type="number" step="0.1" value="93.0"></div>
-        <div class="inp-grp"><label class="inp-lbl">역률 PF</label><input class="inp-val" id="lv101_pf" type="number" step="0.01" value="0.98"></div>
-        <div class="inp-grp"><label class="inp-lbl">전력 (KW)</label><input class="inp-val" id="lv101_kw" type="number" step="0.1" value="59.7"></div>
-        <div class="inp-grp"><label class="inp-lbl">전력량 (MWh)</label><input class="inp-val" id="lv101_mwh" type="number" step="0.01" value="201.90"></div>
-      </div>
+    <!-- 값 저장용 hidden inputs (삭제 금지 — applyAll/export에서 참조) -->
+    <div style="display:none">
+      <input id="in_solar1" type="number" value="0">
+      <input id="in_solar2" type="number" value="0">
+      <input id="hv104_vrs" type="number" value="0"><input id="hv104_vst" type="number" value="0"><input id="hv104_vtr" type="number" value="0">
+      <input id="hv104_ir"  type="number" value="0"><input id="hv104_is"  type="number" value="0"><input id="hv104_it"  type="number" value="0">
+      <input id="hv104_pf"  type="number" value="0"><input id="hv104_kw"  type="number" value="0"><input id="hv104_mwh" type="number" value="0">
+      <input id="hv105_vrs" type="number" value="0"><input id="hv105_vst" type="number" value="0"><input id="hv105_vtr" type="number" value="0">
+      <input id="hv105_ir"  type="number" value="0"><input id="hv105_is"  type="number" value="0"><input id="hv105_it"  type="number" value="0">
+      <input id="hv105_pf"  type="number" value="0"><input id="hv105_kw"  type="number" value="0"><input id="hv105_mwh" type="number" value="0">
+      <input id="hv106_vrs" type="number" value="0"><input id="hv106_vst" type="number" value="0"><input id="hv106_vtr" type="number" value="0">
+      <input id="hv106_ir"  type="number" value="0"><input id="hv106_is"  type="number" value="0"><input id="hv106_it"  type="number" value="0">
+      <input id="hv106_pf"  type="number" value="0"><input id="hv106_kw"  type="number" value="0"><input id="hv106_mwh" type="number" value="0">
+      <input id="hv107_vrs" type="number" value="0"><input id="hv107_vst" type="number" value="0"><input id="hv107_vtr" type="number" value="0">
+      <input id="hv107_ir"  type="number" value="0"><input id="hv107_is"  type="number" value="0"><input id="hv107_it"  type="number" value="0">
+      <input id="hv107_pf"  type="number" value="0"><input id="hv107_kw"  type="number" value="0"><input id="hv107_mwh" type="number" value="0">
+      <input id="lv101_vrs" type="number" value="0"><input id="lv101_vst" type="number" value="0"><input id="lv101_vtr" type="number" value="0">
+      <input id="lv101_ir"  type="number" value="0"><input id="lv101_is"  type="number" value="0"><input id="lv101_it"  type="number" value="0">
+      <input id="lv101_pf"  type="number" value="0"><input id="lv101_kw"  type="number" value="0"><input id="lv101_mwh" type="number" value="0">
+      <input id="lv105_vrs" type="number" value="0"><input id="lv105_vst" type="number" value="0"><input id="lv105_vtr" type="number" value="0">
+      <input id="lv105_ir"  type="number" value="0"><input id="lv105_is"  type="number" value="0"><input id="lv105_it"  type="number" value="0">
+      <input id="lv105_pf"  type="number" value="0"><input id="lv105_kw"  type="number" value="0"><input id="lv105_mwh" type="number" value="0">
+      <input id="lv108_vrs" type="number" value="0"><input id="lv108_vst" type="number" value="0"><input id="lv108_vtr" type="number" value="0">
+      <input id="lv108_ir"  type="number" value="0"><input id="lv108_is"  type="number" value="0"><input id="lv108_it"  type="number" value="0">
+      <input id="lv108_pf"  type="number" value="0"><input id="lv108_kw"  type="number" value="0"><input id="lv108_mwh" type="number" value="0">
+      <input id="rect_acv"  type="number" value="0"><input id="rect_dcv"  type="number" value="0">
+      <input id="rect_oa"   type="number" value="0"><input id="rect_ba"   type="number" value="0">
     </div>
-    <div class="card">
-      <div class="card-header"><div class="card-title">LV-105 · ACB 630A</div><span class="card-badge green">ID 06</span></div>
-      <div class="inp-grid">
-        <div class="inp-grp"><label class="inp-lbl r">R-S 전압 (V)</label><input class="inp-val" id="lv105_vrs" type="number" step="1" value="381"></div>
-        <div class="inp-grp"><label class="inp-lbl s">S-T 전압 (V)</label><input class="inp-val" id="lv105_vst" type="number" step="1" value="381"></div>
-        <div class="inp-grp"><label class="inp-lbl t">T-R 전압 (V)</label><input class="inp-val" id="lv105_vtr" type="number" step="1" value="382"></div>
-        <div class="inp-grp"><label class="inp-lbl r">R 전류 (A)</label><input class="inp-val" id="lv105_ir" type="number" step="0.1" value="47.0"></div>
-        <div class="inp-grp"><label class="inp-lbl s">S 전류 (A)</label><input class="inp-val" id="lv105_is" type="number" step="0.1" value="38.1"></div>
-        <div class="inp-grp"><label class="inp-lbl t">T 전류 (A)</label><input class="inp-val" id="lv105_it" type="number" step="0.1" value="31.4"></div>
-        <div class="inp-grp"><label class="inp-lbl">역률 PF</label><input class="inp-val" id="lv105_pf" type="number" step="0.01" value="0.99"></div>
-        <div class="inp-grp"><label class="inp-lbl">전력 (KW)</label><input class="inp-val" id="lv105_kw" type="number" step="0.1" value="25.2"></div>
-        <div class="inp-grp"><label class="inp-lbl">전력량 (MWh)</label><input class="inp-val" id="lv105_mwh" type="number" step="0.01" value="84.99"></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header"><div class="card-title">LV-108 · ACB 800A</div><span class="card-badge">ID 07</span></div>
-      <div class="inp-grid">
-        <div class="inp-grp"><label class="inp-lbl r">R-S 전압 (V)</label><input class="inp-val" id="lv108_vrs" type="number" step="1" value="381"></div>
-        <div class="inp-grp"><label class="inp-lbl s">S-T 전압 (V)</label><input class="inp-val" id="lv108_vst" type="number" step="1" value="382"></div>
-        <div class="inp-grp"><label class="inp-lbl t">T-R 전압 (V)</label><input class="inp-val" id="lv108_vtr" type="number" step="1" value="382"></div>
-        <div class="inp-grp"><label class="inp-lbl r">R 전류 (A)</label><input class="inp-val" id="lv108_ir" type="number" step="0.1" value="0.0"></div>
-        <div class="inp-grp"><label class="inp-lbl s">S 전류 (A)</label><input class="inp-val" id="lv108_is" type="number" step="0.1" value="0.0"></div>
-        <div class="inp-grp"><label class="inp-lbl t">T 전류 (A)</label><input class="inp-val" id="lv108_it" type="number" step="0.1" value="0.0"></div>
-        <div class="inp-grp"><label class="inp-lbl">역률 PF</label><input class="inp-val" id="lv108_pf" type="number" step="0.01" value="0.00"></div>
-        <div class="inp-grp"><label class="inp-lbl">전력 (KW)</label><input class="inp-val" id="lv108_kw" type="number" step="0.1" value="0.0"></div>
-        <div class="inp-grp"><label class="inp-lbl">전력량 (MWh)</label><input class="inp-val" id="lv108_mwh" type="number" step="0.01" value="4.57"></div>
-      </div>
-    </div>
-    </div>
-
-    <!-- 정류반 -->
-    <div class="sec-label">🔋 정류반</div>
-    <div class="inp-card-group">
-    <div class="card">
-      <div class="inp-grid" style="grid-template-columns:1fr 1fr">
-        <div class="inp-grp"><label class="inp-lbl">교류전압 (V)</label><input class="inp-val" id="rect_acv" type="number" step="0.1" value="379.0"></div>
-        <div class="inp-grp"><label class="inp-lbl">직류전압 (V)</label><input class="inp-val" id="rect_dcv" type="number" step="0.1" value="123.0"></div>
-        <div class="inp-grp"><label class="inp-lbl">출력전류 (A)</label><input class="inp-val" id="rect_oa" type="number" step="0.1" value="0.0"></div>
-        <div class="inp-grp"><label class="inp-lbl">배터리전류 (A)</label><input class="inp-val" id="rect_ba" type="number" step="0.1" value="0.0"></div>
-      </div>
-    </div>
-    </div>
-
-    <!-- 전체 적용 버튼 -->
-    <button class="apply-btn-main" onclick="applyAll()">✔ 전체 적용 · 모든 탭 업데이트</button>
-    <div class="apply-msg" id="applyMsg">✅ 데이터가 모든 탭에 반영되었습니다</div>
 
   </div><!-- /scanResultWrap -->
 
@@ -2244,16 +2157,137 @@ async function runClaudeAPI(file){
 
 function applyClaudeJSON(d){
   const matched=[];
-  function set(id,val,label){if(val!=null){setVal(id,val);matched.push({label,value:val});}}
-  set('in_solar1',d.solar1_kwh,'태양광#1');
-  set('in_solar2',d.solar2_kwh,'태양광#2');
-  ['hv104','hv105','hv106','hv107','lv101','lv105','lv108'].forEach(tag=>{
-    const o=d[tag];if(!o)return;
-    ['vrs','vst','vtr','ir','is','it','pf','kw','mwh'].forEach(f=>{if(o[f]!=null)setVal(`${tag}_${f}`,o[f]);});
-    matched.push({label:tag.toUpperCase(),value:'전압·전류·전력 인식'});
+
+  // ── 정상 범위 정의 ──
+  const RANGES = {
+    hv_v:  {min:22.0, max:24.0, unit:'kV', label:'HV 전압'},
+    hv_i:  {min:0,    max:630,  unit:'A',  label:'HV 전류'},
+    hv_pf: {min:0.80, max:1.00, unit:'PF', label:'역률'},
+    hv_kw: {min:0,    max:9999, unit:'KW', label:'전력'},
+    lv_v:  {min:370,  max:400,  unit:'V',  label:'LV 전압'},
+    lv_i:  {min:0,    max:800,  unit:'A',  label:'LV 전류'},
+    lv_pf: {min:0.80, max:1.00, unit:'PF', label:'역률'},
+    solar: {min:0,    max:999999,unit:'KWh',label:'태양광'},
+    rect_acv:{min:370,max:400,  unit:'V',  label:'교류전압'},
+    rect_dcv:{min:100,max:150,  unit:'V',  label:'직류전압'},
+  };
+
+  function check(val, rangeKey){
+    if(val===null||val===undefined) return 'null';
+    const r = RANGES[rangeKey];
+    if(!r) return 'ok';
+    if(val < r.min || val > r.max) return 'warn';
+    return 'ok';
+  }
+
+  function pushItem(label, val, unit, rangeKey, tabHint){
+    const status = check(val, rangeKey);
+    matched.push({label, value:val, unit, status, tabHint});
+  }
+
+  // 태양광
+  if(d.solar1_kwh!=null){ setVal('in_solar1',d.solar1_kwh); pushItem('태양광 #1', d.solar1_kwh, 'KWh','solar','solar'); }
+  if(d.solar2_kwh!=null){ setVal('in_solar2',d.solar2_kwh); pushItem('태양광 #2', d.solar2_kwh, 'KWh','solar','solar'); }
+
+  // HV 패널
+  const hvMap = {
+    hv104:'HV-104', hv105:'HV-105', hv106:'HV-106', hv107:'HV-107'
+  };
+  Object.entries(hvMap).forEach(([tag,name])=>{
+    const o=d[tag]; if(!o) return;
+    ['vrs','vst','vtr','ir','is','it','pf','kw','mwh'].forEach(f=>{
+      if(o[f]!=null) setVal(`${tag}_${f}`, o[f]);
+    });
+    const vFields = ['vrs','vst','vtr'].filter(f=>o[f]!=null);
+    const iFields = ['ir','is','it'].filter(f=>o[f]!=null);
+    vFields.forEach(f=> pushItem(`${name} ${f.toUpperCase()}`, o[f], 'kV', 'hv_v', 'hv'));
+    iFields.forEach(f=> pushItem(`${name} ${f.toUpperCase()}`, o[f], 'A',  'hv_i', 'hv'));
+    if(o.pf!=null) pushItem(`${name} 역률`, o.pf, 'PF', 'hv_pf', 'hv');
   });
-  if(d.rect){const r=d.rect;if(r.acv!=null){setVal('rect_acv',r.acv);matched.push({label:'정류반 교류',value:r.acv+'V'});}if(r.dcv!=null){setVal('rect_dcv',r.dcv);matched.push({label:'정류반 직류',value:r.dcv+'V'});}if(r.oa!=null)setVal('rect_oa',r.oa);if(r.ba!=null)setVal('rect_ba',r.ba);}
+
+  // LV 패널
+  const lvMap = {
+    lv101:'LV-101', lv105:'LV-105', lv108:'LV-108'
+  };
+  Object.entries(lvMap).forEach(([tag,name])=>{
+    const o=d[tag]; if(!o) return;
+    ['vrs','vst','vtr','ir','is','it','pf','kw','mwh'].forEach(f=>{
+      if(o[f]!=null) setVal(`${tag}_${f}`, o[f]);
+    });
+    const vFields = ['vrs','vst','vtr'].filter(f=>o[f]!=null);
+    const iFields = ['ir','is','it'].filter(f=>o[f]!=null);
+    vFields.forEach(f=> pushItem(`${name} ${f.toUpperCase()}`, o[f], 'V', 'lv_v', 'lv'));
+    iFields.forEach(f=> pushItem(`${name} ${f.toUpperCase()}`, o[f], 'A', 'lv_i', 'lv'));
+    if(o.pf!=null) pushItem(`${name} 역률`, o.pf, 'PF', 'lv_pf', 'lv');
+  });
+
+  // 정류반
+  if(d.rect){
+    const r=d.rect;
+    if(r.acv!=null){ setVal('rect_acv',r.acv); pushItem('정류반 교류전압', r.acv, 'V', 'rect_acv', null); }
+    if(r.dcv!=null){ setVal('rect_dcv',r.dcv); pushItem('정류반 직류전압', r.dcv, 'V', 'rect_dcv', null); }
+    if(r.oa!=null)   setVal('rect_oa', r.oa);
+    if(r.ba!=null)   setVal('rect_ba', r.ba);
+  }
+
   return matched;
+}
+
+function showSummary(matched, method){
+  const warns  = matched.filter(m=>m.status==='warn');
+  const normals= matched.filter(m=>m.status==='ok');
+
+  const titleEl = document.getElementById('ocrResultTitle');
+  const listEl  = document.getElementById('ocrMatchList');
+
+  // 제목
+  const warnBadge = warns.length>0
+    ? `<span style="margin-left:8px;background:#fef3c7;color:#92400e;border:1px solid #fbbf24;border-radius:99px;padding:2px 8px;font-size:10px;font-weight:700">⚠ 확인 필요 ${warns.length}건</span>`
+    : `<span style="margin-left:8px;background:#f0fff4;color:#276749;border:1px solid #9ae6b4;border-radius:99px;padding:2px 8px;font-size:10px;font-weight:700">✔ 전체 정상</span>`;
+  titleEl.innerHTML = `✅ ${method} 인식 완료 — ${matched.length}개 항목 ${warnBadge}`;
+
+  // ── 이상값 섹션 ──
+  let html = '';
+  if(warns.length>0){
+    html += `<div style="margin:8px 0 4px;font-size:10px;font-weight:800;color:#92400e;letter-spacing:.3px">⚠ 범위 이탈 · 확인 필요</div>`;
+    html += `<div style="display:flex;flex-direction:column;gap:4px;margin-bottom:8px">`;
+    warns.forEach(m=>{
+      const r = getRangeForKey(m);
+      html += `<div style="display:flex;align-items:center;justify-content:space-between;background:#fffbeb;border:1px solid #fbbf24;border-radius:6px;padding:5px 10px">
+        <span style="font-size:11px;font-weight:700;color:#92400e;font-family:var(--mono)">${m.label}</span>
+        <span style="font-size:11px;font-weight:700;color:#dc2626;font-family:var(--mono)">${m.value} ${m.unit}</span>
+        <span style="font-size:9px;color:#b45309;font-family:var(--mono)">정상: ${r}</span>
+        ${m.tabHint ? `<button onclick="switchTab('${m.tabHint}',null)" style="padding:2px 7px;background:#1a365d;color:#fff;border:none;border-radius:4px;font-size:9px;cursor:pointer;font-weight:700">수정→</button>` : ''}
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  // ── 정상값 섹션 ──
+  if(normals.length>0){
+    html += `<div style="margin:4px 0;font-size:10px;font-weight:800;color:#276749;letter-spacing:.3px">🟢 정상 인식</div>`;
+    html += `<div style="display:flex;flex-wrap:wrap;gap:4px">`;
+    normals.forEach(m=>{
+      html += `<span style="background:#f0fff4;border:1px solid #9ae6b4;border-radius:99px;padding:2px 8px;font-size:10px;font-family:var(--mono);color:#276749;white-space:nowrap">
+        ${m.label}: <strong>${m.value} ${m.unit}</strong>
+      </span>`;
+    });
+    html += `</div>`;
+  }
+
+  listEl.innerHTML = html;
+  document.getElementById('ocrResultSummary').style.display='block';
+}
+
+function getRangeForKey(m){
+  if(m.unit==='kV') return '22.0~24.0 kV';
+  if(m.unit==='V' && m.label.includes('LV')) return '370~400 V';
+  if(m.unit==='V' && m.label.includes('교류')) return '370~400 V';
+  if(m.unit==='V' && m.label.includes('직류')) return '100~150 V';
+  if(m.unit==='A' && m.label.includes('LV')) return '0~800 A';
+  if(m.unit==='A') return '0~630 A';
+  if(m.unit==='PF') return '0.80~1.00';
+  return '-';
 }
 
 function resetResultUI(){
@@ -2276,11 +2310,6 @@ function showErr(msg){
   const prog=document.getElementById('ocrProgress');if(prog)prog.style.display='none';
   const el=document.getElementById('ocrErrMsg');
   el.textContent='⚠️ '+msg;el.style.display='block';
-}
-function showSummary(matched,method){
-  document.getElementById('ocrResultTitle').textContent=`✅ ${method} 인식 완료 — ${matched.length}개 항목 적용`;
-  document.getElementById('ocrMatchList').innerHTML=matched.map(m=>`<span style="display:inline-block;margin-right:14px">• ${m.label}: <strong>${m.value}</strong></span>`).join('');
-  document.getElementById('ocrResultSummary').style.display='block';
 }
 
 // ═══════════════════════════════════════
