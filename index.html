@@ -3077,9 +3077,10 @@ let pendingFile=null;
 
 // ── 이미지 압축 (해상도 유지 + 품질만 조정) ──
 // 목표: API 전송 최적화 - 해상도는 최대한 유지, JPEG 품질로 용량 조정
-async function compressImage(file){
+async function compressImage(file, forceMb){
   // 목표 용량 설정 (MB 단위 → bytes)
-  const targetMb = parseFloat(document.getElementById('compTargetMb')?.value) || 4.8;
+  // forceMb: UPS 판독처럼 강제 목표가 있을 때 사용
+  const targetMb = forceMb || parseFloat(document.getElementById('compTargetMb')?.value) || 4.8;
   const MAX_BYTES = targetMb * 1024 * 1024;
 
   return new Promise(resolve=>{
@@ -3968,6 +3969,51 @@ function applyUPS(d){
 // UPS 전용 다중 이미지 처리 (조명용/일반용 2장씩)
 // ══════════════════════════════════════════════════
 
+// ══════════════════════════════════════════════════
+// UPS 전용 프롬프트 (HMI IMG_PROMPTS와 완전 분리)
+// ══════════════════════════════════════════════════
+const UPS_PROMPTS = {
+  ups1_single: `당신은 UPS SCADA 계측 전문가입니다.
+이 화면은 청하터널 UPS 조명용(50kVA) HMI 화면입니다.
+
+【화면 종류 판별 — 아래 단서 중 하나라도 해당하면 해당 종류】
+■ 입력 화면 단서:
+  - "입력" 또는 "INPUT" 텍스트가 화면 상단/제목에 있음
+  - "전원입력", "입력전압", "입력전류" 텍스트가 있음
+■ 출력 화면 단서:
+  - "출력" 또는 "OUTPUT" 텍스트가 화면 상단/제목에 있음
+  - "출력전압", "출력전류" 텍스트가 있음
+
+【판별이 어려울 때】값이 보이면 vi_r~ii_t(입력 6개)에 넣고 나머지는 null
+
+【입력 화면일 때】전압[V] R/S/T → vi_r, vi_s, vi_t / 전류[A] R/S/T → ii_r, ii_s, ii_t / vo·io 6개는 null
+【출력 화면일 때】전압[V] R/S/T → vo_r, vo_s, vo_t / 전류[A] R/S/T → io_r, io_s, io_t / vi·ii 6개는 null
+
+⚠️ 값이 보이면 null로 두지 말고 반드시 숫자로 반환하세요.
+반드시 12개 키를 모두 포함. 읽기 어려운 값만 null. 순수 JSON만 반환(설명 없이).
+{"vi_r":null,"vi_s":null,"vi_t":null,"ii_r":null,"ii_s":null,"ii_t":null,"vo_r":null,"vo_s":null,"vo_t":null,"io_r":null,"io_s":null,"io_t":null}`,
+
+  ups2_single: `당신은 UPS SCADA 계측 전문가입니다.
+이 화면은 청하터널 UPS 일반용(60kVA) HMI 화면입니다.
+
+【화면 종류 판별 — 아래 단서 중 하나라도 해당하면 해당 종류】
+■ 입력 화면 단서:
+  - "입력" 또는 "INPUT" 텍스트가 화면 상단/제목에 있음
+  - "전원입력", "입력전압", "입력전류" 텍스트가 있음
+■ 출력 화면 단서:
+  - "출력" 또는 "OUTPUT" 텍스트가 화면 상단/제목에 있음
+  - "출력전압", "출력전류" 텍스트가 있음
+
+【판별이 어려울 때】값이 보이면 vi_r~ii_t(입력 6개)에 넣고 나머지는 null
+
+【입력 화면일 때】전압[V] R/S/T → vi_r, vi_s, vi_t / 전류[A] R/S/T → ii_r, ii_s, ii_t / vo·io 6개는 null
+【출력 화면일 때】전압[V] R/S/T → vo_r, vo_s, vo_t / 전류[A] R/S/T → io_r, io_s, io_t / vi·ii 6개는 null
+
+⚠️ 값이 보이면 null로 두지 말고 반드시 숫자로 반환하세요.
+반드시 12개 키를 모두 포함. 읽기 어려운 값만 null. 순수 JSON만 반환(설명 없이).
+{"vi_r":null,"vi_s":null,"vi_t":null,"ii_r":null,"ii_s":null,"ii_t":null,"vo_r":null,"vo_s":null,"vo_t":null,"io_r":null,"io_s":null,"io_t":null}`,
+};
+
 // UPS 진행 상태 행 생성 헬퍼
 function upsProgRow(icon, name, msg){
   const d = document.createElement('div');
@@ -4018,8 +4064,8 @@ async function handleUpsGroup(files, group){
     progEl.appendChild(row);
 
     try{
-      // 이미지 압축
-      const compressed = await compressImage(f);
+      // 이미지 압축 (UPS: 3MB 강제 — API 5MB 한도 안전 마진)
+      const compressed = await compressImage(f, 3);
       const b64 = await new Promise((res,rej)=>{
         const r = new FileReader();
         r.onload = e => res(e.target.result.split(',')[1]);
@@ -4030,8 +4076,10 @@ async function handleUpsGroup(files, group){
 
       row.querySelector('.upm').textContent = 'Claude 판독 중...';
 
-      // Claude API 호출 (전용 프롬프트)
-      const raw = await callClaude(apiKey, b64, mime, IMG_PROMPTS[promptKey], 400);
+      // Claude API 호출 (UPS 전용 프롬프트)
+      const upsPrompt = UPS_PROMPTS[promptKey];
+      if(!upsPrompt) throw new Error(`UPS 프롬프트 없음: ${promptKey}`);
+      const raw = await callClaude(apiKey, b64, mime, upsPrompt, 400);
       let parsed;
       try{ parsed = JSON.parse(raw.replace(/```json|```/g,'').trim()); }
       catch(e){ throw new Error('JSON파싱실패 — 원문: '+raw.slice(0,120)); }
@@ -4075,7 +4123,7 @@ async function handleUpsGroup(files, group){
         row.querySelector('.upi').textContent = '⏳';
         row.querySelector('.upm').textContent = '재시도 중...';
         try{
-          const compressed2 = await compressImage(f);
+          const compressed2 = await compressImage(f, 3);
           const b64_2 = await new Promise((res,rej)=>{
             const r2 = new FileReader();
             r2.onload = ev => res(ev.target.result.split(',')[1]);
@@ -4083,7 +4131,7 @@ async function handleUpsGroup(files, group){
             r2.readAsDataURL(compressed2);
           });
           const mime2 = compressed2.type || 'image/jpeg';
-          const raw2 = await callClaude(apiKey2, b64_2, mime2, IMG_PROMPTS[promptKey], 400);
+          const raw2 = await callClaude(apiKey2, b64_2, mime2, UPS_PROMPTS[promptKey], 400);
           let parsed2;
           try{ parsed2 = JSON.parse(raw2.replace(/```json|```/g,'').trim()); }
           catch(e2){ throw new Error('JSON파싱실패 — '+raw2.slice(0,80)); }
