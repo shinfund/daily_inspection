@@ -4069,21 +4069,27 @@ async function handleUpsSingle(file, group, ioType){
 
     // SCADA_DATA + 폼 반영
     let filled = 0;
+    const vals = {};
     keys.forEach(k => {
       if(parsed[k] !== null && parsed[k] !== undefined){
         scadaSet(`${group}_${k}`, parsed[k]);
+        vals[k] = parsed[k];
         filled++;
       }
     });
     applyAll();
 
-    // 요약
-    const repV = ioType === 'input' ? (parsed.vi_r ?? '?') : (parsed.vo_r ?? '?');
-    const repI = ioType === 'input' ? (parsed.ii_r ?? '?') : (parsed.io_r ?? '?');
+    // 상세 요약 — R/S/T 전압·전류 전체 표시
     row.querySelector('.upi').textContent = filled > 0 ? '✅' : '⚠️';
-    row.querySelector('.upm').textContent = filled > 0
-      ? `[${ioLabel}] V=${repV} I=${repI} (${filled}항목)`
-      : '판독값 없음 — 재시도';
+    if(filled > 0){
+      const vk = ioType === 'input' ? ['vi_r','vi_s','vi_t'] : ['vo_r','vo_s','vo_t'];
+      const ik = ioType === 'input' ? ['ii_r','ii_s','ii_t'] : ['io_r','io_s','io_t'];
+      const vStr = vk.map(k=> vals[k]??'-').join('/');
+      const iStr = ik.map(k=> vals[k]??'-').join('/');
+      row.querySelector('.upm').textContent = `[${ioLabel}] V: ${vStr}V  I: ${iStr}A`;
+    } else {
+      row.querySelector('.upm').textContent = '판독값 없음 — 재시도 권장';
+    }
 
     if(statusEl){
       statusEl.style.color = filled > 0 ? '#276749' : '#c05621';
@@ -4108,8 +4114,11 @@ async function handleUpsSingle(file, group, ioType){
     // 재시도 버튼
     const retryBtn = document.createElement('button');
     retryBtn.textContent = '🔄 재시도';
-    retryBtn.style.cssText = 'padding:2px 8px;font-size:10px;font-weight:700;cursor:pointer;background:#ebf8ff;color:#2b6cb0;border:1px solid #90cdf4;border-radius:4px;white-space:nowrap;flex-shrink:0';
-    row.appendChild(retryBtn);
+    retryBtn.style.cssText = 'margin-top:4px;padding:2px 8px;font-size:10px;font-weight:700;cursor:pointer;background:#ebf8ff;color:#2b6cb0;border:1px solid #90cdf4;border-radius:4px;white-space:nowrap';
+    // upm div 아래에 삽입
+    const upmDiv = row.querySelector('.upm');
+    if(upmDiv) upmDiv.parentNode.appendChild(retryBtn);
+    else row.appendChild(retryBtn);
     retryBtn.addEventListener('click', ()=>{
       row.remove();
       handleUpsSingle(file, group, ioType);
@@ -4120,11 +4129,13 @@ async function handleUpsSingle(file, group, ioType){
 // UPS 진행 상태 행 생성 헬퍼
 function upsProgRow(icon, name, msg){
   const d = document.createElement('div');
-  d.style.cssText = 'display:flex;align-items:center;gap:8px;padding:5px 8px;' +
+  d.style.cssText = 'display:flex;align-items:flex-start;gap:8px;padding:6px 8px;' +
     'background:var(--surface);border-radius:var(--r-xs);font-size:11px;border:1px solid var(--border)';
-  d.innerHTML = `<span class="upi">${icon}</span>` +
-    `<span style="flex:1;font-weight:600;color:var(--t2)">${name}</span>` +
-    `<span class="upm" style="color:var(--t4);font-family:var(--mono);font-size:10px">${msg}</span>`;
+  d.innerHTML = `<span class="upi" style="flex-shrink:0;margin-top:1px">${icon}</span>` +
+    `<div style="flex:1;min-width:0">` +
+    `<div style="font-weight:600;color:var(--t2);word-break:break-all">${name}</div>` +
+    `<div class="upm" style="color:var(--t4);font-family:var(--mono);font-size:10px;margin-top:2px;word-break:break-all">${msg}</div>` +
+    `</div>`;
   return d;
 }
 
