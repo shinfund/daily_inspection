@@ -1193,38 +1193,66 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
   <div id="upsOcrCard" style="margin-bottom:10px;border-radius:var(--r);border:1px solid var(--border);box-shadow:var(--sh-s);background:var(--surface)">
     <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px 10px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#ebf8ff 0%,#bee3f8 100%)">
       <div style="font-size:13px;font-weight:800;color:var(--t1)">🔌 UPS 계측값 자동판독</div>
-      <span class="card-badge blue">입력·출력 2장씩</span>
+      <span class="card-badge blue">입력·출력 각 1장</span>
     </div>
     <div style="padding:10px 14px;display:flex;flex-direction:column;gap:10px">
 
       <!-- 조명용 50kVA -->
       <div style="background:var(--surface-2);border-radius:var(--r-s);padding:10px 12px">
-        <div style="font-size:11px;font-weight:800;color:#1a365d;margin-bottom:8px">☀ 조명용 50kVA (UPS1) — 입력·출력 각 1장</div>
-        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-          <input type="file" id="ups1FileInput" accept="image/*" multiple
-            style="font-size:11px;color:#1a365d;cursor:pointer;flex:1;min-width:0;
-                   border:1.5px solid #90cdf4;border-radius:var(--r-s);padding:7px 10px;background:#fff"
-            onchange="handleUpsGroup(this.files,'ups1');this.value=''">
+        <div style="font-size:11px;font-weight:800;color:#1a365d;margin-bottom:8px">☀ 조명용 50kVA (UPS1)</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <!-- 입력 -->
+          <div>
+            <div style="font-size:10px;font-weight:700;color:#2b6cb0;margin-bottom:4px">📥 입력 화면</div>
+            <input type="file" id="ups1InputFile" accept="image/*"
+              style="font-size:11px;color:#1a365d;cursor:pointer;width:100%;
+                     border:1.5px solid #90cdf4;border-radius:var(--r-s);padding:6px 8px;background:#fff"
+              onchange="handleUpsSingle(this.files[0],'ups1','input');this.value=''">
+            <div id="ups1InputStatus" style="display:none;margin-top:4px;font-size:10px;font-weight:700"></div>
+          </div>
+          <!-- 출력 -->
+          <div>
+            <div style="font-size:10px;font-weight:700;color:#276749;margin-bottom:4px">📤 출력 화면</div>
+            <input type="file" id="ups1OutputFile" accept="image/*"
+              style="font-size:11px;color:#1a365d;cursor:pointer;width:100%;
+                     border:1.5px solid #9ae6b4;border-radius:var(--r-s);padding:6px 8px;background:#fff"
+              onchange="handleUpsSingle(this.files[0],'ups1','output');this.value=''">
+            <div id="ups1OutputStatus" style="display:none;margin-top:4px;font-size:10px;font-weight:700"></div>
+          </div>
         </div>
-        <div id="ups1DzTitle" style="display:none;margin-top:6px;font-size:11px;font-weight:700;color:#276749"></div>
         <div id="ups1Progress" style="margin-top:6px;display:none;flex-direction:column;gap:3px"></div>
+        <div id="ups1DzTitle" style="display:none;margin-top:6px;font-size:11px;font-weight:700;color:#276749"></div>
       </div>
 
       <!-- 일반용 60kVA -->
       <div style="background:var(--surface-2);border-radius:var(--r-s);padding:10px 12px">
-        <div style="font-size:11px;font-weight:800;color:#1a365d;margin-bottom:8px">⚡ 일반용 60kVA (UPS2) — 입력·출력 각 1장</div>
-        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-          <input type="file" id="ups2FileInput" accept="image/*" multiple
-            style="font-size:11px;color:#1a365d;cursor:pointer;flex:1;min-width:0;
-                   border:1.5px solid #90cdf4;border-radius:var(--r-s);padding:7px 10px;background:#fff"
-            onchange="handleUpsGroup(this.files,'ups2');this.value=''">
+        <div style="font-size:11px;font-weight:800;color:#1a365d;margin-bottom:8px">⚡ 일반용 60kVA (UPS2)</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <!-- 입력 -->
+          <div>
+            <div style="font-size:10px;font-weight:700;color:#2b6cb0;margin-bottom:4px">📥 입력 화면</div>
+            <input type="file" id="ups2InputFile" accept="image/*"
+              style="font-size:11px;color:#1a365d;cursor:pointer;width:100%;
+                     border:1.5px solid #90cdf4;border-radius:var(--r-s);padding:6px 8px;background:#fff"
+              onchange="handleUpsSingle(this.files[0],'ups2','input');this.value=''">
+            <div id="ups2InputStatus" style="display:none;margin-top:4px;font-size:10px;font-weight:700"></div>
+          </div>
+          <!-- 출력 -->
+          <div>
+            <div style="font-size:10px;font-weight:700;color:#276749;margin-bottom:4px">📤 출력 화면</div>
+            <input type="file" id="ups2OutputFile" accept="image/*"
+              style="font-size:11px;color:#1a365d;cursor:pointer;width:100%;
+                     border:1.5px solid #9ae6b4;border-radius:var(--r-s);padding:6px 8px;background:#fff"
+              onchange="handleUpsSingle(this.files[0],'ups2','output');this.value=''">
+            <div id="ups2OutputStatus" style="display:none;margin-top:4px;font-size:10px;font-weight:700"></div>
+          </div>
         </div>
-        <div id="ups2DzTitle" style="display:none;margin-top:6px;font-size:11px;font-weight:700;color:#276749"></div>
         <div id="ups2Progress" style="margin-top:6px;display:none;flex-direction:column;gap:3px"></div>
+        <div id="ups2DzTitle" style="display:none;margin-top:6px;font-size:11px;font-weight:700;color:#276749"></div>
       </div>
 
       <div style="font-size:10.5px;color:var(--t4);display:flex;gap:5px">
-        <span>💡</span><span>파일 선택 버튼을 클릭해서 입력·출력 화면 사진을 선택하세요 (2장 동시 선택 가능).</span>
+        <span>💡</span><span>입력·출력 화면을 각각 따로 선택하세요. 판독 후 UPS 섹션에 자동 입력됩니다.</span>
       </div>
     </div>
   </div>
@@ -3973,46 +4001,121 @@ function applyUPS(d){
 // UPS 전용 프롬프트 (HMI IMG_PROMPTS와 완전 분리)
 // ══════════════════════════════════════════════════
 const UPS_PROMPTS = {
-  ups1_single: `당신은 UPS SCADA 계측 전문가입니다.
-이 화면은 청하터널 UPS 조명용(50kVA) HMI 화면입니다.
+  // ── 입력 화면 전용 (판별 불필요 — 무조건 vi/ii 추출) ──
+  input: `당신은 UPS SCADA 계측 전문가입니다.
+이 화면은 UPS 【입력 전압·전류】 화면입니다. 판별 없이 바로 값을 읽으세요.
 
-【화면 종류 판별 — 아래 단서 중 하나라도 해당하면 해당 종류】
-■ 입력 화면 단서:
-  - "입력" 또는 "INPUT" 텍스트가 화면 상단/제목에 있음
-  - "전원입력", "입력전압", "입력전류" 텍스트가 있음
-■ 출력 화면 단서:
-  - "출력" 또는 "OUTPUT" 텍스트가 화면 상단/제목에 있음
-  - "출력전압", "출력전류" 텍스트가 있음
+전압[V] R상 → vi_r / S상 → vi_s / T상 → vi_t
+전류[A] R상 → ii_r / S상 → ii_s / T상 → ii_t
+vo_r·vo_s·vo_t·io_r·io_s·io_t 는 모두 null
 
-【판별이 어려울 때】값이 보이면 vi_r~ii_t(입력 6개)에 넣고 나머지는 null
-
-【입력 화면일 때】전압[V] R/S/T → vi_r, vi_s, vi_t / 전류[A] R/S/T → ii_r, ii_s, ii_t / vo·io 6개는 null
-【출력 화면일 때】전압[V] R/S/T → vo_r, vo_s, vo_t / 전류[A] R/S/T → io_r, io_s, io_t / vi·ii 6개는 null
-
-⚠️ 값이 보이면 null로 두지 말고 반드시 숫자로 반환하세요.
-반드시 12개 키를 모두 포함. 읽기 어려운 값만 null. 순수 JSON만 반환(설명 없이).
+⚠️ 화면에 보이는 숫자를 그대로 읽으세요. 읽기 어려운 값만 null.
+반드시 12개 키 포함. 순수 JSON만 반환.
 {"vi_r":null,"vi_s":null,"vi_t":null,"ii_r":null,"ii_s":null,"ii_t":null,"vo_r":null,"vo_s":null,"vo_t":null,"io_r":null,"io_s":null,"io_t":null}`,
 
-  ups2_single: `당신은 UPS SCADA 계측 전문가입니다.
-이 화면은 청하터널 UPS 일반용(60kVA) HMI 화면입니다.
+  // ── 출력 화면 전용 (판별 불필요 — 무조건 vo/io 추출) ──
+  output: `당신은 UPS SCADA 계측 전문가입니다.
+이 화면은 UPS 【출력 전압·전류】 화면입니다. 판별 없이 바로 값을 읽으세요.
 
-【화면 종류 판별 — 아래 단서 중 하나라도 해당하면 해당 종류】
-■ 입력 화면 단서:
-  - "입력" 또는 "INPUT" 텍스트가 화면 상단/제목에 있음
-  - "전원입력", "입력전압", "입력전류" 텍스트가 있음
-■ 출력 화면 단서:
-  - "출력" 또는 "OUTPUT" 텍스트가 화면 상단/제목에 있음
-  - "출력전압", "출력전류" 텍스트가 있음
+전압[V] R상 → vo_r / S상 → vo_s / T상 → vo_t
+전류[A] R상 → io_r / S상 → io_s / T상 → io_t
+vi_r·vi_s·vi_t·ii_r·ii_s·ii_t 는 모두 null
 
-【판별이 어려울 때】값이 보이면 vi_r~ii_t(입력 6개)에 넣고 나머지는 null
-
-【입력 화면일 때】전압[V] R/S/T → vi_r, vi_s, vi_t / 전류[A] R/S/T → ii_r, ii_s, ii_t / vo·io 6개는 null
-【출력 화면일 때】전압[V] R/S/T → vo_r, vo_s, vo_t / 전류[A] R/S/T → io_r, io_s, io_t / vi·ii 6개는 null
-
-⚠️ 값이 보이면 null로 두지 말고 반드시 숫자로 반환하세요.
-반드시 12개 키를 모두 포함. 읽기 어려운 값만 null. 순수 JSON만 반환(설명 없이).
+⚠️ 화면에 보이는 숫자를 그대로 읽으세요. 읽기 어려운 값만 null.
+반드시 12개 키 포함. 순수 JSON만 반환.
 {"vi_r":null,"vi_s":null,"vi_t":null,"ii_r":null,"ii_s":null,"ii_t":null,"vo_r":null,"vo_s":null,"vo_t":null,"io_r":null,"io_s":null,"io_t":null}`,
 };
+
+// ── 입력/출력 단일 사진 처리 ──
+async function handleUpsSingle(file, group, ioType){
+  if(!file) return;
+  const apiKey = document.getElementById('claudeApiKey').value.trim();
+  if(!apiKey){ showErr('API 키를 입력해주세요.'); return; }
+
+  const label     = group === 'ups1' ? '조명용 50kVA' : '일반용 60kVA';
+  const ioLabel   = ioType === 'input' ? '입력' : '출력';
+  const statusEl  = document.getElementById(`${group}${ioType === 'input' ? 'Input' : 'Output'}Status`);
+  const progEl    = document.getElementById(group+'Progress');
+  const titleEl   = document.getElementById(group+'DzTitle');
+
+  // 상태 표시
+  if(statusEl){ statusEl.style.display='block'; statusEl.style.color='#2b6cb0'; statusEl.textContent='⏳ 판독 중...'; }
+  if(progEl){ progEl.style.display='flex'; }
+
+  const row = upsProgRow('⏳', `${label} ${ioLabel}: ${file.name}`, '처리 중...');
+  if(progEl) progEl.appendChild(row);
+
+  try{
+    const compressed = await compressImage(file, 3);
+    const b64 = await new Promise((res,rej)=>{
+      const r = new FileReader();
+      r.onload = e => res(e.target.result.split(',')[1]);
+      r.onerror = rej;
+      r.readAsDataURL(compressed);
+    });
+    const mime = compressed.type || 'image/jpeg';
+
+    row.querySelector('.upm').textContent = 'Claude 판독 중...';
+
+    const raw = await callClaude(apiKey, b64, mime, UPS_PROMPTS[ioType], 400);
+    let parsed;
+    try{ parsed = JSON.parse(raw.replace(/```json|```/g,'').trim()); }
+    catch(e){ throw new Error('JSON파싱실패 — '+raw.slice(0,80)); }
+
+    // 키 목록 (입력/출력에 따라)
+    const keys = ioType === 'input'
+      ? ['vi_r','vi_s','vi_t','ii_r','ii_s','ii_t']
+      : ['vo_r','vo_s','vo_t','io_r','io_s','io_t'];
+
+    // SCADA_DATA + 폼 반영
+    let filled = 0;
+    keys.forEach(k => {
+      if(parsed[k] !== null && parsed[k] !== undefined){
+        scadaSet(`${group}_${k}`, parsed[k]);
+        filled++;
+      }
+    });
+    applyAll();
+
+    // 요약
+    const repV = ioType === 'input' ? (parsed.vi_r ?? '?') : (parsed.vo_r ?? '?');
+    const repI = ioType === 'input' ? (parsed.ii_r ?? '?') : (parsed.io_r ?? '?');
+    row.querySelector('.upi').textContent = filled > 0 ? '✅' : '⚠️';
+    row.querySelector('.upm').textContent = filled > 0
+      ? `[${ioLabel}] V=${repV} I=${repI} (${filled}항목)`
+      : '판독값 없음 — 재시도';
+
+    if(statusEl){
+      statusEl.style.color = filled > 0 ? '#276749' : '#c05621';
+      statusEl.textContent = filled > 0 ? `✅ ${ioLabel} ${filled}항목` : '⚠️ 미추출';
+    }
+
+    // 전체 완료 여부 체크 (입력+출력 둘 다 됐으면 타이틀 표시)
+    const inputDone  = document.getElementById(`${group}InputStatus`)?.textContent.startsWith('✅');
+    const outputDone = document.getElementById(`${group}OutputStatus`)?.textContent.startsWith('✅');
+    if(titleEl){
+      titleEl.style.display = 'block';
+      titleEl.textContent = inputDone && outputDone
+        ? `✅ ${label} 입력+출력 완료`
+        : `🔄 ${label} ${inputDone?'출력':'입력'} 사진을 추가 선택하세요`;
+    }
+
+  } catch(e){
+    row.querySelector('.upi').textContent = '❌';
+    row.querySelector('.upm').textContent = e.message.slice(0,60);
+    if(statusEl){ statusEl.style.color='#c53030'; statusEl.textContent='❌ 오류 — 재시도'; }
+
+    // 재시도 버튼
+    const retryBtn = document.createElement('button');
+    retryBtn.textContent = '🔄 재시도';
+    retryBtn.style.cssText = 'padding:2px 8px;font-size:10px;font-weight:700;cursor:pointer;background:#ebf8ff;color:#2b6cb0;border:1px solid #90cdf4;border-radius:4px;white-space:nowrap;flex-shrink:0';
+    row.appendChild(retryBtn);
+    retryBtn.addEventListener('click', ()=>{
+      row.remove();
+      handleUpsSingle(file, group, ioType);
+    });
+  }
+}
 
 // UPS 진행 상태 행 생성 헬퍼
 function upsProgRow(icon, name, msg){
