@@ -101,7 +101,7 @@ body{
   display:flex;align-items:center;justify-content:center;
   font-size:18px;
 }
-.h-title{font-size:16px;font-weight:700;color:#fff;letter-spacing:-.3px}
+.h-title{font-size:20px;font-weight:700;color:#fff;letter-spacing:-.3px}
 .h-sub{font-size:11px;color:rgba(255,255,255,.6);font-family:var(--mono);letter-spacing:.3px}
 .h-right{display:flex;align-items:center;gap:8px}
 .status-pill{
@@ -127,7 +127,7 @@ body{
   display:flex;
   background:linear-gradient(135deg,#1a365d 0%,#2b6cb0 100%);
   overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
-  position:sticky;top:102px;z-index:40;
+  position:sticky;top:58px;z-index:40;
   border-bottom:2px solid rgba(255,255,255,.12);
   height:44px;
   margin:0;padding:0;
@@ -147,6 +147,7 @@ body{
 }
 .tab-btn.active{color:#fff;border-bottom-color:#90cdf4}
 .tab-btn:hover:not(.active){color:rgba(255,255,255,.8)}
+#tunnelNav .tab-btn{font-size:15px;font-weight:700;letter-spacing:.3px;flex:1}
 
 /* ══════════ SCROLL AREA ══════════ */
 .scroll-area{padding:14px 14px 36px;max-width:600px;margin:0 auto}
@@ -194,27 +195,7 @@ body{
 .card-badge.blue{background:var(--blue-lt);color:var(--blue);border-color:var(--blue-mid)}
 
 /* ══════════ KPI GRID ══════════ */
-.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
 /* 통합 반응형으로 이전됨 */
-.kpi{
-  background:var(--surface);
-  border-radius:var(--r);
-  border:1px solid var(--border);
-  padding:14px 14px 12px;
-  box-shadow:var(--sh-s);
-  position:relative;overflow:hidden;
-  animation:fadeUp .25s ease both;
-}
-.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--r) var(--r) 0 0}
-.kpi.solar::before{background:linear-gradient(90deg,#f59e0b,#fbbf24)}
-.kpi.blue::before {background:linear-gradient(90deg,#1a365d,#63b3ed)}
-.kpi.green::before{background:linear-gradient(90deg,#276749,#68d391)}
-.kpi.orange::before{background:linear-gradient(90deg,#c2410c,#fb923c)}
-.kpi-lbl{font-size:10px;font-weight:600;color:var(--t4);margin-bottom:5px;letter-spacing:.2px}
-.kpi-val{font-family:var(--mono);font-size:20px;font-weight:600;color:var(--t1);letter-spacing:-.5px;line-height:1.1}
-.kpi-unit{font-size:11px;color:var(--t4);font-weight:400}
-.kpi-sub{font-size:11px;color:var(--t3);margin-top:4px;font-weight:500}
-.kpi-ico{position:absolute;top:13px;right:12px;font-size:18px;opacity:.12}
 
 /* ══════════ TABLE ══════════ */
 .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
@@ -294,15 +275,7 @@ body{
 .rect-unit{font-size:11px;color:var(--t4);font-weight:400}
 
 /* ══════════ DIAGRAM ══════════ */
-.diag-scroll{overflow-x:auto;padding:14px;background:#ebf8ff;-webkit-overflow-scrolling:touch}
-.diag-hint{text-align:center;font-size:11px;color:var(--t4);padding:7px 0 4px;letter-spacing:.3px}
 /* 전체화면 모드에서 카드 배경 */
-#diagCard:fullscreen,#diagCard:-webkit-full-screen{
-  background:#eff6ff;display:flex;flex-direction:column;
-}
-#diagCard:fullscreen #diagViewport,#diagCard:-webkit-full-screen #diagViewport{
-  flex:1;height:100vh !important;
-}
 
 /* ══════════ AI / DATA INPUT ══════════ */
 
@@ -719,8 +692,7 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
   /* 탭 버튼 여유 */
   .tab-btn{ height:44px; padding:0 22px; font-size:13px; }
   /* KPI 그리드 — 4컬럼 */
-  .kpi-grid{ grid-template-columns:repeat(4,1fr); gap:12px; }
-  /* 입력 그리드 — 4컬럼 */
+    /* 입력 그리드 — 4컬럼 */
   .inp-grid{ grid-template-columns:repeat(4,1fr); gap:12px; padding:16px 18px; }
   /* 카드 패딩 */
   .card{ margin-bottom:14px; }
@@ -755,8 +727,7 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
     max-width:1100px;
   }
   /* KPI 5컬럼 */
-  .kpi-grid{ grid-template-columns:repeat(5,1fr); gap:14px; }
-  /* 입력 5컬럼 */
+    /* 입력 5컬럼 */
   .inp-grid{ grid-template-columns:repeat(5,1fr); gap:14px; padding:18px 20px; }
   .tab-btn{ height:44px; padding:0 26px; font-size:13.5px; }
   .inp-val{ font-size:14px; padding:11px 14px; }
@@ -769,8 +740,7 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
 /* ── 태블릿 (481~768px) ── */
 @media(min-width:481px) and (max-width:768px){
   .scroll-area{ padding:16px 18px 40px; max-width:100%; }
-  .kpi-grid{ grid-template-columns:repeat(3,1fr); gap:10px; }
-  .inp-grid{ grid-template-columns:repeat(3,1fr); gap:10px; padding:14px 16px; }
+    .inp-grid{ grid-template-columns:repeat(3,1fr); gap:10px; padding:14px 16px; }
   .tab-btn{ height:44px; padding:0 18px; font-size:12px; }
   .inp-val{ font-size:12px; padding:9px 10px; }
   .inp-lbl{ font-size:11px; }
@@ -782,8 +752,7 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
   /* 헤더 타이틀 */
   .header-title{ font-size:15px !important; }
   /* KPI 2컬럼 유지 */
-  .kpi-grid{ grid-template-columns:1fr 1fr; gap:8px; }
-  /* 입력 2컬럼 */
+    /* 입력 2컬럼 */
   .inp-grid{ grid-template-columns:1fr 1fr; gap:8px; padding:10px 12px; }
   /* 탭 버튼 */
   .tab-btn{ height:44px; padding:0 12px; font-size:11px; }
@@ -815,9 +784,7 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
   .ai-dz-hint{ font-size:10.5px; }
   .ai-key-wrap{ padding:10px 12px; }
   /* KPI 카드 */
-  .kpi-card{ padding:10px 12px; }
-  .kpi-val{ font-size:17px; }
-  /* 합계행 */
+    /* 합계행 */
   .sum-row{ padding:9px 12px; font-size:11px; }
   /* 버튼 */
   .btn-primary, button[style*="padding:9px 16px"]{
@@ -825,7 +792,6 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
     font-size:12px !important;
   }
   /* 계통도 컨트롤 */
-  #diagZoomLabel{ font-size:10px; min-width:32px; }
 
   /* ── 최근 추가 섹션 모바일 최적화 ── */
 
@@ -854,10 +820,6 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
   }
 
   /* SCADA 결과 수정 바로가기 버튼 */
-  #scanResultWrap button[onclick*="switchTab"]{
-    padding:5px 8px !important;
-    font-size:10px !important;
-  }
 }
 
 /* ── 아주 좁은 폰 (360px 이하) ── */
@@ -975,23 +937,7 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
 }
 
 /* ── 최상위 터널 탭 ── */
-.tunnel-nav{
-  display:flex;background:linear-gradient(135deg,#0d2240,#1a365d);
-  overflow-x:auto;-webkit-overflow-scrolling:touch;
-  position:sticky;top:58px;z-index:45;
-  height:44px;
-  margin:0;padding:0;
-}
-.tunnel-nav::-webkit-scrollbar{display:none}
-.tunnel-btn{
-  flex:1;min-width:120px;height:44px;padding:0 16px;
-  color:rgba(255,255,255,.65);
-  font-size:12px;font-weight:700;border:none;background:transparent;cursor:pointer;
-  border-bottom:3px solid transparent;white-space:nowrap;letter-spacing:.5px;
-  transition:all .2s;display:flex;align-items:center;justify-content:center;
-}
-.tunnel-btn.active{color:#fff;border-bottom-color:#f6ad55;background:rgba(246,173,85,.08)}
-.tunnel-btn:hover:not(.active){color:rgba(255,255,255,.85)}
+
 
 </style>
 </head>
@@ -1022,30 +968,19 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
   </div>
 </div>
 <div class="header" style="justify-content:space-between">
-  <div class="h-title" style="font-size:16px">청하터널(주) 일일점검일지</div>
+  <div class="h-title">청하터널(주) 일일점검일지</div>
   <div class="clock" id="clock" style="font-size:13px;padding:4px 10px">00:00</div>
 </div>
 
 
-<!-- ══ 최상위 터널 탭 ══ -->
-<div class="tunnel-nav" id="tunnelNav">
-  <button class="tunnel-btn active" id="tunnelBtn_main" onclick="switchTunnel('main',this)">
+<!-- ══ 터널 네비 (탭 스타일) ══ -->
+<div class="tab-nav" id="tunnelNav" style="top:58px;">
+  <button class="tab-btn active" id="tunnelBtn_main" onclick="switchTunnel('main',this)">
     청하터널(주)
   </button>
-  <button class="tunnel-btn" id="tunnelBtn_sub" onclick="switchTunnel('sub',this)">
+  <button class="tab-btn" id="tunnelBtn_sub" onclick="switchTunnel('sub',this)">
     청하터널(부)
   </button>
-</div>
-
-<!-- TAB NAV -->
-<div class="tab-nav">
-  <button class="tab-btn active" onclick="switchTab('ai', this)">SCADA 입력</button>
-  <button class="tab-btn" data-main-only="1" onclick="switchTab('diagram', this)">계통도</button>
-  <button class="tab-btn" onclick="switchTab('overview', this)">개요</button>
-  <button class="tab-btn" onclick="switchTab('hv', this)">고압 HV</button>
-  <button class="tab-btn" onclick="switchTab('lv', this)">저압 LV</button>
-  <button class="tab-btn" onclick="switchTab('solar', this)">태양광</button>
-  <button class="tab-btn" onclick="switchTab('dimming', this)">디밍제어기</button>
 </div>
 
 <div class="scroll-area">
@@ -1186,15 +1121,6 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
     <div class="ai-raw-wrap" id="ocrRawWrap" style="display:none">
       <button class="ai-raw-btn" onclick="toggleRaw()">📄 인식 원문 보기 / 숨기기</button>
       <pre class="ai-raw-text" id="ocrRawText"></pre>
-    </div>
-    <div style="background:#f0f6fc;border:1px solid #b8d0e8;border-radius:var(--r);padding:12px 14px;margin-top:8px">
-      <div style="font-size:11px;font-weight:700;color:#1a365d;margin-bottom:8px">✏ 오인식 시 해당 탭에서 직접 수정하세요</div>
-      <div style="display:flex;flex-wrap:wrap;gap:6px">
-        <button onclick="switchTab('hv',null)" style="padding:6px 12px;background:#1a365d;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer">⚡ 고압 HV 수정</button>
-        <button onclick="switchTab('lv',null)" style="padding:6px 12px;background:#1d4ed8;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer">🔵 저압 LV 수정</button>
-        <button onclick="switchTab('overview',null)" style="padding:6px 12px;background:#276749;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer">📊 개요 확인</button>
-        <button onclick="switchTab('diagram',null)" style="padding:6px 12px;background:#0f766e;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer">📐 계통도</button>
-      </div>
     </div>
     <!-- hidden inputs -->
     <div style="display:none">
@@ -1415,13 +1341,13 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
       <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
         <span style="font-size:11px;color:var(--t4);font-weight:600;white-space:nowrap;width:58px;flex-shrink:0">입력방식</span>
         <div style="width:1px;height:16px;background:var(--border);flex-shrink:0"></div>
-        <button id="modeBtn_canvas" onclick="setCheckMode('canvas')"
-          style="padding:4px 11px;font-size:11px;font-weight:700;border-radius:20px;border:1.5px solid var(--blue);background:var(--blue);color:#fff;cursor:pointer;white-space:nowrap">
-          ✍️ 손글씨
-        </button>
         <button id="modeBtn_toggle" onclick="setCheckMode('toggle')"
-          style="padding:4px 11px;font-size:11px;font-weight:700;border-radius:20px;border:1.5px solid var(--border-2);background:var(--surface);color:var(--t2);cursor:pointer;white-space:nowrap">
+          style="padding:4px 11px;font-size:11px;font-weight:700;border-radius:20px;border:1.5px solid var(--blue);background:var(--blue);color:#fff;cursor:pointer;white-space:nowrap">
           🔘 버튼 토글
+        </button>
+        <button id="modeBtn_canvas" onclick="setCheckMode('canvas')"
+          style="padding:4px 11px;font-size:11px;font-weight:700;border-radius:20px;border:1.5px solid var(--border-2);background:var(--surface);color:var(--t2);cursor:pointer;white-space:nowrap">
+          ✍️ 손글씨
         </button>
       </div>
 
@@ -1926,1370 +1852,10 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
 
 </div><!-- /tab-ai -->
 
-<!-- ══════════════════════════════════
-     TAB: 개요
-══════════════════════════════════ -->
-<div class="tab-panel" id="tab-overview">
-
-  <div class="sec-label"><span style="color:#f59e0b">☀</span> 태양광 발전</div>
-  <div class="kpi-grid">
-    <div class="kpi solar" style="animation-delay:.05s">
-      <div class="kpi-ico">☀</div>
-      <div class="kpi-lbl">누적 발전 #1</div>
-      <div class="kpi-val"><span id="kpi_solar1">24,769.48</span><span class="kpi-unit"> KWh</span></div>
-      <div class="kpi-sub">인버터 #1 · 정상</div>
-    </div>
-    <div class="kpi solar" style="animation-delay:.08s">
-      <div class="kpi-ico">☀</div>
-      <div class="kpi-lbl">누적 발전 #2</div>
-      <div class="kpi-val"><span id="kpi_solar2">8,944.01</span><span class="kpi-unit"> KWh</span></div>
-      <div class="kpi-sub">인버터 #2 · 정상</div>
-    </div>
-  </div>
-
-  <div class="sec-label">⚡ 수전 현황</div>
-  <div class="kpi-grid">
-    <div class="kpi orange" style="animation-delay:.1s">
-      <div class="kpi-ico">⚡</div>
-      <div class="kpi-lbl">HV-104 전력</div>
-      <div class="kpi-val"><span id="kpi_hv104_kw">87.4</span><span class="kpi-unit"> KW</span></div>
-      <div class="kpi-sub"><span id="kpi_hv104_mwh">300.98</span> MWh 누적</div>
-    </div>
-    <div class="kpi blue" style="animation-delay:.13s">
-      <div class="kpi-ico">🔵</div>
-      <div class="kpi-lbl">LV-101 전력</div>
-      <div class="kpi-val"><span id="kpi_lv101_kw">59.7</span><span class="kpi-unit"> KW</span></div>
-      <div class="kpi-sub">역률 <span id="kpi_lv101_pf">0.98</span>PF</div>
-    </div>
-    <div class="kpi green" style="animation-delay:.16s">
-      <div class="kpi-ico">🔋</div>
-      <div class="kpi-lbl">정류반 교류</div>
-      <div class="kpi-val"><span id="kpi_rect_acv">379.0</span><span class="kpi-unit"> V</span></div>
-      <div class="kpi-sub">직류 <span id="kpi_rect_dcv">123.0</span>V</div>
-    </div>
-    <div class="kpi blue" style="animation-delay:.19s">
-      <div class="kpi-ico">📡</div>
-      <div class="kpi-lbl">주파수</div>
-      <div class="kpi-val">60.0<span class="kpi-unit"> Hz</span></div>
-      <div class="kpi-sub">정상 범위</div>
-    </div>
-  </div>
-
-  <div class="sec-label">🔌 차단기 상태</div>
-  <div class="card">
-    <div class="brk-grid">
-      <div class="brk cl"><div class="brk-name">HV-104</div><div class="brk-st">CLOSE</div></div>
-      <div class="brk cl"><div class="brk-name">HV-105</div><div class="brk-st">CLOSE</div></div>
-      <div class="brk cl"><div class="brk-name">HV-106</div><div class="brk-st">CLOSE</div></div>
-      <div class="brk cl"><div class="brk-name">HV-107</div><div class="brk-st">CLOSE</div></div>
-      <div class="brk cl"><div class="brk-name">LV-101</div><div class="brk-st">CLOSE</div></div>
-      <div class="brk cl"><div class="brk-name">LV-105</div><div class="brk-st">CLOSE</div></div>
-      <div class="brk op"><div class="brk-name">LV-108</div><div class="brk-st">OPEN</div></div>
-      <div class="brk cl"><div class="brk-name">LBS</div><div class="brk-st">CLOSE</div></div>
-    </div>
-  </div>
-
-  <div class="sec-label">🔋 정류반</div>
-  <div class="card">
-    <div class="rect-grid">
-      <div class="rect-cell"><div class="rect-lbl">교류전압</div><div class="rect-val"><span id="d_rect_acv">379.0</span><span class="rect-unit"> V</span></div></div>
-      <div class="rect-cell"><div class="rect-lbl">직류전압</div><div class="rect-val"><span id="d_rect_dcv">123.0</span><span class="rect-unit"> V</span></div></div>
-      <div class="rect-cell"><div class="rect-lbl">출력전류</div><div class="rect-val"><span id="d_rect_oa">0.0</span><span class="rect-unit"> A</span></div></div>
-      <div class="rect-cell"><div class="rect-lbl">배터리전류</div><div class="rect-val"><span id="d_rect_ba">0.0</span><span class="rect-unit"> A</span></div></div>
-    </div>
-  </div>
-
-  <div class="sec-label">🏗 변압기 제원</div>
-  <div class="card">
-    <div class="info-row"><span class="info-bdg hv">LTR-101</span><div style="flex:1"><div class="info-name">조명용 변압기</div><div class="info-desc">22.9kV / 380-220V · 3Ø</div></div><div class="info-val">200<span class="info-unit"> kVA</span></div></div>
-    <div class="info-row"><span class="info-bdg hv">PTR-101</span><div style="flex:1"><div class="info-name">일반용 변압기</div><div class="info-desc">22.9kV / 380-220V · 3Ø</div></div><div class="info-val">200<span class="info-unit"> kVA</span></div></div>
-    <div class="info-row"><span class="info-bdg hv">PTR-102</span><div style="flex:1"><div class="info-name">동력용 변압기</div><div class="info-desc">22.9kV / 380-220V · 3Ø</div></div><div class="info-val">400<span class="info-unit"> kVA</span></div></div>
-  </div>
-
-</div><!-- /tab-overview -->
-
-<!-- ══════════════════════════════════
-     TAB: 고압 HV
-══════════════════════════════════ -->
-<div class="tab-panel" id="tab-hv">
-
-  <!-- ══ 한전 수전 ══ -->
-  <div class="sec-label">⚡ 한전 수전</div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-title">KEPCO INCOMING</div>
-      <span class="card-badge blue">22.9kV</span>
-    </div>
-    <div class="info-row">
-      <div style="display:flex;flex-direction:column;gap:5px;padding:2px 0">
-        <div style="font-size:12px;font-family:var(--mono);color:var(--t2)">FROM: KEPCO INCOMING LINE</div>
-        <div style="font-size:12px;font-family:var(--mono);color:var(--t2)">3Ø4W 22.9kV-Y · CNCV-W 60㎟</div>
-        <div style="font-size:12px;font-family:var(--mono);color:var(--t2)">(ELP 125Ø) - 2LINE (예비 1회선)</div>
-        <div style="font-size:11px;font-family:var(--mono);color:var(--t4)">수전전압 22.9kV</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══ LBS ══ -->
-  <div class="sec-label">🔌 LBS · 부하개폐기</div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-title">LBS</div>
-      <span class="card-badge green">CLOSE</span>
-    </div>
-    <div class="info-row">
-      <div style="display:flex;flex-direction:column;gap:5px;padding:2px 0">
-        <div style="font-size:12px;font-family:var(--mono);color:var(--t2)">MOTOR DRIVE TYPE</div>
-        <div style="font-size:12px;font-family:var(--mono);color:var(--t2)">25.8kV  630A</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="sec-label">ID 01 · HV-104 VCB 630A</div>
-  <div class="card">
-    <div class="card-header"><div class="card-title">HV-104</div><span class="card-badge green">CLOSE</span></div>
-    <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>위상</th><th>전압 (kV)</th><th>전류 (A)</th><th>역률</th><th>전력</th></tr></thead>
-      <tbody>
-        <tr><td class="ph-r">R-S</td><td class="v-hv"><span id="d_hv104_vrs">22.952</span></td><td><span id="d_hv104_ir">2.2</span></td><td rowspan="3" style="vertical-align:middle;color:var(--t3)"><span id="d_hv104_pf">0.99</span>PF</td><td rowspan="3" style="vertical-align:middle" class="v-pw"><span id="d_hv104_kw">87.4</span>KW</td></tr>
-        <tr><td class="ph-s">S-T</td><td class="v-hv"><span id="d_hv104_vst">22.927</span></td><td><span id="d_hv104_is">2.3</span></td></tr>
-        <tr><td class="ph-t">T-R</td><td class="v-hv"><span id="d_hv104_vtr">23.014</span></td><td><span id="d_hv104_it">2.2</span></td></tr>
-      </tbody>
-    </table></div>
-    <div class="sum-row" style="background:var(--surface-2)"><span class="sum-lbl">누적 전력량</span><span class="sum-val"><span id="d_hv104_mwh">300.98</span> MWh</span></div>
-  </div>
-
-  <div class="sec-label">ID 02 · HV-105 VCB 630A</div>
-  <div class="card">
-    <div class="card-header"><div class="card-title">HV-105</div><span class="card-badge green">CLOSE</span></div>
-    <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>위상</th><th>전압 (kV)</th><th>전류 (A)</th><th>역률</th><th>전력</th></tr></thead>
-      <tbody>
-        <tr><td class="ph-r">R-S</td><td class="v-hv"><span id="d_hv105_vrs">22.940</span></td><td><span id="d_hv105_ir">1.5</span></td><td rowspan="3" style="vertical-align:middle;color:var(--t3)"><span id="d_hv105_pf">0.99</span>PF</td><td rowspan="3" style="vertical-align:middle" class="v-pw"><span id="d_hv105_kw">60.9</span>KW</td></tr>
-        <tr><td class="ph-s">S-T</td><td class="v-hv"><span id="d_hv105_vst">22.929</span></td><td><span id="d_hv105_is">1.5</span></td></tr>
-        <tr><td class="ph-t">T-R</td><td class="v-hv"><span id="d_hv105_vtr">23.021</span></td><td><span id="d_hv105_it">1.6</span></td></tr>
-      </tbody>
-    </table></div>
-    <div class="sum-row" style="background:var(--surface-2)"><span class="sum-lbl">누적 전력량</span><span class="sum-val"><span id="d_hv105_mwh">206.31</span> MWh</span></div>
-  </div>
-
-  <div class="sec-label">ID 03 · HV-106 VCB 630A</div>
-  <div class="card">
-    <div class="card-header"><div class="card-title">HV-106</div><span class="card-badge green">CLOSE</span></div>
-    <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>위상</th><th>전압 (kV)</th><th>전류 (A)</th><th>역률</th><th>전력</th></tr></thead>
-      <tbody>
-        <tr><td class="ph-r">R-S</td><td class="v-hv"><span id="d_hv106_vrs">22.959</span></td><td><span id="d_hv106_ir">0.7</span></td><td rowspan="3" style="vertical-align:middle;color:var(--t3)"><span id="d_hv106_pf">0.99</span>PF</td><td rowspan="3" style="vertical-align:middle" class="v-pw"><span id="d_hv106_kw">25.9</span>KW</td></tr>
-        <tr><td class="ph-s">S-T</td><td class="v-hv"><span id="d_hv106_vst">22.932</span></td><td><span id="d_hv106_is">0.7</span></td></tr>
-        <tr><td class="ph-t">T-R</td><td class="v-hv"><span id="d_hv106_vtr">23.022</span></td><td><span id="d_hv106_it">0.6</span></td></tr>
-      </tbody>
-    </table></div>
-    <div class="sum-row" style="background:var(--surface-2)"><span class="sum-lbl">누적 전력량</span><span class="sum-val"><span id="d_hv106_mwh">87.25</span> MWh</span></div>
-  </div>
-
-  <div class="sec-label">ID 04 · HV-107 VCB 630A</div>
-  <div class="card">
-    <div class="card-header"><div class="card-title">HV-107</div><span class="card-badge red">무부하</span></div>
-    <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>위상</th><th>전압 (kV)</th><th>전류 (A)</th><th>역률</th><th>전력</th></tr></thead>
-      <tbody>
-        <tr><td class="ph-r">R-S</td><td class="v-hv"><span id="d_hv107_vrs">22.949</span></td><td class="v-dm"><span id="d_hv107_ir">0.0</span></td><td rowspan="3" style="vertical-align:middle" class="v-dm"><span id="d_hv107_pf">0.00</span>PF</td><td rowspan="3" style="vertical-align:middle" class="v-dm"><span id="d_hv107_kw">0.0</span>KW</td></tr>
-        <tr><td class="ph-s">S-T</td><td class="v-hv"><span id="d_hv107_vst">22.927</span></td><td class="v-dm"><span id="d_hv107_is">0.0</span></td></tr>
-        <tr><td class="ph-t">T-R</td><td class="v-hv"><span id="d_hv107_vtr">23.027</span></td><td class="v-dm"><span id="d_hv107_it">0.0</span></td></tr>
-      </tbody>
-    </table></div>
-    <div class="sum-row" style="background:var(--surface-2)"><span class="sum-lbl">누적 전력량</span><span class="sum-val"><span id="d_hv107_mwh">4.67</span> MWh</span></div>
-  </div>
-
-  <div class="sec-label">HV 전체 요약</div>
-  <div class="card">
-    <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>TAG</th><th>역률</th><th>전력 (KW)</th><th>전력량 (MWh)</th></tr></thead>
-      <tbody>
-        <tr><td><span class="tag hv">HV-104</span></td><td>0.99</td><td class="v-pw">87.4</td><td class="v-eg">300.98</td></tr>
-        <tr><td><span class="tag hv">HV-105</span></td><td>0.99</td><td class="v-pw">60.9</td><td class="v-eg">206.31</td></tr>
-        <tr><td><span class="tag hv">HV-106</span></td><td>0.99</td><td class="v-pw">25.9</td><td class="v-eg">87.25</td></tr>
-        <tr><td><span class="tag hv">HV-107</span></td><td class="v-dm">0.00</td><td class="v-dm">0.0</td><td class="v-eg">4.67</td></tr>
-      </tbody>
-    </table></div>
-  </div>
-
-</div><!-- /tab-hv -->
-
-<!-- ══════════════════════════════════
-     TAB: 저압 LV
-══════════════════════════════════ -->
-<div class="tab-panel" id="tab-lv">
-
-  <div class="sec-label">ID 05 · LV-101 ACB 630A · 조명용</div>
-  <div class="card">
-    <div class="card-header"><div class="card-title">LV-101</div><span class="card-badge green">CLOSE</span></div>
-    <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>위상</th><th>전압 (V)</th><th>전류 (A)</th><th>역률</th><th>전력</th></tr></thead>
-      <tbody>
-        <tr><td class="ph-r">R-S</td><td class="v-lv"><span id="d_lv101_vrs">381</span></td><td><span id="d_lv101_ir">88.4</span></td><td rowspan="3" style="vertical-align:middle;color:var(--t3)"><span id="d_lv101_pf">0.98</span>PF</td><td rowspan="3" style="vertical-align:middle" class="v-pw"><span id="d_lv101_kw">59.7</span>KW</td></tr>
-        <tr><td class="ph-s">S-T</td><td class="v-lv"><span id="d_lv101_vst">381</span></td><td><span id="d_lv101_is">94.7</span></td></tr>
-        <tr><td class="ph-t">T-R</td><td class="v-lv"><span id="d_lv101_vtr">381</span></td><td><span id="d_lv101_it">93.0</span></td></tr>
-      </tbody>
-    </table></div>
-    <div class="sum-row" style="background:var(--surface-2)"><span class="sum-lbl">누적 전력량</span><span class="sum-val"><span id="d_lv101_mwh">201.90</span> MWh</span></div>
-  </div>
-
-  <div class="sec-label">ID 06 · LV-105 ACB 630A · 일반용</div>
-  <div class="card">
-    <div class="card-header"><div class="card-title">LV-105</div><span class="card-badge green">CLOSE</span></div>
-    <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>위상</th><th>전압 (V)</th><th>전류 (A)</th><th>역률</th><th>전력</th></tr></thead>
-      <tbody>
-        <tr><td class="ph-r">R-S</td><td class="v-lv"><span id="d_lv105_vrs">381</span></td><td><span id="d_lv105_ir">47.0</span></td><td rowspan="3" style="vertical-align:middle;color:var(--t3)"><span id="d_lv105_pf">0.99</span>PF</td><td rowspan="3" style="vertical-align:middle" class="v-pw"><span id="d_lv105_kw">25.2</span>KW</td></tr>
-        <tr><td class="ph-s">S-T</td><td class="v-lv"><span id="d_lv105_vst">381</span></td><td><span id="d_lv105_is">38.1</span></td></tr>
-        <tr><td class="ph-t">T-R</td><td class="v-lv"><span id="d_lv105_vtr">382</span></td><td><span id="d_lv105_it">31.4</span></td></tr>
-      </tbody>
-    </table></div>
-    <div class="sum-row" style="background:var(--surface-2)"><span class="sum-lbl">누적 전력량</span><span class="sum-val"><span id="d_lv105_mwh">84.99</span> MWh</span></div>
-  </div>
-
-  <div class="sec-label">ID 07 · LV-108 ACB 800A · 동력용</div>
-  <div class="card">
-    <div class="card-header"><div class="card-title">LV-108</div><span class="card-badge red">OPEN</span></div>
-    <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>위상</th><th>전압 (V)</th><th>전류 (A)</th><th>역률</th><th>전력</th></tr></thead>
-      <tbody>
-        <tr><td class="ph-r">R-S</td><td class="v-lv"><span id="d_lv108_vrs">381</span></td><td class="v-dm"><span id="d_lv108_ir">0.0</span></td><td rowspan="3" style="vertical-align:middle" class="v-dm"><span id="d_lv108_pf">0.00</span>PF</td><td rowspan="3" style="vertical-align:middle" class="v-dm"><span id="d_lv108_kw">0.0</span>KW</td></tr>
-        <tr><td class="ph-s">S-T</td><td class="v-lv"><span id="d_lv108_vst">382</span></td><td class="v-dm"><span id="d_lv108_is">0.0</span></td></tr>
-        <tr><td class="ph-t">T-R</td><td class="v-lv"><span id="d_lv108_vtr">382</span></td><td class="v-dm"><span id="d_lv108_it">0.0</span></td></tr>
-      </tbody>
-    </table></div>
-    <div class="sum-row" style="background:var(--surface-2)"><span class="sum-lbl">누적 전력량</span><span class="sum-val"><span id="d_lv108_mwh">4.57</span> MWh</span></div>
-  </div>
-
-  <div class="sec-label">LV-102 피더 회로 (CTTS · GFR)</div>
-  <div class="card">
-    <div class="feeder-row"><div class="fd-num">1</div><div class="fd-tag">D1-D1</div><div class="fd-rgn">영덕</div><div class="fd-load">—</div></div>
-    <div class="feeder-row"><div class="fd-num">2</div><div class="fd-tag">D1-D2</div><div class="fd-rgn">영덕</div><div class="fd-load">—</div></div>
-    <div class="feeder-row"><div class="fd-num">3</div><div class="fd-tag">MN1-U1</div><div class="fd-rgn">포항</div><div class="fd-load">가로등 (L1-A)</div></div>
-    <div class="feeder-row"><div class="fd-num">4</div><div class="fd-tag">MN1-U2</div><div class="fd-rgn">포항</div><div class="fd-load">가로등 (L2-A)</div></div>
-    <div class="feeder-row"><div class="fd-num">5</div><div class="fd-tag">N1-U1</div><div class="fd-rgn">포항</div><div class="fd-load">가로등 (L1-B)</div></div>
-    <div class="feeder-row"><div class="fd-num">6</div><div class="fd-tag">MN1-D1</div><div class="fd-rgn">영덕</div><div class="fd-load">가로등 (L2-B)</div></div>
-    <div class="feeder-row"><div class="fd-num">7</div><div class="fd-tag">MN1-D2</div><div class="fd-rgn">영덕</div><div class="fd-load">—</div></div>
-    <div class="feeder-row"><div class="fd-num">8</div><div class="fd-tag">N1-D1</div><div class="fd-rgn">영덕</div><div class="fd-load">—</div></div>
-  </div>
-
-</div><!-- /tab-lv -->
-
-
-<!-- ═══ TAB: 태양광 ═══ -->
-<div class="tab-panel" id="tab-solar">
-
-  <div class="sec-label" id="solarLabel1"><span style="color:#f59e0b">☀</span> 주전기실 태양광 #1 (50kW)</div>
-  <div class="kpi-grid" style="grid-template-columns:repeat(2,1fr)">
-    <div class="kpi solar"><div class="kpi-ico">☀</div><div class="kpi-lbl">누적 발전량</div><div class="kpi-val">24,769<span class="kpi-unit"> KWh</span></div><div class="kpi-sub">인버터 #1</div></div>
-    <div class="kpi orange"><div class="kpi-ico">⚡</div><div class="kpi-lbl">PV 출력</div><div class="kpi-val">29.7<span class="kpi-unit"> KW</span></div><div class="kpi-sub">역률 100.0%</div></div>
-    <div class="kpi blue"><div class="kpi-ico">🔋</div><div class="kpi-lbl">PV 전압</div><div class="kpi-val">568<span class="kpi-unit"> V</span></div><div class="kpi-sub">출력전압 377V</div></div>
-    <div class="kpi green"><div class="kpi-ico">〰</div><div class="kpi-lbl">PV 전류</div><div class="kpi-val">52<span class="kpi-unit"> A</span></div><div class="kpi-sub">출력전류 45A</div></div>
-  </div>
-
-  <div class="sec-label">인버터 AI 계측값 · #1</div>
-  <div class="card">
-    <div class="card-header"><div class="card-title"><span style="color:#f59e0b">☀</span> 태양광 #1 · AI 정보</div><span class="card-badge green">정상</span></div>
-    <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>항목</th><th>값</th><th>항목</th><th>값</th></tr></thead>
-      <tbody>
-        <tr><td class="v-hv">PV 전압</td><td class="v-pw">568.0 V</td><td class="v-hv">출력 전압</td><td class="v-lv">377.0 V</td></tr>
-        <tr><td class="v-hv">PV 전류</td><td class="v-pw">52.0 A</td><td class="v-hv">출력 전류</td><td class="v-lv">45.0 A</td></tr>
-        <tr><td class="v-hv">PV 출력</td><td class="v-pw">29.7 KW</td><td class="v-hv">출력(KW)</td><td class="v-lv">29.1 KW</td></tr>
-        <tr><td>역률</td><td class="v-pw">100.0 %</td><td>주파수</td><td>60.0 Hz</td></tr>
-        <tr><td colspan="2">누적발전량</td><td colspan="2" class="v-eg">24,769.5 KWh</td></tr>
-      </tbody>
-    </table></div>
-  </div>
-
-  <div class="sec-label">경보 정보 · 태양광 #1</div>
-  <div class="card">
-    <div class="card-header"><div class="card-title">🔔 경보 상태</div><span class="card-badge green">이상 없음</span></div>
-    <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>경보 항목</th><th>상태</th><th>경보 항목</th><th>상태</th></tr></thead>
-      <tbody>
-        <tr><td>통신 알람</td><td><span class="status-tag ok">정상</span></td><td>한전 과전압 경보</td><td><span class="status-tag ok">정상</span></td></tr>
-        <tr><td>Remote/Local 상태</td><td><span class="status-tag ok">정상</span></td><td>한전 부족전압 경보</td><td><span class="status-tag ok">정상</span></td></tr>
-        <tr><td>인버터 동작상태</td><td><span class="status-tag ok">정상</span></td><td>한전 과주파수 경보</td><td><span class="status-tag ok">정상</span></td></tr>
-        <tr><td>태양전지 과전압 경보</td><td><span class="status-tag ok">정상</span></td><td>한전 저주파수 경보</td><td><span class="status-tag ok">정상</span></td></tr>
-        <tr><td>태양전지 저전압 경보</td><td><span class="status-tag ok">정상</span></td><td>한전 계통결상 경보</td><td><span class="status-tag ok">정상</span></td></tr>
-        <tr><td>인버터 과전류 경보</td><td><span class="status-tag ok">정상</span></td><td>한전 계통역상 경보</td><td><span class="status-tag ok">정상</span></td></tr>
-        <tr><td>인버터 과열 경보</td><td><span class="status-tag ok">정상</span></td><td>한전 계통 입력전원 경보</td><td><span class="status-tag ok">정상</span></td></tr>
-        <tr><td>인버터 M/C 이상 경보</td><td><span class="status-tag ok">정상</span></td><td>한전 인버터간 위상경보</td><td><span class="status-tag ok">정상</span></td></tr>
-        <tr><td>인버터 출력전압 경보</td><td><span class="status-tag ok">정상</span></td><td>지락(누전) 경보</td><td><span class="status-tag ok">정상</span></td></tr>
-        <tr><td>인버터 퓨즈 소손 경보</td><td><span class="status-tag ok">정상</span></td><td>—</td><td>—</td></tr>
-      </tbody>
-    </table></div>
-  </div>
-
-  <div class="sec-label" id="solarLabel2"><span style="color:#f59e0b">☀</span> 주전기실 태양광 #2 (30kW)</div>
-  <div class="kpi-grid" style="grid-template-columns:repeat(2,1fr)">
-    <div class="kpi solar"><div class="kpi-ico">☀</div><div class="kpi-lbl">누적 발전량</div><div class="kpi-val">8,944<span class="kpi-unit"> KWh</span></div><div class="kpi-sub">인버터 #2</div></div>
-    <div class="kpi orange"><div class="kpi-ico">⚡</div><div class="kpi-lbl">PV 출력</div><div class="kpi-val">9.5<span class="kpi-unit"> KW</span></div><div class="kpi-sub">역률 100.0%</div></div>
-    <div class="kpi blue"><div class="kpi-ico">🔋</div><div class="kpi-lbl">PV 전압</div><div class="kpi-val">478<span class="kpi-unit"> V</span></div><div class="kpi-sub">출력전압 378V</div></div>
-    <div class="kpi green"><div class="kpi-ico">〰</div><div class="kpi-lbl">PV 전류</div><div class="kpi-val">20<span class="kpi-unit"> A</span></div><div class="kpi-sub">출력전류 14A</div></div>
-  </div>
-
-  <div class="sec-label">인버터 AI 계측값 · #2</div>
-  <div class="card">
-    <div class="card-header"><div class="card-title"><span style="color:#f59e0b">☀</span> 태양광 #2 · AI 정보</div><span class="card-badge green">정상</span></div>
-    <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>항목</th><th>값</th><th>항목</th><th>값</th></tr></thead>
-      <tbody>
-        <tr><td class="v-hv">PV 전압</td><td class="v-pw">478.0 V</td><td class="v-hv">출력 전압</td><td class="v-lv">378.0 V</td></tr>
-        <tr><td class="v-hv">PV 전류</td><td class="v-pw">20.0 A</td><td class="v-hv">출력 전류</td><td class="v-lv">14.0 A</td></tr>
-        <tr><td class="v-hv">PV 출력</td><td class="v-pw">9.5 KW</td><td class="v-hv">출력(KW)</td><td class="v-lv">9.3 KW</td></tr>
-        <tr><td>역률</td><td class="v-pw">100.0 %</td><td>주파수</td><td>60.0 Hz</td></tr>
-        <tr><td colspan="2">누적발전량</td><td colspan="2" class="v-eg">8,944.0 KWh</td></tr>
-      </tbody>
-    </table></div>
-  </div>
-
-  <div class="sec-label">경보 정보 · 태양광 #2</div>
-  <div class="card">
-    <div class="card-header"><div class="card-title">🔔 경보 상태</div><span class="card-badge green">이상 없음</span></div>
-    <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>경보 항목</th><th>상태</th><th>경보 항목</th><th>상태</th></tr></thead>
-      <tbody>
-        <tr><td>통신 알람</td><td><span class="status-tag ok">정상</span></td><td>한전 과전압 경보</td><td><span class="status-tag ok">정상</span></td></tr>
-        <tr><td>Remote/Local 상태</td><td><span class="status-tag ok">정상</span></td><td>한전 부족전압 경보</td><td><span class="status-tag ok">정상</span></td></tr>
-        <tr><td>인버터 동작상태</td><td><span class="status-tag ok">정상</span></td><td>한전 과주파수 경보</td><td><span class="status-tag ok">정상</span></td></tr>
-        <tr><td>태양전지 과전압 경보</td><td><span class="status-tag ok">정상</span></td><td>한전 저주파수 경보</td><td><span class="status-tag ok">정상</span></td></tr>
-        <tr><td>태양전지 저전압 경보</td><td><span class="status-tag ok">정상</span></td><td>한전 계통결상 경보</td><td><span class="status-tag ok">정상</span></td></tr>
-        <tr><td>인버터 과전류 경보</td><td><span class="status-tag ok">정상</span></td><td>한전 계통역상 경보</td><td><span class="status-tag ok">정상</span></td></tr>
-        <tr><td>인버터 M/C 이상 경보</td><td><span class="status-tag ok">정상</span></td><td>한전 계통 입력전원 경보</td><td><span class="status-tag ok">정상</span></td></tr>
-        <tr><td>인버터 출력전압 경보</td><td><span class="status-tag ok">정상</span></td><td>지락(누전) 경보</td><td><span class="status-tag ok">정상</span></td></tr>
-        <tr><td>인버터 퓨즈 소손 경보</td><td><span class="status-tag ok">정상</span></td><td>—</td><td>—</td></tr>
-      </tbody>
-    </table></div>
-  </div>
-
-</div><!-- /tab-solar -->
-
-<!-- ═══ TAB: 디밍제어기 ═══ -->
-<div class="tab-panel" id="tab-dimming">
-
-  <div class="sec-label">💡 터널등 디밍 제어기</div>
-  <div class="kpi-grid" style="grid-template-columns:repeat(2,1fr)">
-    <div class="kpi blue"><div class="kpi-ico">💡</div><div class="kpi-lbl">포항방향 단계</div><div class="kpi-val">7<span class="kpi-unit"> 단계</span></div><div class="kpi-sub">48,961 Lux</div></div>
-    <div class="kpi green"><div class="kpi-ico">💡</div><div class="kpi-lbl">영덕방향 단계</div><div class="kpi-val">3<span class="kpi-unit"> 단계</span></div><div class="kpi-sub">64,772 Lux</div></div>
-  </div>
-
-  <div class="sec-label">포항방향 · 디밍 제어</div>
-  <div class="card">
-    <div class="card-header"><div class="card-title">🔆 포항방향 디밍</div><span class="card-badge blue">48,961 Lux</span></div>
-    <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>구분</th><th>추월선</th><th>주행선</th></tr></thead>
-      <tbody>
-        <tr><td style="font-weight:700">운전 모드</td><td><span class="dim-badge local">LOCAL</span></td><td><span class="dim-badge local">LOCAL</span></td></tr>
-        <tr><td style="font-weight:700">현재 상태</td><td><span class="status-tag ok">중앙상태</span></td><td><span class="status-tag ok">중앙상태</span></td></tr>
-        <tr><td style="font-weight:700">조도 단계</td><td class="v-pw">7 단계</td><td class="v-pw">7 단계</td></tr>
-        <tr><td style="font-weight:700">외부 조도</td><td colspan="2" class="v-eg">48,961 Lux</td></tr>
-      </tbody>
-    </table></div>
-  </div>
-
-  <div class="card" style="margin-top:0">
-    <div class="card-header"><div class="card-title">포항방향 · 회로별 점등 상태</div></div>
-    <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>회로</th><th>D-추월</th><th>D-주행</th><th>MN-추월</th><th>MN-주행</th><th>N-주행</th><th>E-주행</th></tr></thead>
-      <tbody>
-        <tr><td style="font-weight:700;color:var(--t3)">추월선</td><td><span class="status-tag ok">ON</span></td><td><span class="status-tag ok">ON</span></td><td><span class="status-tag ok">ON</span></td><td><span class="status-tag ok">ON</span></td><td><span class="status-tag ok">ON</span></td><td><span class="status-tag ok">ON</span></td></tr>
-        <tr><td style="font-weight:700;color:var(--t3)">주행선</td><td><span class="status-tag ok">ON</span></td><td><span class="status-tag ok">ON</span></td><td><span class="status-tag ok">ON</span></td><td><span class="status-tag ok">ON</span></td><td><span class="status-tag ok">ON</span></td><td><span class="status-tag ok">ON</span></td></tr>
-      </tbody>
-    </table></div>
-  </div>
-
-  <div class="sec-label">영덕방향 · 디밍 제어</div>
-  <div class="card">
-    <div class="card-header"><div class="card-title">🔆 영덕방향 디밍</div><span class="card-badge green">64,772 Lux</span></div>
-    <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>구분</th><th>추월선</th><th>주행선</th></tr></thead>
-      <tbody>
-        <tr><td style="font-weight:700">운전 모드</td><td><span class="dim-badge local">LOCAL</span></td><td><span class="dim-badge local">LOCAL</span></td></tr>
-        <tr><td style="font-weight:700">현재 상태</td><td><span class="status-tag ok">중앙상태</span></td><td><span class="status-tag ok">중앙상태</span></td></tr>
-        <tr><td style="font-weight:700">조도 단계</td><td class="v-pw">3 단계</td><td class="v-pw">3 단계</td></tr>
-        <tr><td style="font-weight:700">외부 조도</td><td colspan="2" class="v-eg">64,772 Lux</td></tr>
-      </tbody>
-    </table></div>
-  </div>
-
-  <div class="card" style="margin-top:0">
-    <div class="card-header"><div class="card-title">영덕방향 · 회로별 점등 상태</div></div>
-    <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>회로</th><th>D-추월</th><th>D-주행</th><th>MN-추월</th><th>MN-주행</th><th>N-주행</th><th>E-주행</th></tr></thead>
-      <tbody>
-        <tr><td style="font-weight:700;color:var(--t3)">추월선</td><td><span class="status-tag ok">ON</span></td><td><span class="status-tag ok">ON</span></td><td><span class="status-tag ok">ON</span></td><td><span class="status-tag dim">OFF</span></td><td><span class="status-tag dim">OFF</span></td><td><span class="status-tag dim">OFF</span></td></tr>
-        <tr><td style="font-weight:700;color:var(--t3)">주행선</td><td><span class="status-tag ok">ON</span></td><td><span class="status-tag ok">ON</span></td><td><span class="status-tag ok">ON</span></td><td><span class="status-tag dim">OFF</span></td><td><span class="status-tag dim">OFF</span></td><td><span class="status-tag dim">OFF</span></td></tr>
-      </tbody>
-    </table></div>
-  </div>
-
-  <div class="sec-label">조도 단계 기준표</div>
-  <div class="card">
-    <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>단계</th><th>외부 조도 (Lux)</th><th>점등 구성</th><th>비고</th></tr></thead>
-      <tbody>
-        <tr><td class="v-pw" style="font-weight:700">1단계</td><td>0 ~ 1,000</td><td>기본 점등</td><td style="color:var(--t4)">야간</td></tr>
-        <tr><td class="v-pw" style="font-weight:700">2단계</td><td>1,000 ~ 5,000</td><td>기본+MN</td><td style="color:var(--t4)">새벽</td></tr>
-        <tr><td class="v-pw" style="font-weight:700">3단계</td><td>5,000 ~ 20,000</td><td>기본+MN+N</td><td style="color:var(--t4)">흐린 낮</td></tr>
-        <tr><td class="v-eg" style="font-weight:700">7단계</td><td>40,000 이상</td><td>전체 점등</td><td style="color:var(--t4)">맑은 낮</td></tr>
-      </tbody>
-    </table></div>
-  </div>
-
-</div><!-- /tab-dimming -->
-
-<!-- ══════════════════════════════════
-     TAB: 계통도
-══════════════════════════════════ -->
-<div class="tab-panel" id="tab-diagram">
-
-  <!-- ── 계통도 컨트롤 헤더 ── -->
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px">
-    <div style="font-size:13px;font-weight:700;color:#1a365d;letter-spacing:-.2px">⚡ 전력 단선 결선도</div>
-    <div style="display:flex;align-items:center;gap:6px">
-      <!-- 줌 버튼 -->
-      <div style="display:flex;align-items:center;background:#f1f5f9;border:1px solid #cbd5e1;border-radius:8px;overflow:hidden">
-        <button onclick="diagZoom(-0.15)" title="축소"
-          style="padding:6px 12px;border:none;background:transparent;font-size:15px;cursor:pointer;color:#475569;font-weight:700;transition:background .15s"
-          onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='transparent'">−</button>
-        <span id="diagZoomLabel" style="font-size:11px;font-weight:700;color:#1a365d;font-family:var(--mono);min-width:38px;text-align:center;user-select:none">100%</span>
-        <button onclick="diagZoom(+0.15)" title="확대"
-          style="padding:6px 12px;border:none;background:transparent;font-size:15px;cursor:pointer;color:#475569;font-weight:700;transition:background .15s"
-          onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='transparent'">＋</button>
-      </div>
-      <!-- 초기화 -->
-      <button onclick="diagReset()" title="원래 크기로"
-        style="padding:6px 11px;border:1px solid #cbd5e1;border-radius:8px;background:#f1f5f9;font-size:11px;font-weight:700;cursor:pointer;color:#475569;transition:background .15s"
-        onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">
-        🔄 초기화
-      </button>
-      <!-- 전체화면 -->
-      <button onclick="diagFullscreen()" title="전체화면" id="diagFsBtn"
-        style="padding:6px 11px;border:1px solid #2b6cb0;border-radius:8px;background:#ebf8ff;font-size:11px;font-weight:700;cursor:pointer;color:#1a365d;transition:background .15s"
-        onmouseover="this.style.background='#bee3f8'" onmouseout="this.style.background='#ebf8ff'">
-        ⛶ 전체화면
-      </button>
-    </div>
-  </div>
-
-  <!-- ── 계통도 카드 ── -->
-  <div class="card" id="diagCard" style="padding:0;overflow:hidden">
-    <!-- 핀치줌/드래그 컨테이너 -->
-    <div id="diagViewport"
-      style="width:100%;overflow:hidden;background:#eff6ff;cursor:grab;position:relative;touch-action:none"
-      onmousedown="diagDragStart(event)"
-      onmousemove="diagDragMove(event)"
-      onmouseup="diagDragEnd()"
-      onmouseleave="diagDragEnd()"
-      ontouchstart="diagTouchStart(event)"
-      ontouchmove="diagTouchMove(event)"
-      ontouchend="diagTouchEnd(event)">
-
-      <!-- SVG 래퍼 (transform 적용 대상) -->
-      <div id="diagSvgWrap" style="transform-origin:0 0;will-change:transform;display:inline-block;min-width:100%">
-        <svg id="diagSvg" viewBox="0 0 1000 680" width="1000" height="680" xmlns="http://www.w3.org/2000/svg" style="display:block">
-  <defs>
-    <marker id="ah" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#c2410c"/></marker>
-    <marker id="al" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#1d4ed8"/></marker>
-  </defs>
-  <rect width="1000" height="680" fill="#eff6ff"/>
-  <pattern id="pg" width="30" height="30" patternUnits="userSpaceOnUse">
-    <path d="M30 0 L0 0 0 30" fill="none" stroke="#bfdbfe" stroke-width="0.8"/>
-  </pattern>
-  <rect width="1000" height="680" fill="url(#pg)"/>
-
-  <!-- ============================================================
-       좌표 설계 기준
-       col1: 박스 x=20  w=180  중심x=110
-       col2: 박스 x=240 w=180  중심x=330
-       col3: 박스 x=460 w=180  중심x=550
-
-       계측박스 내부 컬럼 (col1 기준, 나머지는 +220, +440)
-         위상(R-S): x=28
-         전압:      x=62
-         위상(R):   x=118
-         전류:      x=140
-
-       박스 구조:
-         y+0  : 박스 시작 (rect)
-         y+0  : 헤더 배경 (h=14)
-         y+11 : 헤더 텍스트 (타이틀)
-         y+14 : 헤더 구분선
-         y+24 : 컬럼명 행 (위상/전압/위상/전류)
-         y+27 : 컬럼 구분선
-         y+38 : R행
-         y+50 : S행
-         y+62 : T행
-         y+65 : 하단 구분선
-         y+74 : 역률행
-         y+84 : 박스 끝 (h=88)
-       ============================================================ -->
-
-  <!-- ══ KEPCO 라벨 ══ -->
-  <!-- ══ 우측 패널: foreignObject 자동 너비 ══ -->
-  <foreignObject x="265" y="32" width="720" height="210">
-    <div xmlns="http://www.w3.org/1999/xhtml" style="display:flex;flex-direction:column;gap:6px;font-family:'DM Mono',monospace">
-
-      <!-- 태양광 행 -->
-      <div style="display:flex;gap:8px">
-        <div style="display:inline-flex;flex-direction:column;gap:2px;padding:5px 12px;background:#fffbeb;border:1.5px solid #fbbf24;border-radius:6px;white-space:nowrap">
-          <span style="font-size:9px;font-weight:700;color:#92400e"><span style="color:#f59e0b">☀</span> 태양광 #1</span>
-          <span style="font-size:10px;font-weight:700;color:#b45309"><span id="svg_solar1">24,769.48</span> KWh</span>
-        </div>
-        <div style="display:inline-flex;flex-direction:column;gap:2px;padding:5px 12px;background:#fffbeb;border:1.5px solid #fbbf24;border-radius:6px;white-space:nowrap">
-          <span style="font-size:9px;font-weight:700;color:#92400e"><span style="color:#f59e0b">☀</span> 태양광 #2</span>
-          <span style="font-size:10px;font-weight:700;color:#b45309"><span id="svg_solar2">8,944.01</span> KWh</span>
-        </div>
-      </div>
-
-      <!-- 정류반 -->
-      <div style="display:inline-flex;flex-direction:column;gap:3px;padding:5px 12px;background:#f0fdf4;border:1.5px solid #16a34a;border-radius:6px;white-space:nowrap;align-self:flex-start">
-        <span style="font-size:9px;font-weight:700;color:#166534">🔋 정류반</span>
-        <span style="font-size:8px;color:#1a2535">교류: <span id="svg_rect_acv">379.0</span>V &nbsp; 직류: <span id="svg_rect_dcv">123.0</span>V</span>
-        <span style="font-size:8px;color:#1a2535">출력: <span id="svg_rect_oa">0.0</span>A &nbsp; 배터리: <span id="svg_rect_ba">0.0</span>A</span>
-      </div>
-
-      <!-- Legend -->
-      <div style="display:inline-flex;flex-direction:column;gap:4px;padding:5px 12px;background:#fff;border:1px solid #b8d0e8;border-radius:6px;white-space:nowrap;align-self:flex-start">
-        <span style="font-size:8px;font-weight:700;color:#1a365d">LEGEND</span>
-        <!-- 1행: 선 종류 -->
-        <div style="display:flex;gap:14px;align-items:center">
-          <div style="display:flex;align-items:center;gap:5px">
-            <svg width="28" height="6" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="3" x2="28" y2="3" stroke="#c2410c" stroke-width="2"/></svg>
-            <span style="font-size:7.5px;color:#374151">22.9kV HV</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:5px">
-            <svg width="28" height="6" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="3" x2="28" y2="3" stroke="#1d4ed8" stroke-width="2"/></svg>
-            <span style="font-size:7.5px;color:#374151">380V LV</span>
-          </div>
-        </div>
-        <!-- 2행: 차단기 기호 -->
-        <div style="display:flex;gap:14px;align-items:center">
-          <div style="display:flex;align-items:center;gap:5px">
-            <svg width="22" height="12" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="20" height="10" rx="2" fill="#fff7ed" stroke="#c2410c" stroke-width="1"/></svg>
-            <span style="font-size:7.5px;color:#374151">VCB 차단기</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:5px">
-            <svg width="22" height="12" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="20" height="10" rx="2" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1"/></svg>
-            <span style="font-size:7.5px;color:#374151">ACB 차단기</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </foreignObject>
-
-  <line x1="110" y1="8" x2="110" y2="18" stroke="#c2410c" stroke-width="2"/>
-  <rect x="80" y="18" width="60" height="18" rx="4" fill="#fff" stroke="#c2410c" stroke-width="1.5"/>
-  <text x="110" y="30" text-anchor="middle" fill="#c2410c" font-family="DM Mono,monospace" font-size="8" font-weight="700">KEPCO</text>
-
-  <!-- ══ KEPCO 박스 y=40 ══ -->
-  <rect x="20" y="40" width="180" height="70" rx="5" fill="#fff" stroke="#bfdbfe" stroke-width="1"/>
-  <rect x="20" y="40" width="180" height="14" rx="5" fill="#dbeafe"/>
-  <text x="28" y="51" fill="#1e3a5f" font-family="DM Mono,monospace" font-size="8" font-weight="700">KEPCO INCOMING</text>
-  <line x1="20" y1="54" x2="200" y2="54" stroke="#bfdbfe"/>
-  <text x="28" y="65" fill="#1a2535" font-family="DM Mono,monospace" font-size="8">FROM: KEPCO INCOMING LINE</text>
-  <text x="28" y="76" fill="#1a2535" font-family="DM Mono,monospace" font-size="8">3Ø4W 22.9kV-Y · CNCV-W 60㎟</text>
-  <text x="28" y="87" fill="#1a2535" font-family="DM Mono,monospace" font-size="8">(ELP 125Ø) - 2LINE (예비 1회선)</text>
-  <text x="28" y="100" fill="#374151" font-family="DM Mono,monospace" font-size="7">수전전압 22.9kV</text>
-
-  <!-- 수직선 -->
-  <line x1="110" y1="110" x2="110" y2="126" stroke="#c2410c" stroke-width="2.5"/>
-
-  <!-- ══ LBS 라벨 ══ -->
-  <rect x="87" y="126" width="46" height="18" rx="4" fill="#fff" stroke="#c2410c" stroke-width="1.5"/>
-  <text x="110" y="138" text-anchor="middle" fill="#c2410c" font-family="DM Mono,monospace" font-size="8" font-weight="700">LBS</text>
-
-  <!-- ══ LBS 박스 y=148 ══ -->
-  <rect x="20" y="148" width="180" height="68" rx="5" fill="#fff" stroke="#bfdbfe" stroke-width="1"/>
-  <rect x="20" y="148" width="180" height="14" rx="5" fill="#dbeafe"/>
-  <text x="28" y="159" fill="#1e3a5f" font-family="DM Mono,monospace" font-size="8" font-weight="700">LBS</text>
-  <line x1="20" y1="162" x2="200" y2="162" stroke="#bfdbfe"/>
-  <text x="28" y="173" fill="#1a2535" font-family="DM Mono,monospace" font-size="8">MOTOR DRIVE TYPE</text>
-  <text x="28" y="185" fill="#1a2535" font-family="DM Mono,monospace" font-size="8">25.8kV  630A</text>
-
-  <!-- 수직선 -->
-  <line x1="110" y1="216" x2="110" y2="232" stroke="#c2410c" stroke-width="2.5"/>
-
-  <!-- ══ HV-104 라벨 ══ -->
-  <rect x="84" y="232" width="52" height="18" rx="4" fill="#fff" stroke="#c2410c" stroke-width="1.5"/>
-  <text x="110" y="244" text-anchor="middle" fill="#c2410c" font-family="DM Mono,monospace" font-size="8" font-weight="700">HV-104</text>
-
-  <!-- ══ HV-104 박스 y=254 h=88 ══ -->
-  <rect x="20" y="254" width="180" height="88" rx="5" fill="#fff" stroke="#bfdbfe" stroke-width="1"/>
-  <rect x="20" y="254" width="180" height="14" rx="5" fill="#dbeafe"/>
-  <text x="28" y="265" fill="#1e3a5f" font-family="DM Mono,monospace" font-size="8" font-weight="700">HV-104 · VCB 630A  ID:01</text>
-  <line x1="20" y1="268" x2="200" y2="268" stroke="#bfdbfe"/>
-  <!-- 컬럼명 행 y=264 -->
-  <text x="28"  y="278" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text>
-  <text x="62"  y="278" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전압(kV)</text>
-  <text x="118" y="278" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text>
-  <text x="140" y="278" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전류(A)</text>
-  <line x1="20" y1="281" x2="200" y2="281" stroke="#eff6ff"/>
-  <!-- R행 y=278 -->
-  <text x="28"  y="292" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8" font-weight="700">R-S</text>
-  <text x="62"  y="292" fill="#c2410c" font-family="DM Mono,monospace" font-size="8">22.952</text>
-  <text x="118" y="292" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8">R</text>
-  <text x="140" y="292" fill="#1a2535" font-family="DM Mono,monospace" font-size="8">2.2A</text>
-  <!-- S행 y=290 -->
-  <text x="28"  y="304" fill="#15803d" font-family="DM Mono,monospace" font-size="8" font-weight="700">S-T</text>
-  <text x="62"  y="304" fill="#c2410c" font-family="DM Mono,monospace" font-size="8">22.927</text>
-  <text x="118" y="304" fill="#15803d" font-family="DM Mono,monospace" font-size="8">S</text>
-  <text x="140" y="304" fill="#1a2535" font-family="DM Mono,monospace" font-size="8">2.3A</text>
-  <!-- T행 y=302 -->
-  <text x="28"  y="316" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">T-R</text>
-  <text x="62"  y="316" fill="#c2410c" font-family="DM Mono,monospace" font-size="8">23.014</text>
-  <text x="118" y="316" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8">T</text>
-  <text x="140" y="316" fill="#1a2535" font-family="DM Mono,monospace" font-size="8">2.2A</text>
-  <line x1="20" y1="319" x2="200" y2="319" stroke="#eff6ff"/>
-  <!-- 역률행 y=316 -->
-  <text x="28"  y="330" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">역률 0.99PF  87.4KW  300.98MWh</text>
-
-  <!-- 수직선 → 분기 -->
-  <line x1="110" y1="328" x2="110" y2="352" stroke="#c2410c" stroke-width="2"/>
-  <line x1="110" y1="352" x2="550" y2="352" stroke="#c2410c" stroke-width="2"/>
-  <line x1="110" y1="352" x2="110" y2="368" stroke="#c2410c" stroke-width="1.5"/>
-  <line x1="330" y1="352" x2="330" y2="368" stroke="#c2410c" stroke-width="1.5"/>
-  <line x1="550" y1="352" x2="550" y2="368" stroke="#c2410c" stroke-width="1.5"/>
-
-  <!-- ══ HV-105 라벨 ══ -->
-  <rect x="84"  y="368" width="52" height="18" rx="4" fill="#fff" stroke="#c2410c" stroke-width="1.5"/>
-  <text x="110" y="380" text-anchor="middle" fill="#c2410c" font-family="DM Mono,monospace" font-size="8" font-weight="700">HV-105</text>
-  <!-- ══ HV-106 라벨 ══ -->
-  <rect x="304" y="368" width="52" height="18" rx="4" fill="#fff" stroke="#c2410c" stroke-width="1.5"/>
-  <text x="330" y="380" text-anchor="middle" fill="#c2410c" font-family="DM Mono,monospace" font-size="8" font-weight="700">HV-106</text>
-  <!-- ══ HV-107 라벨 ══ -->
-  <rect x="524" y="368" width="52" height="18" rx="4" fill="#fff" stroke="#c2410c" stroke-width="1.5"/>
-  <text x="550" y="380" text-anchor="middle" fill="#c2410c" font-family="DM Mono,monospace" font-size="8" font-weight="700">HV-107</text>
-
-  <!-- ══ HV-105 박스 y=390 ══ -->
-  <rect x="20"  y="390" width="180" height="88" rx="5" fill="#fff" stroke="#bfdbfe" stroke-width="1"/>
-  <rect x="20"  y="390" width="180" height="14" rx="5" fill="#dbeafe"/>
-  <text x="28"  y="401" fill="#1e3a5f" font-family="DM Mono,monospace" font-size="8" font-weight="700">HV-105 · VCB 630A  ID:02</text>
-  <line x1="20" y1="404" x2="200" y2="404" stroke="#bfdbfe"/>
-  <text x="28"  y="414" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text>
-  <text x="62"  y="414" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전압(kV)</text>
-  <text x="118" y="414" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text>
-  <text x="140" y="414" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전류(A)</text>
-  <line x1="20" y1="417" x2="200" y2="417" stroke="#eff6ff"/>
-  <text x="28"  y="428" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8" font-weight="700">R-S</text>
-  <text x="62"  y="428" fill="#c2410c" font-family="DM Mono,monospace" font-size="8">22.940</text>
-  <text x="118" y="428" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8">R</text>
-  <text x="140" y="428" fill="#1a2535" font-family="DM Mono,monospace" font-size="8">1.5A</text>
-  <text x="28"  y="440" fill="#15803d" font-family="DM Mono,monospace" font-size="8" font-weight="700">S-T</text>
-  <text x="62"  y="440" fill="#c2410c" font-family="DM Mono,monospace" font-size="8">22.929</text>
-  <text x="118" y="440" fill="#15803d" font-family="DM Mono,monospace" font-size="8">S</text>
-  <text x="140" y="440" fill="#1a2535" font-family="DM Mono,monospace" font-size="8">1.5A</text>
-  <text x="28"  y="452" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">T-R</text>
-  <text x="62"  y="452" fill="#c2410c" font-family="DM Mono,monospace" font-size="8">23.021</text>
-  <text x="118" y="452" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8">T</text>
-  <text x="140" y="452" fill="#1a2535" font-family="DM Mono,monospace" font-size="8">1.6A</text>
-  <line x1="20" y1="455" x2="200" y2="455" stroke="#eff6ff"/>
-  <text x="28"  y="466" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">역률 0.99PF  60.9KW  206.31MWh</text>
-
-  <!-- ══ HV-106 박스 y=390 ══ -->
-  <rect x="240" y="390" width="180" height="88" rx="5" fill="#fff" stroke="#bfdbfe" stroke-width="1"/>
-  <rect x="240" y="390" width="180" height="14" rx="5" fill="#dbeafe"/>
-  <text x="248" y="401" fill="#1e3a5f" font-family="DM Mono,monospace" font-size="8" font-weight="700">HV-106 · VCB 630A  ID:03</text>
-  <line x1="240" y1="404" x2="420" y2="404" stroke="#bfdbfe"/>
-  <text x="248" y="414" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text>
-  <text x="282" y="414" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전압(kV)</text>
-  <text x="338" y="414" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text>
-  <text x="360" y="414" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전류(A)</text>
-  <line x1="240" y1="417" x2="420" y2="417" stroke="#eff6ff"/>
-  <text x="248" y="428" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8" font-weight="700">R-S</text>
-  <text x="282" y="428" fill="#c2410c" font-family="DM Mono,monospace" font-size="8">22.959</text>
-  <text x="338" y="428" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8">R</text>
-  <text x="360" y="428" fill="#1a2535" font-family="DM Mono,monospace" font-size="8">0.7A</text>
-  <text x="248" y="440" fill="#15803d" font-family="DM Mono,monospace" font-size="8" font-weight="700">S-T</text>
-  <text x="282" y="440" fill="#c2410c" font-family="DM Mono,monospace" font-size="8">22.932</text>
-  <text x="338" y="440" fill="#15803d" font-family="DM Mono,monospace" font-size="8">S</text>
-  <text x="360" y="440" fill="#1a2535" font-family="DM Mono,monospace" font-size="8">0.7A</text>
-  <text x="248" y="452" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">T-R</text>
-  <text x="282" y="452" fill="#c2410c" font-family="DM Mono,monospace" font-size="8">23.022</text>
-  <text x="338" y="452" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8">T</text>
-  <text x="360" y="452" fill="#1a2535" font-family="DM Mono,monospace" font-size="8">0.6A</text>
-  <line x1="240" y1="455" x2="420" y2="455" stroke="#eff6ff"/>
-  <text x="248" y="466" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">역률 0.99PF  25.9KW  87.25MWh</text>
-
-  <!-- ══ HV-107 박스 y=390 ══ -->
-  <rect x="460" y="390" width="180" height="88" rx="5" fill="#fff" stroke="#e5e7eb" stroke-width="1"/>
-  <rect x="460" y="390" width="180" height="14" rx="5" fill="#f1f5f9"/>
-  <text x="468" y="401" fill="#6b7280" font-family="DM Mono,monospace" font-size="8" font-weight="700">HV-107 · VCB 630A  ID:04</text>
-  <line x1="460" y1="404" x2="640" y2="404" stroke="#e5e7eb"/>
-  <text x="468" y="414" fill="#9ca3af" font-family="DM Mono,monospace" font-size="7">위상</text>
-  <text x="502" y="414" fill="#9ca3af" font-family="DM Mono,monospace" font-size="7">전압(kV)</text>
-  <text x="558" y="414" fill="#9ca3af" font-family="DM Mono,monospace" font-size="7">위상</text>
-  <text x="580" y="414" fill="#9ca3af" font-family="DM Mono,monospace" font-size="7">전류(A)</text>
-  <line x1="460" y1="417" x2="640" y2="417" stroke="#f1f5f9"/>
-  <text x="468" y="428" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8" font-weight="700">R-S</text>
-  <text x="502" y="428" fill="#c2410c" font-family="DM Mono,monospace" font-size="8">22.949</text>
-  <text x="558" y="428" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8">R</text>
-  <text x="580" y="428" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8">0.0A</text>
-  <text x="468" y="440" fill="#15803d" font-family="DM Mono,monospace" font-size="8" font-weight="700">S-T</text>
-  <text x="502" y="440" fill="#c2410c" font-family="DM Mono,monospace" font-size="8">22.927</text>
-  <text x="558" y="440" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8">S</text>
-  <text x="580" y="440" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8">0.0A</text>
-  <text x="468" y="452" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">T-R</text>
-  <text x="502" y="452" fill="#c2410c" font-family="DM Mono,monospace" font-size="8">23.027</text>
-  <text x="558" y="452" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8">T</text>
-  <text x="580" y="452" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8">0.0A</text>
-  <line x1="460" y1="455" x2="640" y2="455" stroke="#f1f5f9"/>
-  <text x="468" y="466" fill="#9ca3af" font-family="DM Mono,monospace" font-size="7">역률 0.00PF  0.0KW  4.67MWh (무부하)</text>
-
-  <!-- 변압기 -->
-  <line x1="110" y1="478" x2="110" y2="492" stroke="#c2410c" stroke-width="1.5"/>
-  <circle cx="110" cy="500" r="10" fill="none" stroke="#c2410c" stroke-width="1.5"/>
-  <circle cx="110" cy="512" r="10" fill="none" stroke="#1d4ed8" stroke-width="1.5"/>
-  <text x="124" y="497" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">LTR-101 · 200kVA 조명용</text>
-  <line x1="110" y1="522" x2="110" y2="534" stroke="#1d4ed8" stroke-width="1.5"/>
-
-  <line x1="330" y1="478" x2="330" y2="492" stroke="#c2410c" stroke-width="1.5"/>
-  <circle cx="330" cy="500" r="10" fill="none" stroke="#c2410c" stroke-width="1.5"/>
-  <circle cx="330" cy="512" r="10" fill="none" stroke="#1d4ed8" stroke-width="1.5"/>
-  <text x="344" y="497" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">PTR-101 · 200kVA 일반용</text>
-  <line x1="330" y1="522" x2="330" y2="534" stroke="#1d4ed8" stroke-width="1.5"/>
-
-  <line x1="550" y1="478" x2="550" y2="492" stroke="#c2410c" stroke-width="1.5"/>
-  <circle cx="550" cy="500" r="10" fill="none" stroke="#c2410c" stroke-width="1.5"/>
-  <circle cx="550" cy="512" r="10" fill="none" stroke="#1d4ed8" stroke-width="1.5"/>
-  <text x="564" y="497" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">PTR-102 · 400kVA 동력용</text>
-  <line x1="550" y1="522" x2="550" y2="534" stroke="#1d4ed8" stroke-width="1.5"/>
-
-  <!-- ══ LV 라벨 y=534 ══ -->
-  <rect x="84"  y="534" width="52" height="18" rx="4" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
-  <text x="110" y="546" text-anchor="middle" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">LV-101</text>
-  <rect x="304" y="534" width="52" height="18" rx="4" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
-  <text x="330" y="546" text-anchor="middle" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">LV-105</text>
-  <rect x="524" y="534" width="52" height="18" rx="4" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
-  <text x="550" y="546" text-anchor="middle" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">LV-108</text>
-
-  <!-- ══ LV-101 박스 y=556 ══ -->
-  <rect x="20"  y="556" width="180" height="88" rx="5" fill="#fff" stroke="#bfdbfe" stroke-width="1"/>
-  <rect x="20"  y="556" width="180" height="14" rx="5" fill="#dbeafe"/>
-  <text x="28"  y="567" fill="#1e3a5f" font-family="DM Mono,monospace" font-size="8" font-weight="700">LV-101 · ACB 630A  ID:05</text>
-  <line x1="20" y1="570" x2="200" y2="570" stroke="#bfdbfe"/>
-  <text x="28"  y="580" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text>
-  <text x="48"  y="580" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전압(V)</text>
-  <text x="112" y="580" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text>
-  <text x="132" y="580" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전류(A)</text>
-  <line x1="20" y1="583" x2="200" y2="583" stroke="#eff6ff"/>
-  <text x="28"  y="594" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8" font-weight="700">R</text>
-  <text x="48"  y="594" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8">381V</text>
-  <text x="112" y="594" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8">R</text>
-  <text x="132" y="594" fill="#1a2535" font-family="DM Mono,monospace" font-size="8">88.4A</text>
-  <text x="28"  y="606" fill="#15803d" font-family="DM Mono,monospace" font-size="8" font-weight="700">S</text>
-  <text x="48"  y="606" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8">381V</text>
-  <text x="112" y="606" fill="#15803d" font-family="DM Mono,monospace" font-size="8">S</text>
-  <text x="132" y="606" fill="#1a2535" font-family="DM Mono,monospace" font-size="8">94.7A</text>
-  <text x="28"  y="618" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">T</text>
-  <text x="48"  y="618" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8">381V</text>
-  <text x="112" y="618" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8">T</text>
-  <text x="132" y="618" fill="#1a2535" font-family="DM Mono,monospace" font-size="8">93.0A</text>
-  <line x1="20" y1="621" x2="200" y2="621" stroke="#eff6ff"/>
-  <text x="28"  y="632" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">역률 0.98PF  59.7KW  201.90MWh</text>
-  <!-- CTTS -->
-  <line x1="110" y1="644" x2="110" y2="654" stroke="#1d4ed8" stroke-width="1.5"/>
-  <rect x="84"  y="654" width="52" height="16" rx="3" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.5"/>
-  <polygon points="90,662 99,657 99,667" fill="#1d4ed8"/>
-  <text x="102" y="665" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">CTTS</text>
-
-  <!-- ══ LV-105 박스 y=556 ══ -->
-  <rect x="240" y="556" width="180" height="88" rx="5" fill="#fff" stroke="#bfdbfe" stroke-width="1"/>
-  <rect x="240" y="556" width="180" height="14" rx="5" fill="#dbeafe"/>
-  <text x="248" y="567" fill="#1e3a5f" font-family="DM Mono,monospace" font-size="8" font-weight="700">LV-105 · ACB 630A  ID:06</text>
-  <line x1="240" y1="570" x2="420" y2="570" stroke="#bfdbfe"/>
-  <text x="248" y="580" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text>
-  <text x="268" y="580" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전압(V)</text>
-  <text x="332" y="580" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text>
-  <text x="352" y="580" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전류(A)</text>
-  <line x1="240" y1="583" x2="420" y2="583" stroke="#eff6ff"/>
-  <text x="248" y="594" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8" font-weight="700">R</text>
-  <text x="268" y="594" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8">381V</text>
-  <text x="332" y="594" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8">R</text>
-  <text x="352" y="594" fill="#1a2535" font-family="DM Mono,monospace" font-size="8">47.0A</text>
-  <text x="248" y="606" fill="#15803d" font-family="DM Mono,monospace" font-size="8" font-weight="700">S</text>
-  <text x="268" y="606" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8">381V</text>
-  <text x="332" y="606" fill="#15803d" font-family="DM Mono,monospace" font-size="8">S</text>
-  <text x="352" y="606" fill="#1a2535" font-family="DM Mono,monospace" font-size="8">38.1A</text>
-  <text x="248" y="618" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">T</text>
-  <text x="268" y="618" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8">382V</text>
-  <text x="332" y="618" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8">T</text>
-  <text x="352" y="618" fill="#1a2535" font-family="DM Mono,monospace" font-size="8">31.4A</text>
-  <line x1="240" y1="621" x2="420" y2="621" stroke="#eff6ff"/>
-  <text x="248" y="632" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">역률 0.99PF  25.2KW  84.99MWh</text>
-  <!-- CTTS -->
-  <line x1="330" y1="644" x2="330" y2="654" stroke="#1d4ed8" stroke-width="1.5"/>
-  <rect x="304" y="654" width="52" height="16" rx="3" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.5"/>
-  <polygon points="310,662 319,657 319,667" fill="#1d4ed8"/>
-  <text x="322" y="665" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">CTTS</text>
-
-  <!-- ══ LV-108 박스 y=556 ══ -->
-  <rect x="460" y="556" width="180" height="88" rx="5" fill="#fff" stroke="#bfdbfe" stroke-width="1"/>
-  <rect x="460" y="556" width="180" height="14" rx="5" fill="#dbeafe"/>
-  <text x="468" y="567" fill="#1e3a5f" font-family="DM Mono,monospace" font-size="8" font-weight="700">LV-108 · ACB 800A  ID:07</text>
-  <line x1="460" y1="570" x2="640" y2="570" stroke="#bfdbfe"/>
-  <text x="468" y="580" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text>
-  <text x="488" y="580" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전압(V)</text>
-  <text x="552" y="580" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text>
-  <text x="572" y="580" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전류(A)</text>
-  <line x1="460" y1="583" x2="640" y2="583" stroke="#eff6ff"/>
-  <text x="468" y="594" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8" font-weight="700">R</text>
-  <text x="488" y="594" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8">381V</text>
-  <text x="552" y="594" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8">R</text>
-  <text x="572" y="594" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8">0.0A</text>
-  <text x="468" y="606" fill="#15803d" font-family="DM Mono,monospace" font-size="8" font-weight="700">S</text>
-  <text x="488" y="606" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8">382V</text>
-  <text x="552" y="606" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8">S</text>
-  <text x="572" y="606" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8">0.0A</text>
-  <text x="468" y="618" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">T</text>
-  <text x="488" y="618" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8">382V</text>
-  <text x="552" y="618" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8">T</text>
-  <text x="572" y="618" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8">0.0A</text>
-  <line x1="460" y1="621" x2="640" y2="621" stroke="#eff6ff"/>
-  <text x="468" y="632" fill="#9ca3af" font-family="DM Mono,monospace" font-size="7">역률 0.00PF  0.0KW  4.57MWh (OPEN)</text>
-  <!-- ATS -->
-  <line x1="550" y1="644" x2="550" y2="654" stroke="#1d4ed8" stroke-width="1.5"/>
-  <rect x="524" y="654" width="60" height="16" rx="3" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
-  <polygon points="530,662 539,657 539,667" fill="#16a34a"/>
-  <text x="542" y="665" fill="#16a34a" font-family="DM Mono,monospace" font-size="8" font-weight="700">ATS</text>
-  <text x="524" y="679" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">→ JETFAN</text>
-
-
-</svg>
-      </div><!-- /diagSvgWrap -->
-    </div><!-- /diagViewport -->
-
-    <!-- 줌 안내 (하단) -->
-    <div id="diagHint" style="text-align:center;font-size:10.5px;color:var(--t4);padding:5px 0 6px;background:#ebf8ff;border-top:1px solid #bfdbfe;letter-spacing:.2px">
-      🖱 드래그 이동 &nbsp;·&nbsp; 🤏 핀치줌 &nbsp;·&nbsp; ＋/− 버튼 확대축소 &nbsp;·&nbsp; ⛶ 전체화면
-    </div>
-  </div><!-- /card -->
-
-</div><!-- /tab-diagram -->
-
-<!-- ══════════════════════════════════
-     TAB: 계통도 (부전기실)
-══════════════════════════════════ -->
-<div class="tab-panel" id="tab-diagram-bu">
-
-  <!-- ── 계통도 컨트롤 헤더 ── -->
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px">
-    <div style="font-size:13px;font-weight:700;color:#1a365d;letter-spacing:-.2px">⚡ 전력 단선 결선도 — 청하터널(부)</div>
-    <div style="display:flex;align-items:center;gap:6px">
-      <div style="display:flex;align-items:center;background:#f1f5f9;border:1px solid #cbd5e1;border-radius:8px;overflow:hidden">
-        <button onclick="diagBuZoom(-0.15)" title="축소"
-          style="padding:6px 12px;border:none;background:transparent;font-size:15px;cursor:pointer;color:#475569;font-weight:700">−</button>
-        <span id="diagBuZoomLabel" style="font-size:11px;font-weight:700;color:#1a365d;font-family:var(--mono);min-width:38px;text-align:center;user-select:none">100%</span>
-        <button onclick="diagBuZoom(+0.15)" title="확대"
-          style="padding:6px 12px;border:none;background:transparent;font-size:15px;cursor:pointer;color:#475569;font-weight:700">＋</button>
-      </div>
-      <button onclick="diagBuReset()" title="원래 크기로"
-        style="padding:6px 11px;border:1px solid #cbd5e1;border-radius:8px;background:#f1f5f9;font-size:11px;font-weight:700;cursor:pointer;color:#475569">
-        🔄 초기화
-      </button>
-      <button onclick="diagBuFullscreen()" id="diagBuFsBtn"
-        style="padding:6px 11px;border:1px solid #2b6cb0;border-radius:8px;background:#ebf8ff;font-size:11px;font-weight:700;cursor:pointer;color:#1a365d">
-        ⛶ 전체화면
-      </button>
-    </div>
-  </div>
-
-  <div class="card" id="diagBuCard" style="padding:0;overflow:hidden">
-    <div id="diagBuViewport"
-      style="width:100%;overflow:hidden;background:#eff6ff;cursor:grab;position:relative;touch-action:none"
-      onmousedown="diagBuDragStart(event)" onmousemove="diagBuDragMove(event)"
-      onmouseup="diagBuDragEnd()" onmouseleave="diagBuDragEnd()"
-      ontouchstart="diagBuTouchStart(event)" ontouchmove="diagBuTouchMove(event)"
-      ontouchend="diagBuTouchEnd(event)">
-      <div id="diagBuSvgWrap" style="transform-origin:0 0;will-change:transform;display:inline-block;min-width:100%">
-        <svg id="diagBuSvg" viewBox="0 0 1000 680" width="1000" height="680" xmlns="http://www.w3.org/2000/svg" style="display:block">
-  <defs>
-    <marker id="ah_bu" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#c2410c"/></marker>
-    <marker id="al_bu" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#1d4ed8"/></marker>
-  </defs>
-  <rect width="1000" height="680" fill="#eff6ff"/>
-  <pattern id="pg_bu" width="30" height="30" patternUnits="userSpaceOnUse">
-    <path d="M30 0 L0 0 0 30" fill="none" stroke="#bfdbfe" stroke-width="0.8"/>
-  </pattern>
-  <rect width="1000" height="680" fill="url(#pg_bu)"/>
-
-  <!-- ══ 우측 패널: 태양광·정류반·범례 ══ -->
-  <foreignObject x="265" y="32" width="720" height="210">
-    <div xmlns="http://www.w3.org/1999/xhtml" style="display:flex;flex-direction:column;gap:6px;font-family:'DM Mono',monospace">
-      <div style="display:flex;gap:8px">
-        <div style="display:inline-flex;flex-direction:column;gap:2px;padding:5px 12px;background:#fffbeb;border:1.5px solid #fbbf24;border-radius:6px;white-space:nowrap">
-          <span style="font-size:9px;font-weight:700;color:#92400e"><span style="color:#f59e0b">☀</span> 태양광 #1 (24.7kW)</span>
-          <span style="font-size:10px;font-weight:700;color:#b45309"><span id="svg_bu_solar1">0.00</span> KWh</span>
-        </div>
-        <div style="display:inline-flex;flex-direction:column;gap:2px;padding:5px 12px;background:#fffbeb;border:1.5px solid #fbbf24;border-radius:6px;white-space:nowrap">
-          <span style="font-size:9px;font-weight:700;color:#92400e"><span style="color:#f59e0b">☀</span> 태양광 #2 (11.4kW)</span>
-          <span style="font-size:10px;font-weight:700;color:#b45309"><span id="svg_bu_solar2">0.00</span> KWh</span>
-        </div>
-      </div>
-      <div style="display:inline-flex;flex-direction:column;gap:3px;padding:5px 12px;background:#f0fdf4;border:1.5px solid #16a34a;border-radius:6px;white-space:nowrap;align-self:flex-start">
-        <span style="font-size:9px;font-weight:700;color:#166534">🔋 정류반</span>
-        <span style="font-size:8px;color:#1a2535">교류: <span id="svg_bu_rect_acv">0.0</span>V &nbsp; 직류: <span id="svg_bu_rect_dcv">0.0</span>V</span>
-        <span style="font-size:8px;color:#1a2535">출력: <span id="svg_bu_rect_oa">0.0</span>A &nbsp; 배터리: <span id="svg_bu_rect_ba">0.0</span>A</span>
-      </div>
-      <div style="display:inline-flex;flex-direction:column;gap:4px;padding:5px 12px;background:#fff;border:1px solid #b8d0e8;border-radius:6px;white-space:nowrap;align-self:flex-start">
-        <span style="font-size:8px;font-weight:700;color:#1a365d">LEGEND</span>
-        <div style="display:flex;gap:14px;align-items:center">
-          <div style="display:flex;align-items:center;gap:5px">
-            <svg width="28" height="6" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="3" x2="28" y2="3" stroke="#c2410c" stroke-width="2"/></svg>
-            <span style="font-size:7.5px;color:#374151">22.9kV HV</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:5px">
-            <svg width="28" height="6" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="3" x2="28" y2="3" stroke="#1d4ed8" stroke-width="2"/></svg>
-            <span style="font-size:7.5px;color:#374151">380V LV</span>
-          </div>
-        </div>
-        <div style="display:flex;gap:14px;align-items:center">
-          <div style="display:flex;align-items:center;gap:5px">
-            <svg width="20" height="14" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="18" height="12" rx="2" fill="#fee2e2" stroke="#c2410c" stroke-width="1.5"/></svg>
-            <span style="font-size:7.5px;color:#374151">HV 패널</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:5px">
-            <svg width="20" height="14" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="18" height="12" rx="2" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/></svg>
-            <span style="font-size:7.5px;color:#374151">LV 패널</span>
-          </div>
-        </div>
-        <span style="font-size:7px;color:#9ca3af">부전기실 22.9kV / 380V</span>
-      </div>
-    </div>
-  </foreignObject>
-
-  <!-- ══ KEPCO 인입 ══ -->
-  <rect x="20" y="32" width="215" height="44" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
-  <text x="30" y="47" fill="#92400e" font-family="DM Mono,monospace" font-size="8" font-weight="700">FROM:KEPCO INCOMING LINE</text>
-  <text x="30" y="58" fill="#92400e" font-family="DM Mono,monospace" font-size="7">3Ø4W 22.9KV-Y  CNCV-W 60㎟ /1Cx3</text>
-  <text x="30" y="68" fill="#92400e" font-family="DM Mono,monospace" font-size="7">(ELP 1250) - 2LINE(예비 1회선)</text>
-  <line x1="127" y1="76" x2="127" y2="96" stroke="#c2410c" stroke-width="2" marker-end="url(#ah_bu)"/>
-
-  <!-- ══ LBS ══ -->
-  <rect x="72" y="96" width="110" height="48" rx="4" fill="#fff7ed" stroke="#f59e0b" stroke-width="1.5"/>
-  <text x="82" y="109" fill="#92400e" font-family="DM Mono,monospace" font-size="7.5" font-weight="700">LBS</text>
-  <text x="82" y="120" fill="#92400e" font-family="DM Mono,monospace" font-size="7">(MOTOR DRIVE TYPE)</text>
-  <text x="82" y="130" fill="#92400e" font-family="DM Mono,monospace" font-size="7">25.8KV 630A</text>
-  <line x1="127" y1="144" x2="127" y2="148" stroke="#c2410c" stroke-width="2" marker-end="url(#ah_bu)"/>
-
-  <!-- ══ HV-204 (Main) VCB 630A ══ -->
-  <rect x="20"  y="148" width="215" height="88" rx="5" fill="#fff" stroke="#fca5a5" stroke-width="1"/>
-  <rect x="20"  y="148" width="215" height="14" rx="5" fill="#fee2e2"/>
-  <text x="28"  y="159" fill="#991b1b" font-family="DM Mono,monospace" font-size="8" font-weight="700">HV-204(Main) · VCB 630A  ID:01</text>
-  <line x1="20" y1="162" x2="235" y2="162" stroke="#fca5a5"/>
-  <text x="28"  y="172" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text>
-  <text x="48"  y="172" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전압(kV)</text>
-  <text x="118" y="172" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text>
-  <text x="138" y="172" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전류(A)</text>
-  <line x1="20" y1="175" x2="235" y2="175" stroke="#fff5f5"/>
-  <text x="28"  y="186" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8" font-weight="700">R-S</text>
-  <text x="48"  y="186" fill="#c2410c" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv204_vrs">22.658</tspan></text>
-  <text x="118" y="186" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8">R</text>
-  <text x="138" y="186" fill="#1a2535" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv204_ir">1.6</tspan>A</text>
-  <text x="28"  y="198" fill="#15803d" font-family="DM Mono,monospace" font-size="8" font-weight="700">S-T</text>
-  <text x="48"  y="198" fill="#c2410c" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv204_vst">22.398</tspan></text>
-  <text x="118" y="198" fill="#15803d" font-family="DM Mono,monospace" font-size="8">S</text>
-  <text x="138" y="198" fill="#1a2535" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv204_is">1.5</tspan>A</text>
-  <text x="28"  y="210" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">T-R</text>
-  <text x="48"  y="210" fill="#c2410c" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv204_vtr">22.508</tspan></text>
-  <text x="118" y="210" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8">T</text>
-  <text x="138" y="210" fill="#1a2535" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv204_it">1.4</tspan>A</text>
-  <line x1="20" y1="213" x2="235" y2="213" stroke="#fff5f5"/>
-  <text x="28"  y="224" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">역률 <tspan id="d_hv204_pf">0.99</tspan>PF  <tspan id="d_hv204_kw">57.5</tspan>KW  <tspan id="d_hv204_mwh">250.72</tspan>MWh</text>
-
-  <!-- HV-204 → 분기선 -->
-  <line x1="127" y1="236" x2="127" y2="258" stroke="#c2410c" stroke-width="2"/>
-  <line x1="127" y1="258" x2="330" y2="258" stroke="#c2410c" stroke-width="2"/>
-  <line x1="127" y1="258" x2="127" y2="278" stroke="#c2410c" stroke-width="2" marker-end="url(#ah_bu)"/>
-  <line x1="330" y1="258" x2="330" y2="278" stroke="#c2410c" stroke-width="2" marker-end="url(#ah_bu)"/>
-  <line x1="330" y1="258" x2="550" y2="258" stroke="#c2410c" stroke-width="2"/>
-  <line x1="550" y1="258" x2="550" y2="278" stroke="#c2410c" stroke-width="2" marker-end="url(#ah_bu)"/>
-  <line x1="550" y1="258" x2="770" y2="258" stroke="#c2410c" stroke-width="2"/>
-  <line x1="770" y1="258" x2="770" y2="278" stroke="#c2410c" stroke-width="2" marker-end="url(#ah_bu)"/>
-
-  <!-- ══ HV-205 (조명) ══ -->
-  <rect x="20"  y="278" width="215" height="88" rx="5" fill="#fff" stroke="#fca5a5" stroke-width="1"/>
-  <rect x="20"  y="278" width="215" height="14" rx="5" fill="#fee2e2"/>
-  <text x="28"  y="289" fill="#991b1b" font-family="DM Mono,monospace" font-size="8" font-weight="700">HV-205(조명) · VCB 630A  ID:02</text>
-  <line x1="20" y1="292" x2="235" y2="292" stroke="#fca5a5"/>
-  <text x="28"  y="302" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text><text x="48" y="302" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전압(kV)</text>
-  <text x="118" y="302" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text><text x="138" y="302" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전류(A)</text>
-  <line x1="20" y1="305" x2="235" y2="305" stroke="#fff5f5"/>
-  <text x="28"  y="316" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8" font-weight="700">R-S</text>
-  <text x="48"  y="316" fill="#c2410c" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv205_vrs">22.914</tspan></text>
-  <text x="118" y="316" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8">R</text>
-  <text x="138" y="316" fill="#1a2535" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv205_ir">1.5</tspan>A</text>
-  <text x="28"  y="328" fill="#15803d" font-family="DM Mono,monospace" font-size="8" font-weight="700">S-T</text>
-  <text x="48"  y="328" fill="#c2410c" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv205_vst">22.383</tspan></text>
-  <text x="118" y="328" fill="#15803d" font-family="DM Mono,monospace" font-size="8">S</text>
-  <text x="138" y="328" fill="#1a2535" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv205_is">1.5</tspan>A</text>
-  <text x="28"  y="340" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">T-R</text>
-  <text x="48"  y="340" fill="#c2410c" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv205_vtr">22.508</tspan></text>
-  <text x="118" y="340" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8">T</text>
-  <text x="138" y="340" fill="#1a2535" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv205_it">1.6</tspan>A</text>
-  <line x1="20" y1="343" x2="235" y2="343" stroke="#fff5f5"/>
-  <text x="28"  y="354" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">역률 <tspan id="d_hv205_pf">0.99</tspan>PF  <tspan id="d_hv205_kw">46.7</tspan>KW  <tspan id="d_hv205_mwh">188.94</tspan>MWh</text>
-  <!-- PTR-201 변압기 -->
-  <line x1="127" y1="366" x2="127" y2="385" stroke="#c2410c" stroke-width="1.5"/>
-  <ellipse cx="127" cy="395" rx="14" ry="10" fill="#fff7ed" stroke="#f59e0b" stroke-width="1.5"/>
-  <text x="127" y="399" text-anchor="middle" fill="#92400e" font-family="DM Mono,monospace" font-size="7" font-weight="700">TR</text>
-  <text x="127" y="413" text-anchor="middle" fill="#92400e" font-family="DM Mono,monospace" font-size="6.5">22.9K/380-220V</text>
-  <text x="127" y="422" text-anchor="middle" fill="#92400e" font-family="DM Mono,monospace" font-size="6.5">3Ø 150kVA</text>
-  <text x="127" y="431" text-anchor="middle" fill="#6b7280" font-family="DM Mono,monospace" font-size="6">(조명용)</text>
-  <line x1="127" y1="405" x2="127" y2="438" stroke="#1d4ed8" stroke-width="1.5" marker-end="url(#al_bu)"/>
-
-  <!-- ══ HV-206 (일반) ══ -->
-  <rect x="240" y="278" width="180" height="88" rx="5" fill="#fff" stroke="#fca5a5" stroke-width="1"/>
-  <rect x="240" y="278" width="180" height="14" rx="5" fill="#fee2e2"/>
-  <text x="248" y="289" fill="#991b1b" font-family="DM Mono,monospace" font-size="8" font-weight="700">HV-206(일반) · VCB 630A  ID:03</text>
-  <line x1="240" y1="292" x2="420" y2="292" stroke="#fca5a5"/>
-  <text x="248" y="302" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text><text x="268" y="302" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전압(kV)</text>
-  <text x="338" y="302" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text><text x="358" y="302" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전류(A)</text>
-  <line x1="240" y1="305" x2="420" y2="305" stroke="#fff5f5"/>
-  <text x="248" y="316" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8" font-weight="700">R-S</text>
-  <text x="268" y="316" fill="#c2410c" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv206_vrs">22.65</tspan></text>
-  <text x="338" y="316" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8">R</text>
-  <text x="358" y="316" fill="#1a2535" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv206_ir">0.3</tspan>A</text>
-  <text x="248" y="328" fill="#15803d" font-family="DM Mono,monospace" font-size="8" font-weight="700">S-T</text>
-  <text x="268" y="328" fill="#c2410c" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv206_vst">22.389</tspan></text>
-  <text x="338" y="328" fill="#15803d" font-family="DM Mono,monospace" font-size="8">S</text>
-  <text x="358" y="328" fill="#1a2535" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv206_is">0.3</tspan>A</text>
-  <text x="248" y="340" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">T-R</text>
-  <text x="268" y="340" fill="#c2410c" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv206_vtr">22.473</tspan></text>
-  <text x="338" y="340" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8">T</text>
-  <text x="358" y="340" fill="#1a2535" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv206_it">0.3</tspan>A</text>
-  <line x1="240" y1="343" x2="420" y2="343" stroke="#fff5f5"/>
-  <text x="248" y="354" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">역률 <tspan id="d_hv206_pf">0.97</tspan>PF  <tspan id="d_hv206_kw">10.8</tspan>KW  <tspan id="d_hv206_mwh">56.87</tspan>MWh</text>
-  <!-- PTR-202 변압기 -->
-  <line x1="330" y1="366" x2="330" y2="385" stroke="#c2410c" stroke-width="1.5"/>
-  <ellipse cx="330" cy="395" rx="14" ry="10" fill="#fff7ed" stroke="#f59e0b" stroke-width="1.5"/>
-  <text x="330" y="399" text-anchor="middle" fill="#92400e" font-family="DM Mono,monospace" font-size="7" font-weight="700">TR</text>
-  <text x="330" y="413" text-anchor="middle" fill="#92400e" font-family="DM Mono,monospace" font-size="6.5">22.9K/380-220V</text>
-  <text x="330" y="422" text-anchor="middle" fill="#92400e" font-family="DM Mono,monospace" font-size="6.5">3Ø 400kVA</text>
-  <text x="330" y="431" text-anchor="middle" fill="#6b7280" font-family="DM Mono,monospace" font-size="6">(일반용)</text>
-  <line x1="330" y1="405" x2="330" y2="438" stroke="#1d4ed8" stroke-width="1.5" marker-end="url(#al_bu)"/>
-
-  <!-- ══ HV-207 (동력) ══ -->
-  <rect x="460" y="278" width="180" height="88" rx="5" fill="#fff" stroke="#fca5a5" stroke-width="1"/>
-  <rect x="460" y="278" width="180" height="14" rx="5" fill="#fee2e2"/>
-  <text x="468" y="289" fill="#991b1b" font-family="DM Mono,monospace" font-size="8" font-weight="700">HV-207(동력) · VCB 630A  ID:04</text>
-  <line x1="460" y1="292" x2="640" y2="292" stroke="#fca5a5"/>
-  <text x="468" y="302" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text><text x="488" y="302" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전압(kV)</text>
-  <text x="558" y="302" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text><text x="578" y="302" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전류(A)</text>
-  <line x1="460" y1="305" x2="640" y2="305" stroke="#fff5f5"/>
-  <text x="468" y="316" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8" font-weight="700">R-S</text>
-  <text x="488" y="316" fill="#c2410c" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv207_vrs">22.618</tspan></text>
-  <text x="558" y="316" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8">R</text>
-  <text x="578" y="316" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv207_ir">0.0</tspan>A</text>
-  <text x="468" y="328" fill="#15803d" font-family="DM Mono,monospace" font-size="8" font-weight="700">S-T</text>
-  <text x="488" y="328" fill="#c2410c" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv207_vst">22.383</tspan></text>
-  <text x="558" y="328" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8">S</text>
-  <text x="578" y="328" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv207_is">0.0</tspan>A</text>
-  <text x="468" y="340" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">T-R</text>
-  <text x="488" y="340" fill="#c2410c" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv207_vtr">22.473</tspan></text>
-  <text x="558" y="340" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8">T</text>
-  <text x="578" y="340" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8"><tspan id="d_hv207_it">0.0</tspan>A</text>
-  <line x1="460" y1="343" x2="640" y2="343" stroke="#fff5f5"/>
-  <text x="468" y="354" fill="#9ca3af" font-family="DM Mono,monospace" font-size="7">역률 <tspan id="d_hv207_pf">0.00</tspan>PF  <tspan id="d_hv207_kw">0.0</tspan>KW  <tspan id="d_hv207_mwh">3.97</tspan>MWh (OPEN)</text>
-
-  <!-- LV 분기선 레이블 -->
-  <line x1="127" y1="438" x2="127" y2="458" stroke="#1d4ed8" stroke-width="1.5"/>
-  <line x1="330" y1="438" x2="330" y2="458" stroke="#1d4ed8" stroke-width="1.5"/>
-  <line x1="127" y1="458" x2="330" y2="458" stroke="#1d4ed8" stroke-width="1.5"/>
-  <line x1="220" y1="458" x2="220" y2="478" stroke="#1d4ed8" stroke-width="1.5" marker-end="url(#al_bu)"/>
-
-  <!-- LV-201 라벨 -->
-  <rect x="84"  y="478" width="52" height="18" rx="4" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
-  <text x="110" y="490" text-anchor="middle" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">LV-201</text>
-  <rect x="304" y="478" width="52" height="18" rx="4" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
-  <text x="330" y="490" text-anchor="middle" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">LV-205</text>
-  <line x1="550" y1="366" x2="550" y2="478" stroke="#1d4ed8" stroke-width="1.5" marker-end="url(#al_bu)"/>
-  <rect x="524" y="478" width="52" height="18" rx="4" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
-  <text x="550" y="490" text-anchor="middle" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">LV-208</text>
-
-  <!-- ══ LV-201 박스 y=500 ══ -->
-  <rect x="20"  y="500" width="180" height="88" rx="5" fill="#fff" stroke="#bfdbfe" stroke-width="1"/>
-  <rect x="20"  y="500" width="180" height="14" rx="5" fill="#dbeafe"/>
-  <text x="28"  y="511" fill="#1e3a5f" font-family="DM Mono,monospace" font-size="8" font-weight="700">LV-201(조명) · ACB 630A  ID:05</text>
-  <line x1="20" y1="514" x2="200" y2="514" stroke="#bfdbfe"/>
-  <text x="28"  y="524" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text>
-  <text x="48"  y="524" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전압(V)</text>
-  <text x="112" y="524" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text>
-  <text x="132" y="524" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전류(A)</text>
-  <line x1="20" y1="527" x2="200" y2="527" stroke="#eff6ff"/>
-  <text x="28"  y="538" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8" font-weight="700">R</text>
-  <text x="48"  y="538" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8"><tspan id="d_lv201_vrs">374</tspan>V</text>
-  <text x="112" y="538" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8">R</text>
-  <text x="132" y="538" fill="#1a2535" font-family="DM Mono,monospace" font-size="8"><tspan id="d_lv201_ir">71.0</tspan>A</text>
-  <text x="28"  y="550" fill="#15803d" font-family="DM Mono,monospace" font-size="8" font-weight="700">S</text>
-  <text x="48"  y="550" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8"><tspan id="d_lv201_vst">374</tspan>V</text>
-  <text x="112" y="550" fill="#15803d" font-family="DM Mono,monospace" font-size="8">S</text>
-  <text x="132" y="550" fill="#1a2535" font-family="DM Mono,monospace" font-size="8"><tspan id="d_lv201_is">70.1</tspan>A</text>
-  <text x="28"  y="562" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">T</text>
-  <text x="48"  y="562" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8"><tspan id="d_lv201_vtr">374</tspan>V</text>
-  <text x="112" y="562" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8">T</text>
-  <text x="132" y="562" fill="#1a2535" font-family="DM Mono,monospace" font-size="8"><tspan id="d_lv201_it">69.5</tspan>A</text>
-  <line x1="20" y1="565" x2="200" y2="565" stroke="#eff6ff"/>
-  <text x="28"  y="576" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">역률 <tspan id="d_lv201_pf">0.99</tspan>PF  <tspan id="d_lv201_kw">45.3</tspan>KW  <tspan id="d_lv201_mwh">183.13</tspan>MWh</text>
-  <line x1="110" y1="588" x2="110" y2="598" stroke="#1d4ed8" stroke-width="1.5"/>
-  <rect x="84"  y="598" width="52" height="16" rx="3" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.5"/>
-  <polygon points="90,606 99,601 99,611" fill="#1d4ed8"/>
-  <text x="102" y="609" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">CTTS</text>
-
-  <!-- ══ LV-205 박스 y=500 ══ -->
-  <rect x="240" y="500" width="180" height="88" rx="5" fill="#fff" stroke="#bfdbfe" stroke-width="1"/>
-  <rect x="240" y="500" width="180" height="14" rx="5" fill="#dbeafe"/>
-  <text x="248" y="511" fill="#1e3a5f" font-family="DM Mono,monospace" font-size="8" font-weight="700">LV-205(일반) · ACB 630A  ID:06</text>
-  <line x1="240" y1="514" x2="420" y2="514" stroke="#bfdbfe"/>
-  <text x="248" y="524" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text><text x="268" y="524" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전압(V)</text>
-  <text x="332" y="524" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text><text x="352" y="524" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전류(A)</text>
-  <line x1="240" y1="527" x2="420" y2="527" stroke="#eff6ff"/>
-  <text x="248" y="538" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8" font-weight="700">R</text>
-  <text x="268" y="538" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8"><tspan id="d_lv205_vrs">374</tspan>V</text>
-  <text x="332" y="538" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8">R</text>
-  <text x="352" y="538" fill="#1a2535" font-family="DM Mono,monospace" font-size="8"><tspan id="d_lv205_ir">27.6</tspan>A</text>
-  <text x="248" y="550" fill="#15803d" font-family="DM Mono,monospace" font-size="8" font-weight="700">S</text>
-  <text x="268" y="550" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8"><tspan id="d_lv205_vst">374</tspan>V</text>
-  <text x="332" y="550" fill="#15803d" font-family="DM Mono,monospace" font-size="8">S</text>
-  <text x="352" y="550" fill="#1a2535" font-family="DM Mono,monospace" font-size="8"><tspan id="d_lv205_is">27.0</tspan>A</text>
-  <text x="248" y="562" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">T</text>
-  <text x="268" y="562" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8"><tspan id="d_lv205_vtr">375</tspan>V</text>
-  <text x="332" y="562" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8">T</text>
-  <text x="352" y="562" fill="#1a2535" font-family="DM Mono,monospace" font-size="8"><tspan id="d_lv205_it">26.8</tspan>A</text>
-  <line x1="240" y1="565" x2="420" y2="565" stroke="#eff6ff"/>
-  <text x="248" y="576" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">역률 <tspan id="d_lv205_pf">0.97</tspan>PF  <tspan id="d_lv205_kw">10.8</tspan>KW  <tspan id="d_lv205_mwh">56.87</tspan>MWh</text>
-  <line x1="330" y1="588" x2="330" y2="598" stroke="#1d4ed8" stroke-width="1.5"/>
-  <rect x="304" y="598" width="52" height="16" rx="3" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.5"/>
-  <polygon points="310,606 319,601 319,611" fill="#1d4ed8"/>
-  <text x="322" y="609" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">CTTS</text>
-
-  <!-- ══ LV-208 박스 y=500 ══ -->
-  <rect x="460" y="500" width="180" height="88" rx="5" fill="#fff" stroke="#bfdbfe" stroke-width="1"/>
-  <rect x="460" y="500" width="180" height="14" rx="5" fill="#dbeafe"/>
-  <text x="468" y="511" fill="#1e3a5f" font-family="DM Mono,monospace" font-size="8" font-weight="700">LV-208(동력) · ACB 800A  ID:07</text>
-  <line x1="460" y1="514" x2="640" y2="514" stroke="#bfdbfe"/>
-  <text x="468" y="524" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text><text x="488" y="524" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전압(V)</text>
-  <text x="552" y="524" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">위상</text><text x="572" y="524" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">전류(A)</text>
-  <line x1="460" y1="527" x2="640" y2="527" stroke="#eff6ff"/>
-  <text x="468" y="538" fill="#b91c1c" font-family="DM Mono,monospace" font-size="8" font-weight="700">R</text>
-  <text x="488" y="538" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8"><tspan id="d_lv208_vrs">375</tspan>V</text>
-  <text x="552" y="538" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8">R</text>
-  <text x="572" y="538" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8"><tspan id="d_lv208_ir">0.0</tspan>A</text>
-  <text x="468" y="550" fill="#15803d" font-family="DM Mono,monospace" font-size="8" font-weight="700">S</text>
-  <text x="488" y="550" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8"><tspan id="d_lv208_vst">375</tspan>V</text>
-  <text x="552" y="550" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8">S</text>
-  <text x="572" y="550" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8"><tspan id="d_lv208_is">0.0</tspan>A</text>
-  <text x="468" y="562" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8" font-weight="700">T</text>
-  <text x="488" y="562" fill="#1d4ed8" font-family="DM Mono,monospace" font-size="8"><tspan id="d_lv208_vtr">375</tspan>V</text>
-  <text x="552" y="562" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8">T</text>
-  <text x="572" y="562" fill="#9ca3af" font-family="DM Mono,monospace" font-size="8"><tspan id="d_lv208_it">0.0</tspan>A</text>
-  <line x1="460" y1="565" x2="640" y2="565" stroke="#eff6ff"/>
-  <text x="468" y="576" fill="#9ca3af" font-family="DM Mono,monospace" font-size="7">역률 <tspan id="d_lv208_pf">0.00</tspan>PF  <tspan id="d_lv208_kw">0.0</tspan>KW  <tspan id="d_lv208_mwh">3.90</tspan>MWh (OPEN)</text>
-  <line x1="550" y1="588" x2="550" y2="598" stroke="#1d4ed8" stroke-width="1.5"/>
-  <rect x="524" y="598" width="60" height="16" rx="3" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
-  <polygon points="530,606 539,601 539,611" fill="#16a34a"/>
-  <text x="542" y="609" fill="#16a34a" font-family="DM Mono,monospace" font-size="8" font-weight="700">ATS</text>
-  <text x="524" y="623" fill="#6b7280" font-family="DM Mono,monospace" font-size="7">→ JETFAN</text>
-
-</svg>
-      </div>
-    </div>
-    <div style="text-align:center;font-size:10.5px;color:var(--t4);padding:5px 0 6px;background:#ebf8ff;border-top:1px solid #bfdbfe;letter-spacing:.2px">
-      🖱 드래그 이동 &nbsp;·&nbsp; 🤏 핀치줌 &nbsp;·&nbsp; ＋/− 버튼 확대축소 &nbsp;·&nbsp; ⛶ 전체화면
-    </div>
-  </div>
-
-</div><!-- /tab-diagram-bu -->
-
 
 </div><!-- /scroll-area -->
 
 <script>
-// ══════════════════════════════════════
-// 계통도 줌 · 드래그 · 핀치 · 전체화면
-// ══════════════════════════════════════
-(function(){
-  let scale = 1;
-  const MIN = 0.3, MAX = 4.0;
-  let tx = 0, ty = 0;           // 이동량
-  let dragging = false;
-  let lastX = 0, lastY = 0;
-  let pinchDist0 = 0, pinchScale0 = 1, pinchTx0 = 0, pinchTy0 = 0;
-
-  function getWrap(){ return document.getElementById('diagSvgWrap'); }
-  function getVp(){ return document.getElementById('diagViewport'); }
-  function getSvg(){ return document.getElementById('diagSvg'); }
-
-  function applyTransform(){
-    const wrap = getWrap(); if(!wrap) return;
-    wrap.style.transform = `translate(${tx}px,${ty}px) scale(${scale})`;
-    const lbl = document.getElementById('diagZoomLabel');
-    if(lbl) lbl.textContent = Math.round(scale*100)+'%';
-  }
-
-  // 뷰포트 높이를 SVG 비율에 맞게 초기 설정
-  function initViewport(){
-    const vp = getVp(); const svg = getSvg();
-    if(!vp || !svg) return;
-    const vpW = vp.clientWidth || vp.offsetWidth || 360;
-    const svgW = 1000, svgH = 680;
-    const fitScale = vpW / svgW;
-    const vpH = Math.round(svgH * fitScale);
-    vp.style.height = Math.max(vpH, 260) + 'px';
-    // 초기 scale을 카드 너비에 맞게
-    scale = Math.min(fitScale, 1);
-    tx = 0; ty = 0;
-    applyTransform();
-  }
-
-  // 줌 (버튼용)
-  window.diagZoom = function(delta){
-    const vp = getVp(); if(!vp) return;
-    const rect = vp.getBoundingClientRect();
-    const cx = rect.width / 2, cy = rect.height / 2;
-    const newScale = Math.min(MAX, Math.max(MIN, scale + delta));
-    const ratio = newScale / scale;
-    tx = cx - ratio*(cx - tx);
-    ty = cy - ratio*(cy - ty);
-    scale = newScale;
-    applyTransform();
-  };
-
-  // 초기화
-  window.diagReset = function(){
-    scale = 1; tx = 0; ty = 0;
-    initViewport();
-  };
-
-  // 드래그 시작
-  window.diagDragStart = function(e){
-    if(e.button !== 0) return;
-    dragging = true;
-    lastX = e.clientX; lastY = e.clientY;
-    const vp = getVp(); if(vp) vp.style.cursor = 'grabbing';
-  };
-  window.diagDragMove = function(e){
-    if(!dragging) return;
-    tx += e.clientX - lastX;
-    ty += e.clientY - lastY;
-    lastX = e.clientX; lastY = e.clientY;
-    applyTransform();
-  };
-  window.diagDragEnd = function(){
-    dragging = false;
-    const vp = getVp(); if(vp) vp.style.cursor = 'grab';
-  };
-
-  // 터치 핀치줌 + 드래그
-  function getTouchDist(t){ return Math.hypot(t[1].clientX-t[0].clientX, t[1].clientY-t[0].clientY); }
-  function getTouchCenter(t){ return {x:(t[0].clientX+t[1].clientX)/2, y:(t[0].clientY+t[1].clientY)/2}; }
-
-  window.diagTouchStart = function(e){
-    e.preventDefault();
-    if(e.touches.length === 2){
-      pinchDist0 = getTouchDist(e.touches);
-      pinchScale0 = scale;
-      const c = getTouchCenter(e.touches);
-      pinchTx0 = tx; pinchTy0 = ty;
-      lastX = c.x; lastY = c.y;
-    } else if(e.touches.length === 1){
-      dragging = true;
-      lastX = e.touches[0].clientX;
-      lastY = e.touches[0].clientY;
-    }
-  };
-  window.diagTouchMove = function(e){
-    e.preventDefault();
-    if(e.touches.length === 2){
-      const dist = getTouchDist(e.touches);
-      const c = getTouchCenter(e.touches);
-      const newScale = Math.min(MAX, Math.max(MIN, pinchScale0 * dist / pinchDist0));
-      const ratio = newScale / scale;
-      tx = c.x - ratio*(c.x - tx);
-      ty = c.y - ratio*(c.y - ty);
-      scale = newScale;
-      applyTransform();
-    } else if(e.touches.length === 1 && dragging){
-      tx += e.touches[0].clientX - lastX;
-      ty += e.touches[0].clientY - lastY;
-      lastX = e.touches[0].clientX;
-      lastY = e.touches[0].clientY;
-      applyTransform();
-    }
-  };
-  window.diagTouchEnd = function(e){
-    if(e.touches.length < 2) dragging = false;
-  };
-
-  // 전체화면
-  window.diagFullscreen = function(){
-    const card = document.getElementById('diagCard');
-    if(!card) return;
-    if(!document.fullscreenElement){
-      card.requestFullscreen?.() || card.webkitRequestFullscreen?.();
-    } else {
-      document.exitFullscreen?.() || document.webkitExitFullscreen?.();
-    }
-  };
-
-  // 전체화면 진입/해제 시 뷰포트 높이 재조정 + 버튼 텍스트 변경
-  document.addEventListener('fullscreenchange', ()=>{
-    const btn = document.getElementById('diagFsBtn');
-    const vp = getVp();
-    if(document.fullscreenElement){
-      if(btn) btn.textContent = '✕ 전체화면 종료';
-      if(vp) vp.style.height = '100vh';
-      // 전체화면에서 SVG를 화면에 맞게 스케일
-      const svgW = 1000, svgH = 680;
-      const sw = window.innerWidth / svgW;
-      const sh = window.innerHeight / svgH;
-      scale = Math.min(sw, sh) * 0.95;
-      tx = (window.innerWidth - 1000*scale) / 2;
-      ty = (window.innerHeight - 680*scale) / 2;
-      applyTransform();
-    } else {
-      if(btn) btn.textContent = '⛶ 전체화면';
-      initViewport();
-    }
-  });
-
-  // 마우스 휠 줌
-  document.addEventListener('DOMContentLoaded', ()=>{
-    const vp = getVp();
-    if(!vp) return;
-    vp.addEventListener('wheel', (e)=>{
-      if(!document.getElementById('tab-diagram')?.classList.contains('active')) return;
-      e.preventDefault();
-      const rect = vp.getBoundingClientRect();
-      const cx = e.clientX - rect.left;
-      const cy = e.clientY - rect.top;
-      const delta = e.deltaY > 0 ? -0.1 : 0.1;
-      const newScale = Math.min(MAX, Math.max(MIN, scale + delta));
-      const ratio = newScale / scale;
-      tx = cx - ratio*(cx - tx);
-      ty = cy - ratio*(cy - ty);
-      scale = newScale;
-      applyTransform();
-    }, {passive:false});
-
-    // 탭 전환 시 뷰포트 초기화
-    const origSwitch = window.switchTab;
-    window.switchTab = function(id, el){
-      origSwitch(id, el);
-      if(id === 'diagram') setTimeout(initViewport, 50);
-    };
-
-    // 초기 실행
-    setTimeout(initViewport, 100);
-    window.addEventListener('resize', initViewport);
-  });
-})();
-
 // ── Clock ──
 function tick(){
   const el = document.getElementById('clock');
@@ -3301,7 +1867,7 @@ setInterval(tick,1000); tick();
 
 
 // ── Tab ──
-const TAB_ORDER = ['ai','diagram','overview','hv','lv','solar','dimming'];
+const TAB_ORDER = ['ai'];
 
 function switchTab(id, el){
   document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
@@ -3330,9 +1896,6 @@ function getCurrentTabIndex(){
   }
   return 0;
 }
-
-
-
 
 // ── Helpers ──
 
@@ -3797,7 +2360,10 @@ const IMG_PROMPTS = {
 HV 전압은 소수점 3자리(예:22.893), 전류는 소수점 1자리, 역률은 소수점 2자리.
 화면에 없는 패널은 null. 순수 JSON만 반환.
 
-{"hv104":{"vrs":숫자,"vst":숫자,"vtr":숫자,"ir":숫자,"is":숫자,"it":숫자,"pf":숫자,"kw":숫자,"mwh":숫자},...} // 부전기실이면 hv204~hv207 키 사용`,
+주전기실 예시: {"hv104":{...},"hv105":{...},"hv106":{...},"hv107":{...}}
+부전기실 예시: {"hv204":{...},"hv205":{...},"hv206":{...},"hv207":{...}}
+각 패널 값 형식: {"vrs":숫자,"vst":숫자,"vtr":숫자,"ir":숫자,"is":숫자,"it":숫자,"pf":숫자,"kw":숫자,"mwh":숫자}
+화면에 보이는 패널명으로 정확히 키를 결정하세요. 순수 JSON만 반환.`,
 
   // ── 저압반 전용 ──
   lv: `당신은 380V 저압 배전반 SCADA 계측 전문가입니다.
@@ -3818,7 +2384,10 @@ HV 전압은 소수점 3자리(예:22.893), 전류는 소수점 1자리, 역률�
 
 화면에 없는 패널은 null. 순수 JSON만 반환.
 
-{"lv101":{"vrs":숫자,"vst":숫자,"vtr":숫자,"ir":숫자,"is":숫자,"it":숫자,"pf":숫자,"kw":숫자,"mwh":숫자},...} // 부전기실이면 lv201/lv205/lv208 키 사용`,
+주전기실 예시: {"lv101":{...},"lv105":{...},"lv108":{...}}
+부전기실 예시: {"lv201":{...},"lv205":{...},"lv208":{...}}
+각 패널 값 형식: {"vrs":숫자,"vst":숫자,"vtr":숫자,"ir":숫자,"is":숫자,"it":숫자,"pf":숫자,"kw":숫자,"mwh":숫자}
+화면에 보이는 패널명으로 정확히 키를 결정하세요. 순수 JSON만 반환.`,
 
   // ── 태양광 전용 ──
   solar: `당신은 태양광 인버터 SCADA 계측 전문가입니다.
@@ -3871,8 +2440,6 @@ HV 전압은 소수점 3자리(예:22.893), 전류는 소수점 1자리, 역률�
 {"rect":{"acv":숫자,"dcv":숫자,"oa":숫자,"ba":숫자}}`,
 
   // ── UPS 전용 ──
-
-
 
   // ── 전체 개요 화면 — 원본 이미지 기준 정밀 설계 ──
   overview: `당신은 전기실 SCADA 계측 전문 분석가입니다.
@@ -4229,7 +2796,7 @@ function switchTunnel(which, el){
   _currentTunnel = which;
 
   // ① 버튼 활성화
-  document.querySelectorAll('.tunnel-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('#tunnelNav .tab-btn').forEach(b => b.classList.remove('active'));
   if(el) el.classList.add('active');
 
   // ② 헤더 타이틀 업데이트
@@ -4257,8 +2824,7 @@ function switchTunnel(which, el){
 
   // ⑥ 패널 테이블 재빌드 (HV/LV 패널명 변경)
   if(typeof buildHvLvTable === 'function') buildHvLvTable();
-  // 고압/저압탭 패널 라벨 동적 업데이트
-  if(typeof updatePanelTabLabels === 'function') updatePanelTabLabels(which);
+
 
   // ⑦ UPS 라벨 업데이트
   _updateUPSLabels(which);
@@ -4432,9 +2998,24 @@ function applyHV(d){
   const matched=[];
   // 터널에 따라 동적 map (주: hv104~107, 부: hv204~207)
   const isSub = (typeof _currentTunnel !== 'undefined' && _currentTunnel === 'sub');
-  const map = isSub
-    ? {hv204:'HV-204',hv205:'HV-205',hv206:'HV-206',hv207:'HV-207'}
-    : {hv104:'HV-104',hv105:'HV-105',hv106:'HV-106',hv107:'HV-107'};
+  // 부전기실: AI가 hv204~207로 반환하면 정상, hv104~107로 잘못 반환해도 자동 remapping
+  let map;
+  if(isSub){
+    // hv204~207 우선, 없으면 hv104~107 키를 hv204~207로 remapping
+    const hasNew = d.hv204||d.hv205||d.hv206||d.hv207;
+    if(hasNew){
+      map = {hv204:'HV-204',hv205:'HV-205',hv206:'HV-206',hv207:'HV-207'};
+    } else {
+      // AI가 주전기실 키로 잘못 반환한 경우 자동 변환
+      if(d.hv104) d.hv204 = d.hv104;
+      if(d.hv105) d.hv205 = d.hv105;
+      if(d.hv106) d.hv206 = d.hv106;
+      if(d.hv107) d.hv207 = d.hv107;
+      map = {hv204:'HV-204',hv205:'HV-205',hv206:'HV-206',hv207:'HV-207'};
+    }
+  } else {
+    map = {hv104:'HV-104',hv105:'HV-105',hv106:'HV-106',hv107:'HV-107'};
+  }
   Object.entries(map).forEach(([tag,name])=>{
     const o=d[tag]; if(!o) return;
 
@@ -4464,9 +3045,20 @@ function applyLV(d){
   const matched=[];
   // 터널에 따라 동적 map (주: lv101/105/108, 부: lv201/205/208)
   const isSub = (typeof _currentTunnel !== 'undefined' && _currentTunnel === 'sub');
-  const map = isSub
-    ? {lv201:'LV-201',lv205:'LV-205',lv208:'LV-208'}
-    : {lv101:'LV-101',lv105:'LV-105',lv108:'LV-108'};
+  let map;
+  if(isSub){
+    const hasNew = d.lv201||d.lv205||d.lv208;
+    if(hasNew){
+      map = {lv201:'LV-201',lv205:'LV-205',lv208:'LV-208'};
+    } else {
+      if(d.lv101) d.lv201 = d.lv101;
+      if(d.lv105) d.lv205 = d.lv105;
+      if(d.lv108) d.lv208 = d.lv108;
+      map = {lv201:'LV-201',lv205:'LV-205',lv208:'LV-208'};
+    }
+  } else {
+    map = {lv101:'LV-101',lv105:'LV-105',lv108:'LV-108'};
+  }
   Object.entries(map).forEach(([tag,name])=>{
     const o=d[tag]; if(!o) return;
 
@@ -4738,9 +3330,6 @@ function upsProgRow(icon, name, msg){
 // UPS 드롭존 이벤트 초기화 (SCADA 드롭존과 동일 패턴)
 // ══════════════════════════════════════════════════
 
-
-
-
 // group: 'ups1' (조명용) or 'ups2' (일반용)
 async function handleUpsGroup(files, group){
   const apiKey = document.getElementById('claudeApiKey').value.trim();
@@ -4912,8 +3501,6 @@ async function handleUpsGroup(files, group){
   if(inputEl) inputEl.disabled = false;
 }
 
-
-
 // ── 기존 호환 (fallback) ──
 function applyClaudeJSON(d){
   const matched=[];
@@ -4958,7 +3545,7 @@ function showSummary(matched, method){
         <span style="font-size:11px;font-weight:700;color:#92400e;font-family:var(--mono)">${m.label}</span>
         <span style="font-size:11px;font-weight:700;color:#dc2626;font-family:var(--mono)">${m.value} ${m.unit}</span>
         <span style="font-size:9px;color:#b45309;font-family:var(--mono)">정상: ${r}</span>
-        ${m.tabHint ? `<button onclick="switchTab('${m.tabHint}',null)" style="padding:2px 7px;background:#1a365d;color:#fff;border:none;border-radius:4px;font-size:9px;cursor:pointer;font-weight:700">수정→</button>` : ''}
+
       </div>`;
     });
     html += `</div>`;
@@ -5135,7 +3722,7 @@ while(si < CHK_ITEMS.length){
 // ── 점검결과 상태 저장 (모드 전환 시 유지) ──
 const _chkState = {};  // {id: 'Ο'|'Δ'|'X'|''(공란)}
 const _chkCanvas = {}; // {id: dataURL}  Canvas 드로잉 저장
-let _chkMode = 'canvas';
+let _chkMode = 'toggle';
 
 // ── 모드 전환 ──
 function setCheckMode(mode){
@@ -5317,8 +3904,6 @@ function buildChkTable(){
   }
 }
 
-
-
 function buildInspPanels(){
   // ─── 고압반 HV 점검일지 패널 ───
   // ID규칙: insp_hv104_vrs 등 "insp_" prefix → HV탭(hv104_vrs)과 완전 분리
@@ -5410,8 +3995,6 @@ function buildInspPanels(){
     }).join('');
   }
 }
-
-
 
 // ── 오늘 날짜 기본값 ──
 function setInspDate(){
@@ -6833,377 +5416,12 @@ function calcSolarTotal(){
 
 // applyAll: SCADA_DATA → 모든 UI(span, SVG, KPI) 동기화
 function applyAll(){
-  // ── KPI 패널 ──
-  const s1 = parseFloat(SCADA_DATA.sol50_acc ?? v('in_solar1')) || 0;
-  const s2 = parseFloat(SCADA_DATA.sol30_acc ?? v('in_solar2')) || 0;
-  const fmt2 = n => n.toLocaleString('ko',{minimumFractionDigits:2,maximumFractionDigits:2});
-  setText('kpi_solar1', fmt2(s1));
-  setText('kpi_solar2', fmt2(s2));
-  setText('kpi_hv104_kw',  (SCADA_DATA.hv104_kw  ?? 0).toFixed(1));
-  setText('kpi_hv104_mwh', (SCADA_DATA.hv104_mwh ?? 0).toFixed(2));
-  setText('kpi_lv101_kw',  (SCADA_DATA.lv101_kw  ?? 0).toFixed(1));
-  setText('kpi_lv101_pf',  (SCADA_DATA.lv101_pf  ?? 0).toFixed(2));
-  setText('kpi_rect_acv',  (SCADA_DATA.rect_acv  ?? 0).toFixed(1));
-  setText('kpi_rect_dcv',  (SCADA_DATA.rect_dcv  ?? 0).toFixed(1));
-
-  // ── HV/LV 탭 display span (터널에 따라 SCADA 키 분기) ──
-  const _isSub = (_currentTunnel === 'sub');
-  // SCADA 데이터 키(예: hv204_vrs)와 span ID(예: d_hv104_vrs) 매핑
-  const _hvMap = _isSub
-    ? [['hv204','hv104'],['hv205','hv105'],['hv206','hv106'],['hv207','hv107']]
-    : [['hv104','hv104'],['hv105','hv105'],['hv106','hv106'],['hv107','hv107']];
-  const _lvMap = _isSub
-    ? [['lv201','lv101'],['lv205','lv105'],['lv208','lv108']]
-    : [['lv101','lv101'],['lv105','lv105'],['lv108','lv108']];
-
-  _hvMap.forEach(([scadaTag, spanTag])=>{
-    ['vrs','vst','vtr','ir','is','it','pf','kw','mwh'].forEach(f=>{
-      const val = SCADA_DATA[`${scadaTag}_${f}`];
-      if(val !== null && val !== undefined) setText(`d_${spanTag}_${f}`, val);
-    });
-  });
-  _lvMap.forEach(([scadaTag, spanTag])=>{
-    ['vrs','vst','vtr','ir','is','it','pf','kw','mwh'].forEach(f=>{
-      const val = SCADA_DATA[`${scadaTag}_${f}`];
-      if(val !== null && val !== undefined) setText(`d_${spanTag}_${f}`, val);
-    });
-  });
-
-  // KPI: 부전기실은 hv204/lv201 키 사용
-  if(_isSub){
-    setText('kpi_hv104_kw',  (SCADA_DATA.hv204_kw  ?? 0).toFixed(1));
-    setText('kpi_hv104_mwh', (SCADA_DATA.hv204_mwh ?? 0).toFixed(2));
-    setText('kpi_lv101_kw',  (SCADA_DATA.lv201_kw  ?? 0).toFixed(1));
-    setText('kpi_lv101_pf',  (SCADA_DATA.lv201_pf  ?? 0).toFixed(2));
-  }
-
-  // ── 정류반 span ──
-  ['rect_acv','rect_dcv','rect_oa','rect_ba'].forEach(k=>{
-    const val = SCADA_DATA[k];
-    if(val !== null && val !== undefined) setText('d_'+k, val);
-  });
-
-  // ── SVG 계통도 패널 ──
-  setText('svg_solar1', fmt2(s1));
-  setText('svg_solar2', fmt2(s2));
-  setText('svg_rect_acv', (SCADA_DATA.rect_acv ?? 0).toFixed(1));
-  setText('svg_rect_dcv', (SCADA_DATA.rect_dcv ?? 0).toFixed(1));
-  setText('svg_rect_oa',  (SCADA_DATA.rect_oa  ?? 0).toFixed(1));
-  setText('svg_rect_ba',  (SCADA_DATA.rect_ba  ?? 0).toFixed(1));
-  // 부전기실 계통도도 업데이트
-  if(_currentTunnel === 'sub' && typeof applyAll_bu === 'function') applyAll_bu();
+  // applyAll: 계측값 → SCADA_DATA 저장 후 완료 메시지
 
   // ── 완료 메시지 ──
   const msg = document.getElementById('applyMsg');
   if(msg){ msg.style.display='block'; setTimeout(()=>msg.style.display='none',2500); }
 }
-
-// ── 터널탭 초기화 ──
-
-// ══════════════════════════════════════
-// 부전기실 계통도 줌 · 드래그 · 핀치 · 전체화면
-// ══════════════════════════════════════
-(function(){
-  let scale = 1, tx = 0, ty = 0;
-  const MIN = 0.3, MAX = 4.0;
-  let dragging = false, lastX = 0, lastY = 0;
-  let pinching = false, pinchDist = 0;
-
-  function vp(){ return document.getElementById('diagBuViewport'); }
-  function wrap(){ return document.getElementById('diagBuSvgWrap'); }
-  function applyT(){ if(wrap()) wrap().style.transform = `translate(${tx}px,${ty}px) scale(${scale})`; }
-  function setLabel(){ const el = document.getElementById('diagBuZoomLabel'); if(el) el.textContent = Math.round(scale*100)+'%'; }
-
-  window.diagBuZoom = function(d){
-    const v = vp(); if(!v) return;
-    const r = v.getBoundingClientRect();
-    const cx = r.width/2 - tx, cy = r.height/2 - ty;
-    const ns = Math.min(MAX, Math.max(MIN, scale + d));
-    tx -= cx*(ns-scale); ty -= cy*(ns-scale);
-    scale = ns; applyT(); setLabel();
-  };
-  window.diagBuReset = function(){ scale=1; tx=0; ty=0; applyT(); setLabel(); };
-  window.diagBuFullscreen = function(){
-    const c = document.getElementById('diagBuCard');
-    if(!c) return;
-    if(!document.fullscreenElement){ c.requestFullscreen && c.requestFullscreen(); }
-    else { document.exitFullscreen && document.exitFullscreen(); }
-  };
-
-  // drag
-  window.diagBuDragStart = function(e){ dragging=true; lastX=e.clientX; lastY=e.clientY; const v=vp(); if(v) v.style.cursor='grabbing'; };
-  window.diagBuDragMove = function(e){
-    if(!dragging) return;
-    tx += e.clientX-lastX; ty += e.clientY-lastY;
-    lastX=e.clientX; lastY=e.clientY; applyT();
-  };
-  window.diagBuDragEnd = function(){ dragging=false; const v=vp(); if(v) v.style.cursor='grab'; };
-
-  // touch/pinch
-  function dist(t){ return Math.hypot(t[0].clientX-t[1].clientX, t[0].clientY-t[1].clientY); }
-  window.diagBuTouchStart = function(e){
-    if(e.touches.length===2){ pinching=true; pinchDist=dist(e.touches); }
-    else if(e.touches.length===1){ dragging=true; lastX=e.touches[0].clientX; lastY=e.touches[0].clientY; }
-  };
-  window.diagBuTouchMove = function(e){
-    e.preventDefault();
-    if(pinching && e.touches.length===2){
-      const nd=dist(e.touches), r=nd/pinchDist;
-      const v=vp(); if(!v) return;
-      const rc=v.getBoundingClientRect();
-      const mx=(e.touches[0].clientX+e.touches[1].clientX)/2-rc.left-tx;
-      const my=(e.touches[0].clientY+e.touches[1].clientY)/2-rc.top-ty;
-      const ns=Math.min(MAX,Math.max(MIN,scale*r));
-      tx-=mx*(ns-scale); ty-=my*(ns-scale); scale=ns; pinchDist=nd; applyT(); setLabel();
-    } else if(dragging && e.touches.length===1){
-      tx+=e.touches[0].clientX-lastX; ty+=e.touches[0].clientY-lastY;
-      lastX=e.touches[0].clientX; lastY=e.touches[0].clientY; applyT();
-    }
-  };
-  window.diagBuTouchEnd = function(e){ if(e.touches.length<2) pinching=false; if(e.touches.length===0) dragging=false; };
-
-  // 휠
-  const vpEl = document.getElementById('diagBuViewport');
-  if(vpEl) vpEl.addEventListener('wheel', function(e){
-    e.preventDefault();
-    const r=vpEl.getBoundingClientRect();
-    const cx=e.clientX-r.left-tx, cy=e.clientY-r.top-ty;
-    const d = e.deltaY<0 ? 0.15 : -0.15;
-    const ns=Math.min(MAX,Math.max(MIN,scale+d));
-    tx-=cx*(ns-scale); ty-=cy*(ns-scale); scale=ns; applyT(); setLabel();
-  },{passive:false});
-})();
-
-
-
-// ══════════════════════════════════════════
-//  터널 전환 시 HV/LV탭 패널 라벨 전체 업데이트
-// ══════════════════════════════════════════
-function updatePanelTabLabels(which){
-  const isSub = (which === 'sub');
-
-  // ── 패널 매핑 ──
-  // 주: HV-104~107, LV-101/105/108
-  // 부: HV-204~207, LV-201/205/208
-  const hv = isSub
-    ? [{old:'hv104',n:'HV-204',lbl:'HV-204(Main)',id:'01',cap:'630A',role:'Main'},
-       {old:'hv105',n:'HV-205',lbl:'HV-205(조명)',id:'02',cap:'630A',role:'조명'},
-       {old:'hv106',n:'HV-206',lbl:'HV-206(일반)',id:'03',cap:'630A',role:'일반'},
-       {old:'hv107',n:'HV-207',lbl:'HV-207(동력)',id:'04',cap:'630A',role:'동력'}]
-    : [{old:'hv104',n:'HV-104',lbl:'HV-104',id:'01',cap:'630A',role:'Main'},
-       {old:'hv105',n:'HV-105',lbl:'HV-105',id:'02',cap:'630A',role:'조명'},
-       {old:'hv106',n:'HV-106',lbl:'HV-106',id:'03',cap:'630A',role:'일반'},
-       {old:'hv107',n:'HV-107',lbl:'HV-107',id:'04',cap:'630A',role:'동력'}];
-
-  const lv = isSub
-    ? [{old:'lv101',n:'LV-201',lbl:'LV-201(조명)',id:'05',cap:'630A',role:'조명용'},
-       {old:'lv105',n:'LV-205',lbl:'LV-205(일반)',id:'06',cap:'630A',role:'일반용'},
-       {old:'lv108',n:'LV-208',lbl:'LV-208(동력)',id:'07',cap:'800A',role:'동력용'}]
-    : [{old:'lv101',n:'LV-101',lbl:'LV-101',id:'05',cap:'630A',role:'조명용'},
-       {old:'lv105',n:'LV-105',lbl:'LV-105',id:'06',cap:'630A',role:'일반용'},
-       {old:'lv108',n:'LV-108',lbl:'LV-108',id:'07',cap:'800A',role:'동력용'}];
-
-  // ── HV탭 섹션 라벨 & 카드 헤더 ──
-  hv.forEach(function(p){
-    // 섹션 라벨: "ID 01 · HV-104 VCB 630A" or "ID 01 · HV-204 VCB 630A"
-    document.querySelectorAll('.sec-label').forEach(function(el){
-      if(el.textContent.includes('ID '+p.id+' ·')){
-        el.textContent = 'ID '+p.id+' · '+p.n+' VCB '+p.cap;
-      }
-    });
-    // 카드 헤더 타이틀 (id="d_XXX_vrs" 의 부모 카드)
-    var sampleSpan = document.getElementById('d_'+p.old+'_vrs');
-    if(sampleSpan){
-      var card = sampleSpan.closest('.card');
-      if(card){
-        var titleEl = card.querySelector('.card-title');
-        if(titleEl) titleEl.textContent = p.lbl;
-      }
-    }
-    // HV 요약 테이블 TAG span
-    document.querySelectorAll('.tag.hv').forEach(function(el){
-      var prev = isSub ? el.textContent.replace('HV-1','HV-2') : el.textContent.replace('HV-2','HV-1');
-      // 정확한 매핑으로 교체
-    });
-  });
-
-  // HV/LV 요약 테이블 tag span 업데이트 (1:1 매핑)
-  var tagMap = isSub
-    ? {'HV-104':'HV-204','HV-105':'HV-205','HV-106':'HV-206','HV-107':'HV-207',
-       'LV-101':'LV-201','LV-105':'LV-205','LV-108':'LV-208'}
-    : {'HV-204':'HV-104','HV-205':'HV-105','HV-206':'HV-106','HV-207':'HV-107',
-       'LV-201':'LV-101','LV-205':'LV-105','LV-208':'LV-108'};
-  document.querySelectorAll('.tag.hv, .tag.lv').forEach(function(sp){
-    var mapped = tagMap[sp.textContent.trim()];
-    if(mapped) sp.textContent = mapped;
-  });
-
-  // ── LV탭 섹션 라벨 & 카드 헤더 ──
-  lv.forEach(function(p){
-    document.querySelectorAll('.sec-label').forEach(function(el){
-      if(el.textContent.includes('ID '+p.id+' ·')){
-        el.textContent = 'ID '+p.id+' · '+p.n+' ACB '+p.cap+' · '+p.role;
-      }
-    });
-    var sampleSpan = document.getElementById('d_'+p.old+'_vrs');
-    if(sampleSpan){
-      var card = sampleSpan.closest('.card');
-      if(card){
-        var titleEl = card.querySelector('.card-title');
-        if(titleEl) titleEl.textContent = p.lbl;
-      }
-    }
-  });
-
-  // ── 개요탭 차단기 그리드 ──
-  var brkNames = document.querySelectorAll('.brk-name');
-  var revPanels = isSub
-    ? [{old:'HV-104',n:'HV-204'},{old:'HV-105',n:'HV-205'},
-       {old:'HV-106',n:'HV-206'},{old:'HV-107',n:'HV-207'},
-       {old:'LV-101',n:'LV-201'},{old:'LV-105',n:'LV-205'},{old:'LV-108',n:'LV-208'}]
-    : [{old:'HV-204',n:'HV-104'},{old:'HV-205',n:'HV-105'},
-       {old:'HV-206',n:'HV-106'},{old:'HV-207',n:'HV-107'},
-       {old:'LV-201',n:'LV-101'},{old:'LV-205',n:'LV-105'},{old:'LV-208',n:'LV-108'}];
-
-  brkNames.forEach(function(el){
-    revPanels.forEach(function(p){
-      if(el.textContent.trim() === p.old) el.textContent = p.n;
-    });
-  });
-
-  // ── 개요탭 KPI 라벨 ──
-  var kpiLabels = document.querySelectorAll('.kpi-lbl');
-  kpiLabels.forEach(function(el){
-    if(el.textContent.includes('HV-1') && isSub)
-      el.textContent = el.textContent.replace('HV-1','HV-2');
-    else if(el.textContent.includes('HV-2') && !isSub)
-      el.textContent = el.textContent.replace('HV-2','HV-1');
-    if(el.textContent.includes('LV-1') && isSub)
-      el.textContent = el.textContent.replace('LV-1','LV-2');
-    else if(el.textContent.includes('LV-2') && !isSub)
-      el.textContent = el.textContent.replace('LV-2','LV-1');
-  });
-
-  // ── 태양광 탭 섹션 라벨 ──
-  const _s1Cap = isSub ? '24.7kW' : '50kW';
-  const _s2Cap = isSub ? '11.4kW' : '30kW';
-  const _tunnelName = isSub ? '부전기실' : '주전기실';
-
-  var sl1 = document.getElementById('solarLabel1');
-  if(sl1) sl1.innerHTML = `<span style="color:#f59e0b">☀</span> ${_tunnelName} 태양광 #1 (${_s1Cap})`;
-  var sl2 = document.getElementById('solarLabel2');
-  if(sl2) sl2.innerHTML = `<span style="color:#f59e0b">☀</span> ${_tunnelName} 태양광 #2 (${_s2Cap})`;
-
-  var rl1 = document.getElementById('solarRowLabel1');
-  if(rl1) rl1.textContent = `☀ ${_s1Cap} 설비`;
-  var rl2 = document.getElementById('solarRowLabel2');
-  if(rl2) rl2.textContent = `☀ ${_s2Cap} 설비`;
-
-  // ── 이미지 타입 선택 드롭다운 ──
-  var hvOpt = document.querySelector('option[value="hv"]');
-  if(hvOpt){
-    hvOpt.textContent = isSub
-      ? '🔴 고압반 HV (22.9kV · HV-204~207)'
-      : '🔴 고압반 HV (22.9kV · HV-104~107)';
-  }
-  var lvOpt = document.querySelector('option[value="lv"]');
-  if(lvOpt){
-    lvOpt.textContent = isSub
-      ? '🔵 저압반 LV (380V · LV-201/205/208)'
-      : '🔵 저압반 LV (380V · LV-101/105/108)';
-  }
-}
-
-// ── 부전기실 계통도 SVG 값 업데이트 ──
-function applyAll_bu(){
-  function st(id, v){ const el=document.getElementById(id); if(el) el.textContent=v; }
-  function fv(k, d){ return (SCADA_DATA[k] ?? d); }
-  const f1 = v => parseFloat(v||0).toFixed(1);
-  const f2 = v => parseFloat(v||0).toFixed(2);
-  const f3 = v => parseFloat(v||0).toFixed(3);
-
-  // HV-204~207
-  [['hv204','HV-204'],['hv205','HV-205'],['hv206','HV-206'],['hv207','HV-207']].forEach(([k])=>{
-    ['vrs','vst','vtr'].forEach(f => { const val=fv(k+'_'+f, null); if(val!=null) st('d_'+k+'_'+f, f3(val)); });
-    ['ir','is','it'].forEach(f   => { const val=fv(k+'_'+f, null); if(val!=null) st('d_'+k+'_'+f, f1(val)); });
-    ['pf','kw','mwh'].forEach(f  => { const val=fv(k+'_'+f, null); if(val!=null) st('d_'+k+'_'+f, val); });
-  });
-  // LV-201/205/208
-  [['lv201'],['lv205'],['lv208']].forEach(([k])=>{
-    ['vrs','vst','vtr'].forEach(f => { const val=fv(k+'_'+f, null); if(val!=null) st('d_'+k+'_'+f, Math.round(val)); });
-    ['ir','is','it'].forEach(f   => { const val=fv(k+'_'+f, null); if(val!=null) st('d_'+k+'_'+f, f1(val)); });
-    ['pf','kw','mwh'].forEach(f  => { const val=fv(k+'_'+f, null); if(val!=null) st('d_'+k+'_'+f, val); });
-  });
-  // 태양광·정류반
-  const s1 = SCADA_DATA.sol50_acc ?? 0;
-  const s2 = SCADA_DATA.sol30_acc ?? 0;
-  st('svg_bu_solar1', parseFloat(s1).toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2}));
-  st('svg_bu_solar2', parseFloat(s2).toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2}));
-  st('svg_bu_rect_acv', f1(SCADA_DATA.rect_acv??0));
-  st('svg_bu_rect_dcv', f1(SCADA_DATA.rect_dcv??0));
-  st('svg_bu_rect_oa',  f1(SCADA_DATA.rect_oa ??0));
-  st('svg_bu_rect_ba',  f1(SCADA_DATA.rect_ba ??0));
-}
-
-
-
-
-// ══════════════════════════════════════════
-//  터널탭 + 계통도탭 통합 초기화
-// ══════════════════════════════════════════
-(function(){
-
-  // 계통도 탭 버튼 onclick 갱신
-  function _updateDiagramBtn(which){
-    var btn = document.querySelector('[data-main-only="1"]');
-    if(!btn) return;
-    if(which === 'sub'){
-      btn.setAttribute('onclick', "switchTab('diagram-bu', this)");
-    } else {
-      btn.setAttribute('onclick', "switchTab('diagram', this)");
-    }
-  }
-
-  // switchTab 래핑: diagram-bu 는 active 클래스만으로 제어 (style.display 절대 사용 안 함)
-  var _origSwitchTab = window.switchTab;
-  window.switchTab = function(id, el){
-    if(id === 'diagram-bu'){
-      document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
-      document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
-      var panel = document.getElementById('tab-diagram-bu');
-      if(panel) panel.classList.add('active');
-      if(el) el.classList.add('active');
-    } else {
-      var buPanel = document.getElementById('tab-diagram-bu');
-      if(buPanel) buPanel.classList.remove('active');
-      _origSwitchTab && _origSwitchTab(id, el);
-    }
-  };
-
-  // switchTunnel 래핑
-  var _origSwitchTunnel = window.switchTunnel;
-  window.switchTunnel = function(which, el){
-    _origSwitchTunnel && _origSwitchTunnel(which, el);
-    _updateDiagramBtn(which);
-    if(which === 'sub' && typeof applyAll_bu === 'function') applyAll_bu();
-  };
-
-  // 초기화: active 클래스만 정리, style.display 절대 건드리지 않음
-  function _init(){
-    var titleEl = document.querySelector('.h-title');
-    if(titleEl) titleEl.textContent = '청하터널(주) 일일점검일지';
-    var buPanel = document.getElementById('tab-diagram-bu');
-    if(buPanel) buPanel.classList.remove('active'); // CSS가 display:none 처리
-    _updateDiagramBtn('main');
-  }
-
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', _init);
-  } else {
-    _init();
-  }
-
-})();
 
 </script>
 </body>
