@@ -1152,12 +1152,19 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
   </div><!-- /scanResultWrap -->
 
   <!-- ══ UPS 계측값 자동판독 ══ -->
-  <div id="upsOcrCard" style="margin-bottom:10px;border-radius:var(--r);border:1px solid var(--border);box-shadow:var(--sh-s);background:var(--surface)">
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px 10px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#ebf8ff 0%,#bee3f8 100%)">
-      <div style="font-size:13px;font-weight:800;color:var(--t1)">🔌 UPS 계측값 자동판독</div>
-      <span class="card-badge blue">입력·출력 각 1장</span>
+  <div id="upsOcrCard" style="margin-bottom:10px;border-radius:var(--r);border:1px solid #bfdbfe;box-shadow:var(--sh);overflow:hidden">
+    <!-- 타이틀바 — SCADA와 동일한 스틸블루 그라디언트 -->
+    <div style="background:linear-gradient(135deg,#1a365d 0%,#2a4a7f 50%,#2b6cb0 100%);display:flex;align-items:center;justify-content:space-between;padding:14px 16px;">
+      <div style="display:flex;align-items:center;gap:11px;min-width:0;flex:1">
+        <div style="width:40px;height:40px;flex-shrink:0;background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.3);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px">🔌</div>
+        <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+          <span style="font-size:14px;font-weight:800;color:#fff;letter-spacing:-.2px;white-space:nowrap">UPS 계측값 자동판독</span>
+          <span style="font-size:10.5px;color:rgba(255,255,255,.78);font-family:var(--mono);font-weight:500;white-space:nowrap">Vision AI · UPS 화면 → 점검일지 자동 입력</span>
+        </div>
+      </div>
+      <span id="upsStatusBadge" style="flex-shrink:0;font-family:var(--mono);font-size:10px;font-weight:700;padding:4px 11px;border-radius:20px;background:rgba(255,255,255,.18);color:#fff;border:1.5px solid rgba(255,255,255,.35);white-space:nowrap;margin-left:10px">대기중</span>
     </div>
-    <div style="padding:10px 14px;display:flex;flex-direction:column;gap:10px">
+    <div style="padding:10px 14px;display:flex;flex-direction:column;gap:10px;background:var(--surface)">
 
       <!-- 조명용 50kVA -->
       <div style="background:var(--surface-2);border-radius:var(--r-s);padding:10px 12px">
@@ -1231,10 +1238,6 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
       <span style="font-size:12px;font-weight:800;color:var(--t1);white-space:nowrap">📅 점검계획서 DB</span>
       <span id="planDbBadge" style="font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:99px;flex-shrink:0"></span>
       <span id="planDbActive" style="font-size:10px;font-weight:600;color:var(--t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1"></span>
-      <button onclick="event.stopPropagation();deletePlanDB()"
-        style="padding:2px 7px;background:#fee2e2;color:#c53030;border:1px solid #fca5a5;border-radius:5px;font-size:9.5px;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0">
-        🗑 삭제
-      </button>
       <span id="planDbToggleIcon" style="font-size:13px;color:var(--t4);flex-shrink:0;margin-left:2px">▶</span>
     </div>
 
@@ -1249,6 +1252,14 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
 
       <!-- hidden file inputs (12개월) -->
       <div style="display:none" id="planFileInputs"></div>
+
+      <!-- 전체 삭제 버튼 (본문 하단으로 이동 — 헤더 토글과 오클릭 방지) -->
+      <div style="display:flex;justify-content:flex-end;margin-top:4px;padding-top:8px;border-top:1px solid var(--border)">
+        <button onclick="deletePlanDB()"
+          style="padding:4px 12px;background:#fee2e2;color:#c53030;border:1px solid #fca5a5;border-radius:6px;font-size:10.5px;font-weight:700;cursor:pointer;white-space:nowrap">
+          🗑 전체 DB 삭제
+        </button>
+      </div>
 
     </div><!-- /planDbBody -->
   </div><!-- /planDbCard -->
@@ -1323,82 +1334,88 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
   </div>
 
   <!-- ═══ 1. 일일점검사항 ═══ -->
-  <div class="sec-label">✅ 1. 일일점검사항 (Sheet1 · 6~39행)</div>
-
-  <!-- 점검결과 컨트롤 카드 -->
-  <div class="card" style="margin-bottom:8px">
-    <div class="card-header" style="padding-bottom:6px">
-      <div class="card-title">🖊️ 점검결과 입력</div>
-      <div style="font-size:10px;color:var(--t4);font-family:var(--mono)">
-        <span style="color:var(--green);font-weight:700">Ο 양호</span> &nbsp;
-        <span style="color:var(--amber);font-weight:700">Δ 점검요</span> &nbsp;
-        <span style="color:var(--red);font-weight:700">X 불량</span>
-      </div>
-    </div>
-    <div style="padding:10px 14px 12px;display:flex;flex-direction:column;gap:8px">
-
-      <!-- 행1: 입력방식 -->
-      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-        <span style="font-size:11px;color:var(--t4);font-weight:600;white-space:nowrap;width:58px;flex-shrink:0">입력방식</span>
-        <div style="width:1px;height:16px;background:var(--border);flex-shrink:0"></div>
-        <button id="modeBtn_toggle" onclick="setCheckMode('toggle')"
-          style="padding:4px 11px;font-size:11px;font-weight:700;border-radius:20px;border:1.5px solid var(--blue);background:var(--blue);color:#fff;cursor:pointer;white-space:nowrap">
-          🔘 버튼 토글
-        </button>
-        <button id="modeBtn_canvas" onclick="setCheckMode('canvas')"
-          style="padding:4px 11px;font-size:11px;font-weight:700;border-radius:20px;border:1.5px solid var(--border-2);background:var(--surface);color:var(--t2);cursor:pointer;white-space:nowrap">
-          ✍️ 손글씨
-        </button>
-      </div>
-
-      <!-- 구분선 -->
-      <div style="height:1px;background:var(--border)"></div>
-
-      <!-- 전체 일괄 -->
-      <div style="display:flex;align-items:center;gap:6px">
-        <span style="font-size:11px;color:var(--t4);font-weight:600;white-space:nowrap;width:58px;flex-shrink:0">전체 일괄</span>
-        <div style="width:1px;height:16px;background:var(--border);flex-shrink:0"></div>
-        <button onclick="chkApplyAll('Ο')"
-          style="flex:1;padding:5px 0;font-size:12px;font-weight:700;border-radius:6px;border:1.5px solid #1d9e75;background:#e6f9f0;color:#111;cursor:pointer;white-space:nowrap">
-          Ο 양호
-        </button>
-        <button onclick="chkApplyAll('Δ')"
-          style="flex:1;padding:5px 0;font-size:12px;font-weight:700;border-radius:6px;border:1.5px solid #ba7517;background:#faeeda;color:#111;cursor:pointer;white-space:nowrap">
-          Δ 점검요
-        </button>
-        <button onclick="chkApplyAll('X')"
-          style="flex:1;padding:5px 0;font-size:12px;font-weight:700;border-radius:6px;border:1.5px solid #a32d2d;background:#fcebeb;color:#111;cursor:pointer;white-space:nowrap">
-          X 불량
-        </button>
-        <button onclick="chkClearAll()"
-          style="flex:1;padding:5px 0;font-size:12px;font-weight:700;border-radius:6px;border:1.5px solid var(--border-2);background:var(--surface-2);color:var(--t3);cursor:pointer;white-space:nowrap">
-          🗑 전체삭제
-        </button>
-      </div>
-
-    </div>
+  <div class="sec-label" onclick="toggleChkSection()" style="cursor:pointer;user-select:none;display:flex;align-items:center;justify-content:space-between;">
+    <span>✅ 1. 일일점검사항 (Sheet1 · 6~39행)</span>
+    <span id="chkToggleIcon" style="font-size:12px;color:var(--t4);transition:transform .25s;display:inline-block;transform:rotate(-90deg);margin-left:8px;flex-shrink:0;">▼</span>
   </div>
 
-  <div class="card" style="margin-bottom:10px;overflow-x:auto">
-    <div class="card-header">
-      <div class="card-title">일일점검사항</div>
+  <!-- 접기 wrapper: 점검결과 카드 + 일일점검사항 테이블 -->
+  <div id="chkSectionBody" style="display:none">
+
+    <!-- 점검결과 컨트롤 카드 -->
+    <div class="card" style="margin-bottom:8px">
+      <div class="card-header" style="padding-bottom:6px">
+        <div class="card-title">🖊️ 점검결과 입력</div>
+        <div style="font-size:10px;color:var(--t4);font-family:var(--mono)">
+          <span style="color:var(--green);font-weight:700">Ο 양호</span> &nbsp;
+          <span style="color:var(--amber);font-weight:700">Δ 점검요</span> &nbsp;
+          <span style="color:var(--red);font-weight:700">X 불량</span>
+        </div>
+      </div>
+      <div style="padding:10px 14px 12px;display:flex;flex-direction:column;gap:8px">
+
+        <!-- 행1: 입력방식 -->
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+          <span style="font-size:11px;color:var(--t4);font-weight:600;white-space:nowrap;width:58px;flex-shrink:0">입력방식</span>
+          <div style="width:1px;height:16px;background:var(--border);flex-shrink:0"></div>
+          <button id="modeBtn_toggle" onclick="setCheckMode('toggle')"
+            style="padding:4px 11px;font-size:11px;font-weight:700;border-radius:20px;border:1.5px solid var(--blue);background:var(--blue);color:#fff;cursor:pointer;white-space:nowrap">
+            🔘 버튼 토글
+          </button>
+          <button id="modeBtn_canvas" onclick="setCheckMode('canvas')"
+            style="padding:4px 11px;font-size:11px;font-weight:700;border-radius:20px;border:1.5px solid var(--border-2);background:var(--surface);color:var(--t2);cursor:pointer;white-space:nowrap">
+            ✍️ 손글씨
+          </button>
+        </div>
+
+        <!-- 구분선 -->
+        <div style="height:1px;background:var(--border)"></div>
+
+        <!-- 전체 일괄 -->
+        <div style="display:flex;align-items:center;gap:6px">
+          <span style="font-size:11px;color:var(--t4);font-weight:600;white-space:nowrap;width:58px;flex-shrink:0">전체 일괄</span>
+          <div style="width:1px;height:16px;background:var(--border);flex-shrink:0"></div>
+          <button onclick="chkApplyAll('Ο')"
+            style="flex:1;padding:5px 0;font-size:12px;font-weight:700;border-radius:6px;border:1.5px solid #1d9e75;background:#e6f9f0;color:#111;cursor:pointer;white-space:nowrap">
+            Ο 양호
+          </button>
+          <button onclick="chkApplyAll('Δ')"
+            style="flex:1;padding:5px 0;font-size:12px;font-weight:700;border-radius:6px;border:1.5px solid #ba7517;background:#faeeda;color:#111;cursor:pointer;white-space:nowrap">
+            Δ 점검요
+          </button>
+          <button onclick="chkApplyAll('X')"
+            style="flex:1;padding:5px 0;font-size:12px;font-weight:700;border-radius:6px;border:1.5px solid #a32d2d;background:#fcebeb;color:#111;cursor:pointer;white-space:nowrap">
+            X 불량
+          </button>
+          <button onclick="chkClearAll()"
+            style="flex:1;padding:5px 0;font-size:12px;font-weight:700;border-radius:6px;border:1.5px solid var(--border-2);background:var(--surface-2);color:var(--t3);cursor:pointer;white-space:nowrap">
+            🗑 전체삭제
+          </button>
+        </div>
+
+      </div>
     </div>
-    <div style="overflow-x:auto">
-      <table id="chkTable" style="width:100%;border-collapse:collapse;font-size:11px;font-family:var(--mono);min-width:380px">
-        <thead>
-          <tr style="background:var(--navy);color:#fff">
-            <th style="padding:6px 8px;text-align:center;width:60px;white-space:nowrap">구분</th>
-            <th style="padding:6px 8px;text-align:center;width:80px;white-space:nowrap">항목</th>
-            <th style="padding:6px 8px;text-align:left">점검내용</th>
-            <th style="padding:6px 8px;text-align:center;width:90px;white-space:nowrap">점검결과</th>
-            <th style="padding:6px 8px;text-align:center;width:80px;white-space:nowrap">비고</th>
-          </tr>
-        </thead>
-        <tbody id="chkBody">
-        </tbody>
-      </table>
+
+    <!-- 일일점검사항 테이블 카드 -->
+    <div class="card" style="margin-bottom:10px;overflow-x:auto">
+      <div style="overflow-x:auto">
+        <table id="chkTable" style="width:100%;border-collapse:collapse;font-size:11px;font-family:var(--mono);min-width:380px">
+          <thead>
+            <tr style="background:var(--navy);color:#fff">
+              <th style="padding:6px 8px;text-align:center;width:60px;white-space:nowrap">구분</th>
+              <th style="padding:6px 8px;text-align:center;width:80px;white-space:nowrap">항목</th>
+              <th style="padding:6px 8px;text-align:left">점검내용</th>
+              <th style="padding:6px 8px;text-align:center;width:90px;white-space:nowrap">점검결과</th>
+              <th style="padding:6px 8px;text-align:center;width:80px;white-space:nowrap">비고</th>
+            </tr>
+          </thead>
+          <tbody id="chkBody">
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
+
+  </div><!-- /#chkSectionBody -->
 
   <div class="sec-label">🔧 2. 비상발전기 운전 (Sheet1 · 42~44행)</div>
   <div class="inp-card-group">
@@ -3226,6 +3243,7 @@ async function handleUpsSingle(file, group, ioType){
   const titleEl   = document.getElementById(group+'DzTitle');
 
   // 상태 표시
+  setUpsBadge('분석 중...', 'busy');
   if(statusEl){ statusEl.style.display='block'; statusEl.style.color='#2b6cb0'; statusEl.textContent='⏳ 판독 중...'; }
   if(progEl){ progEl.style.display='flex'; }
 
@@ -3282,6 +3300,7 @@ async function handleUpsSingle(file, group, ioType){
       statusEl.style.color = filled > 0 ? '#276749' : '#c05621';
       statusEl.textContent = filled > 0 ? `✅ ${ioLabel} ${filled}항목` : '⚠️ 미추출';
     }
+    setUpsBadge(filled > 0 ? '인식 완료' : '미추출', filled > 0 ? 'done' : 'err');
 
     // 전체 완료 여부 체크 (입력+출력 둘 다 됐으면 타이틀 표시)
     const inputDone  = document.getElementById(`${group}InputStatus`)?.textContent.startsWith('✅');
@@ -3297,6 +3316,7 @@ async function handleUpsSingle(file, group, ioType){
     row.querySelector('.upi').textContent = '❌';
     row.querySelector('.upm').textContent = e.message.slice(0,60);
     if(statusEl){ statusEl.style.color='#c53030'; statusEl.textContent='❌ 오류 — 재시도'; }
+    setUpsBadge('오류', 'err');
 
     // 재시도 버튼
     const retryBtn = document.createElement('button');
@@ -3622,6 +3642,21 @@ function setBadge(txt,type){
   b.textContent=txt;
   b.className='ai-status-badge'+(type?' '+type:'');
 }
+function setUpsBadge(txt,type){
+  const b=document.getElementById('upsStatusBadge');
+  if(!b) return;
+  b.textContent=txt;
+  // 타입별 색상 (SCADA 배지와 동일 클래스 재활용 불가 — 인라인으로 처리)
+  if(type==='done'){
+    b.style.background='#f0fff4'; b.style.color='#276749'; b.style.borderColor='#9ae6b4';
+  } else if(type==='busy'){
+    b.style.background='rgba(255,255,255,.18)'; b.style.color='#fff'; b.style.borderColor='rgba(255,255,255,.35)';
+  } else if(type==='err'){
+    b.style.background='#fff5f5'; b.style.color='#c53030'; b.style.borderColor='#feb2b2';
+  } else {
+    b.style.background='rgba(255,255,255,.18)'; b.style.color='#fff'; b.style.borderColor='rgba(255,255,255,.35)';
+  }
+}
 function showErr(msg){
   const prog = document.getElementById('ocrProgress');
   if(prog) prog.style.display = 'none';
@@ -3725,6 +3760,15 @@ const _chkCanvas = {}; // {id: dataURL}  Canvas 드로잉 저장
 let _chkMode = 'toggle';
 
 // ── 모드 전환 ──
+function toggleChkSection(){
+  var body = document.getElementById('chkSectionBody');
+  var icon = document.getElementById('chkToggleIcon');
+  if(!body) return;
+  var isOpen = body.style.display !== 'none';
+  body.style.display = isOpen ? 'none' : 'block';
+  icon.style.transform = isOpen ? 'rotate(-90deg)' : 'rotate(0deg)';
+}
+
 function setCheckMode(mode){
   _chkMode = mode;
   ['toggle','canvas'].forEach(m=>{
