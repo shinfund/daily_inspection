@@ -1353,27 +1353,44 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
       <!-- 날씨 -->
       <div class="inp-grp">
         <label style="font-size:10.5px;font-weight:700;color:#374151;display:block;margin-bottom:4px">날씨</label>
-        <select class="inp-val" id="insp_weather" style="width:100%;padding:8px 6px;line-height:1.4;font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#111827">
-          <option>맑음</option><option>흐림</option><option>비</option><option>눈</option><option>안개</option>
+        <select class="inp-val" id="insp_weather" onchange="handleWeatherSelect(this)"
+          style="width:100%;padding:8px 6px;line-height:1.4;font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#111827">
+          <option value="맑음">맑음</option>
+          <option value="흐림">흐림</option>
+          <option value="비">비</option>
+          <option value="눈">눈</option>
+          <option value="안개">안개</option>
+          <option value="__manual__">직접입력</option>
         </select>
+        <input class="inp-val" id="insp_weather_txt" type="text"
+          style="display:none;margin-top:4px;width:100%;padding:8px 6px;font-family:'Noto Sans KR',sans-serif;font-weight:600"
+          placeholder="날씨 직접 입력">
       </div>
 
-      <!-- 터널 선택 -->
+      <!-- 터널 선택 (네비 탭 연동, 읽기 전용) -->
       <div class="inp-grp">
         <label style="font-size:10.5px;font-weight:700;color:#374151;display:block;margin-bottom:4px">터널 선택</label>
-        <select class="inp-val" id="insp_tunnel" style="width:100%;padding:8px 6px;line-height:1.4;font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#111827" onchange="(function(v){if(v==='청하터널(부)')switchTunnel('sub',document.getElementById('tunnelBtn_sub'));else switchTunnel('main',document.getElementById('tunnelBtn_main'));})(this.value)">
-          <option>청하터널(주)</option>
-          <option>청하터널(부)</option>
-          <option>흥해터널</option>
-          <option>남정5터널</option>
-        </select>
+        <input class="inp-val" id="insp_tunnel" type="text" readonly
+          value="청하터널(주)"
+          style="width:100%;padding:8px 6px;font-family:'Noto Sans KR',sans-serif;font-weight:700;color:#1a365d;background:#ebf8ff;border-color:#bee3f8;cursor:default;caret-color:transparent"
+          title="상단 터널 탭에서 선택하세요">
       </div>
 
       <!-- 담당자 -->
       <div class="inp-grp">
         <label style="font-size:10.5px;font-weight:700;color:#374151;display:block;margin-bottom:4px">담당자</label>
-        <input class="inp-val" id="insp_manager" type="text" placeholder="성명" value="김동록"
-          style="width:100%;font-family:'Noto Sans KR',sans-serif;font-weight:600">
+        <select class="inp-val" id="insp_manager" onchange="handleManagerSelect(this)"
+          style="width:100%;padding:8px 6px;font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#111827">
+          <option value="김동록" selected>김동록</option>
+          <option value="신종섭">신종섭</option>
+          <option value="공우식">공우식</option>
+          <option value="김태선">김태선</option>
+          <option value="손대현">손대현</option>
+          <option value="__manual__">직접입력</option>
+        </select>
+        <input class="inp-val" id="insp_manager_txt" type="text"
+          style="display:none;margin-top:4px;width:100%;font-family:'Noto Sans KR',sans-serif;font-weight:600"
+          placeholder="직접 입력">
       </div>
 
     </div>
@@ -1398,13 +1415,9 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
       <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
         <span style="font-size:11px;color:var(--t4);font-weight:600;white-space:nowrap;width:58px;flex-shrink:0">입력방식</span>
         <div style="width:1px;height:16px;background:var(--border);flex-shrink:0"></div>
-        <button id="modeBtn_handwriting" onclick="setCheckMode('handwriting')"
+        <button id="modeBtn_canvas" onclick="setCheckMode('canvas')"
           style="padding:4px 11px;font-size:11px;font-weight:700;border-radius:20px;border:1.5px solid var(--blue);background:var(--blue);color:#fff;cursor:pointer;white-space:nowrap">
           ✍️ 손글씨
-        </button>
-        <button id="modeBtn_canvas" onclick="setCheckMode('canvas')"
-          style="padding:4px 11px;font-size:11px;font-weight:700;border-radius:20px;border:1.5px solid var(--border-2);background:var(--surface);color:var(--t2);cursor:pointer;white-space:nowrap">
-          🖊️ Canvas
         </button>
         <button id="modeBtn_toggle" onclick="setCheckMode('toggle')"
           style="padding:4px 11px;font-size:11px;font-weight:700;border-radius:20px;border:1.5px solid var(--border-2);background:var(--surface);color:var(--t2);cursor:pointer;white-space:nowrap">
@@ -1415,20 +1428,20 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
       <!-- 구분선 -->
       <div style="height:1px;background:var(--border)"></div>
 
-      <!-- 행2: 전체 일괄 -->
+      <!-- 전체 일괄 -->
       <div style="display:flex;align-items:center;gap:6px">
         <span style="font-size:11px;color:var(--t4);font-weight:600;white-space:nowrap;width:58px;flex-shrink:0">전체 일괄</span>
         <div style="width:1px;height:16px;background:var(--border);flex-shrink:0"></div>
         <button onclick="chkApplyAll('Ο')"
-          style="flex:1;padding:5px 0;font-size:12px;font-weight:700;border-radius:6px;border:1.5px solid #1d9e75;background:#e6f9f0;color:#0f6e56;cursor:pointer;white-space:nowrap">
+          style="flex:1;padding:5px 0;font-size:12px;font-weight:700;border-radius:6px;border:1.5px solid #1d9e75;background:#e6f9f0;color:#111;cursor:pointer;white-space:nowrap">
           Ο 양호
         </button>
         <button onclick="chkApplyAll('Δ')"
-          style="flex:1;padding:5px 0;font-size:12px;font-weight:700;border-radius:6px;border:1.5px solid #ba7517;background:#faeeda;color:#854f0b;cursor:pointer;white-space:nowrap">
+          style="flex:1;padding:5px 0;font-size:12px;font-weight:700;border-radius:6px;border:1.5px solid #ba7517;background:#faeeda;color:#111;cursor:pointer;white-space:nowrap">
           Δ 점검요
         </button>
         <button onclick="chkApplyAll('X')"
-          style="flex:1;padding:5px 0;font-size:12px;font-weight:700;border-radius:6px;border:1.5px solid #a32d2d;background:#fcebeb;color:#791f1f;cursor:pointer;white-space:nowrap">
+          style="flex:1;padding:5px 0;font-size:12px;font-weight:700;border-radius:6px;border:1.5px solid #a32d2d;background:#fcebeb;color:#111;cursor:pointer;white-space:nowrap">
           X 불량
         </button>
         <button onclick="chkClearAll()"
@@ -1518,21 +1531,21 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
               <td style="padding:5px 8px;color:#374151;font-weight:700;font-size:9.5px;white-space:nowrap">상태 🔍</td>
               <td style="padding:3px 4px">
                 <select class="inp-val-sm gen-select" id="gen_clean" onchange="handleGenSelect(this)" style="width:100%;font-size:11px">
-                  <option value="양호">양호</option><option value="불량">불량</option><option value="점검요">점검요</option>
+                  <option value="" selected></option><option value="양호">양호</option><option value="불량">불량</option><option value="점검요">점검요</option>
                   <option value="__manual__">직접입력</option><option value="__blank__">빈칸</option>
                 </select>
                 <input class="inp-val-sm gen-manual" id="gen_clean_txt" type="text" style="display:none;margin-top:4px;width:100%" placeholder="직접 입력">
               </td>
               <td style="padding:3px 4px">
                 <select class="inp-val-sm gen-select" id="gen_leak" onchange="handleGenSelect(this)" style="width:100%;font-size:11px">
-                  <option value="양호">양호</option><option value="불량">불량</option><option value="점검요">점검요</option>
+                  <option value="" selected></option><option value="양호">양호</option><option value="불량">불량</option><option value="점검요">점검요</option>
                   <option value="__manual__">직접입력</option><option value="__blank__">빈칸</option>
                 </select>
                 <input class="inp-val-sm gen-manual" id="gen_leak_txt" type="text" style="display:none;margin-top:4px;width:100%" placeholder="직접 입력">
               </td>
               <td style="padding:3px 4px">
                 <select class="inp-val-sm gen-select" id="gen_heater" onchange="handleGenSelect(this)" style="width:100%;font-size:11px">
-                  <option value="양호">양호</option><option value="불량">불량</option><option value="점검요">점검요</option>
+                  <option value="" selected></option><option value="양호">양호</option><option value="불량">불량</option><option value="점검요">점검요</option>
                   <option value="__manual__">직접입력</option><option value="__blank__">빈칸</option>
                 </select>
                 <input class="inp-val-sm gen-manual" id="gen_heater_txt" type="text" style="display:none;margin-top:4px;width:100%" placeholder="직접 입력">
@@ -3372,6 +3385,56 @@ function v(id){
 function setText(id,val){ const el=document.getElementById(id); if(el) el.textContent=val; }
 
 // ═══ 비상발전기 select 수동입력/빈칸 처리 ═══
+
+// ── 담당자 드롭다운 처리 ──
+
+// ── 날씨 드롭다운 처리 ──
+function handleWeatherSelect(sel){
+  const txtEl = document.getElementById('insp_weather_txt');
+  if(!txtEl) return;
+  if(sel.value === '__manual__'){
+    txtEl.style.display = 'block';
+    txtEl.focus();
+  } else {
+    txtEl.style.display = 'none';
+  }
+  if(typeof debounceSave === 'function') debounceSave();
+}
+
+// 날씨 실제 값 반환
+function getWeatherValue(){
+  const sel = document.getElementById('insp_weather');
+  if(!sel) return '맑음';
+  if(sel.value === '__manual__'){
+    const txt = document.getElementById('insp_weather_txt');
+    return txt ? txt.value.trim() : '';
+  }
+  return sel.value;
+}
+
+function handleManagerSelect(sel){
+  const txtEl = document.getElementById('insp_manager_txt');
+  if(!txtEl) return;
+  if(sel.value === '__manual__'){
+    txtEl.style.display = 'block';
+    txtEl.focus();
+  } else {
+    txtEl.style.display = 'none';
+  }
+  if(typeof debounceSave === 'function') debounceSave();
+}
+
+// 담당자 실제 값 반환 (직접입력이면 텍스트박스 값)
+function getManagerValue(){
+  const sel = document.getElementById('insp_manager');
+  if(!sel) return '';
+  if(sel.value === '__manual__'){
+    const txt = document.getElementById('insp_manager_txt');
+    return txt ? txt.value.trim() : '';
+  }
+  return sel.value;
+}
+
 function handleGenSelect(sel){
   const txtId = sel.id + '_txt';
   const txtEl = document.getElementById(txtId);
@@ -4173,16 +4236,21 @@ function switchTunnel(which, el){
   const titleEl = document.querySelector('.h-title');
   if(titleEl) titleEl.textContent = which === 'main' ? '청하터널(주) 일일점검일지' : '청하터널(부) 일일점검일지';
 
-  // ③ 터널 선택 셀렉트 동기화
+  // ③ 터널 표시 필드 동기화 (읽기 전용 input)
   const tunnelSel = document.getElementById('insp_tunnel');
   if(tunnelSel){
     tunnelSel.value = which === 'main' ? '청하터널(주)' : '청하터널(부)';
   }
 
-  // ④ 담당자 기본값 분기
+  // ④ 담당자 기본값 분기 (직접입력 중이면 변경 안 함)
   const mgr = document.getElementById('insp_manager');
-  if(mgr && mgr.value === '김동록' && which === 'sub') mgr.value = '신종섭';
-  if(mgr && mgr.value === '신종섭' && which === 'main') mgr.value = '김동록';
+  if(mgr && mgr.value !== '__manual__'){
+    // 주전기실 담당자(김동록) ↔ 부전기실 담당자(신종섭) 자동 전환
+    const defaultManagers = ['김동록','신종섭','공우식','김태선','손대현'];
+    if(defaultManagers.includes(mgr.value)){
+      mgr.value = which === 'sub' ? '신종섭' : '김동록';
+    }
+  }
 
   // ⑤ SCADA 데이터 초기화 (터널 전환 시 이전 데이터 클리어)
   Object.keys(SCADA_DATA).forEach(k => { SCADA_DATA[k] = null; });
@@ -4362,7 +4430,11 @@ function scadaGet(key){
 // ── HV 적용 ──
 function applyHV(d){
   const matched=[];
-  const map={hv104:'HV-104',hv105:'HV-105',hv106:'HV-106',hv107:'HV-107'};
+  // 터널에 따라 동적 map (주: hv104~107, 부: hv204~207)
+  const isSub = (typeof _currentTunnel !== 'undefined' && _currentTunnel === 'sub');
+  const map = isSub
+    ? {hv204:'HV-204',hv205:'HV-205',hv206:'HV-206',hv207:'HV-207'}
+    : {hv104:'HV-104',hv105:'HV-105',hv106:'HV-106',hv107:'HV-107'};
   Object.entries(map).forEach(([tag,name])=>{
     const o=d[tag]; if(!o) return;
 
@@ -4390,7 +4462,11 @@ function applyHV(d){
 // ── LV 적용 ──
 function applyLV(d){
   const matched=[];
-  const map={lv101:'LV-101',lv105:'LV-105',lv108:'LV-108'};
+  // 터널에 따라 동적 map (주: lv101/105/108, 부: lv201/205/208)
+  const isSub = (typeof _currentTunnel !== 'undefined' && _currentTunnel === 'sub');
+  const map = isSub
+    ? {lv201:'LV-201',lv205:'LV-205',lv208:'LV-208'}
+    : {lv101:'LV-101',lv105:'LV-105',lv108:'LV-108'};
   Object.entries(map).forEach(([tag,name])=>{
     const o=d[tag]; if(!o) return;
 
@@ -5059,47 +5135,12 @@ while(si < CHK_ITEMS.length){
 // ── 점검결과 상태 저장 (모드 전환 시 유지) ──
 const _chkState = {};  // {id: 'Ο'|'Δ'|'X'|''(공란)}
 const _chkCanvas = {}; // {id: dataURL}  Canvas 드로잉 저장
-let _chkMode = 'handwriting';
-
-// ── 손글씨 SVG 생성 ──
-function _chkSeed(id){ let s=0; for(let i=0;i<id.length;i++) s=s*31+id.charCodeAt(i); return s; }
-function _seededRand(seed){ let s=seed; return ()=>{ s=(s*9301+49297)%233280; return s/233280; }; }
-
-function _svgHandwrite(id, sym){
-  const r = _seededRand(_chkSeed(id) + (sym==='Ο'?0:sym==='Δ'?1000:2000));
-  const W=28, H=28, cx=W/2, cy=H/2;
-  const rot = (r()-0.5)*16;
-  const sw = (1.4+r()*0.9).toFixed(2);
-  let path='', stroke='';
-  if(sym==='Ο'){
-    stroke='#1a1a1a';
-    const rx=8+r()*2.5, ry=6.5+r()*2;
-    const pts=[]; for(let i=0;i<8;i++){ const a=(i/8)*Math.PI*2; pts.push({x:cx+Math.cos(a)*rx+(r()-.5)*2.2, y:cy+Math.sin(a)*ry+(r()-.5)*2.2}); }
-    path=`M${pts[0].x.toFixed(1)},${pts[0].y.toFixed(1)}`;
-    for(let i=0;i<pts.length;i++){
-      const n=pts[(i+1)%pts.length], p=pts[i], pp=pts[(i-1+pts.length)%pts.length], nn=pts[(i+2)%pts.length];
-      path+=` C${(p.x+(n.x-pp.x)*.25).toFixed(1)},${(p.y+(n.y-pp.y)*.25).toFixed(1)},${(n.x-(nn.x-p.x)*.25).toFixed(1)},${(n.y-(nn.y-p.y)*.25).toFixed(1)},${n.x.toFixed(1)},${n.y.toFixed(1)}`;
-    } path+='Z';
-  } else if(sym==='Δ'){
-    stroke='#1a1a1a';
-    const j=()=>(r()-.5)*2.8;
-    const p0={x:cx+j(),y:3+j()}, p1={x:W-3+j(),y:H-3+j()}, p2={x:3+j(),y:H-3+j()};
-    const q=(a,b,t)=>({x:a.x+(b.x-a.x)*t+(r()-.5)*3, y:a.y+(b.y-a.y)*t+(r()-.5)*3});
-    path=`M${p0.x.toFixed(1)},${p0.y.toFixed(1)} C${q(p0,p1,.35).x.toFixed(1)},${q(p0,p1,.35).y.toFixed(1)},${q(p0,p1,.65).x.toFixed(1)},${q(p0,p1,.65).y.toFixed(1)},${p1.x.toFixed(1)},${p1.y.toFixed(1)} C${q(p1,p2,.35).x.toFixed(1)},${q(p1,p2,.35).y.toFixed(1)},${q(p1,p2,.65).x.toFixed(1)},${q(p1,p2,.65).y.toFixed(1)},${p2.x.toFixed(1)},${p2.y.toFixed(1)} C${q(p2,p0,.35).x.toFixed(1)},${q(p2,p0,.35).y.toFixed(1)},${q(p2,p0,.65).x.toFixed(1)},${q(p2,p0,.65).y.toFixed(1)},${p0.x.toFixed(1)},${p0.y.toFixed(1)}Z`;
-  } else {
-    stroke='#1a1a1a';
-    const m=3,M=W-3, j=()=>(r()-.5)*2.5;
-    const x1s={x:m+j(),y:m+j()}, x1e={x:M+j(),y:M+j()}, x2s={x:M+j(),y:m+j()}, x2e={x:m+j(),y:M+j()};
-    const qx=(a,b)=>((a.x+b.x)/2+(r()-.5)*4).toFixed(1), qy=(a,b)=>((a.y+b.y)/2+(r()-.5)*4).toFixed(1);
-    path=`M${x1s.x.toFixed(1)},${x1s.y.toFixed(1)} Q${qx(x1s,x1e)},${qy(x1s,x1e)},${x1e.x.toFixed(1)},${x1e.y.toFixed(1)} M${x2s.x.toFixed(1)},${x2s.y.toFixed(1)} Q${qx(x2s,x2e)},${qy(x2s,x2e)},${x2e.x.toFixed(1)},${x2e.y.toFixed(1)}`;
-  }
-  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" style="display:block;transform:rotate(${rot.toFixed(1)}deg);overflow:visible"><path d="${path}" fill="none" stroke="${stroke}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-}
+let _chkMode = 'canvas';
 
 // ── 모드 전환 ──
 function setCheckMode(mode){
   _chkMode = mode;
-  ['handwriting','toggle','canvas'].forEach(m=>{
+  ['toggle','canvas'].forEach(m=>{
     const btn = document.getElementById('modeBtn_'+m);
     if(!btn) return;
     const on = m===mode;
@@ -5119,40 +5160,8 @@ function getChkValue(id){
   return el.dataset.val ?? '';
 }
 
-// ── 손글씨 모드: 기호 선택 ──
-function chkHwClick(id, sym){
-  _chkState[id] = sym;
-  // 해당 행 셀만 업데이트
-  const wrap = document.getElementById('hw_'+id);
-  if(!wrap) return;
-  const syms=['Ο','Δ','X'];
-  const colors={Ο:{on:'background:#e6f9f0;border-color:#1d9e75',off:'border-color:#9ae6b4'},Δ:{on:'background:#faeeda;border-color:#ba7517',off:'border-color:#fac775'},X:{on:'background:#fcebeb;border-color:#e53e3e',off:'border-color:#feb2b2'}};
-  wrap.querySelectorAll('button').forEach((btn,i)=>{
-    const s=syms[i], isSel=(s===sym);
-    btn.style.cssText=`${isSel?colors[s].on:colors[s].off};border:1.5px solid;border-radius:5px;padding:1px 3px;cursor:pointer;background:${isSel?(s==='Ο'?'#e6f9f0':s==='Δ'?'#faeeda':'#fcebeb'):'var(--surface)'};display:flex;align-items:center;justify-content:center;min-width:30px;height:26px`;
-    btn.innerHTML = isSel ? _svgHandwrite(id, s) : `<span style="font-size:12px;font-weight:700;color:'#1a1a1a'">${s}</span>`;
-  });
-}
 
-// ── 버튼 토글 ──
-function chkToggle(groupId, val){
-  _chkState[groupId] = val;
-  const wrap = document.getElementById(groupId);
-  if(!wrap) return;
-  wrap.dataset.val = val;
-  const btns = wrap.querySelectorAll('button');
-  const styles = {
-    'Ο':{on:'background:#276749;color:#fff;border-color:#276749',off:'background:var(--surface);color:#276749;border-color:#9ae6b4'},
-    'Δ':{on:'background:#b7791f;color:#fff;border-color:#b7791f',off:'background:var(--surface);color:#b7791f;border-color:#fbd38d'},
-    'X':{on:'background:#c53030;color:#fff;border-color:#c53030',off:'background:var(--surface);color:#c53030;border-color:#feb2b2'},
-  };
-  const vals=['Ο','Δ','X'];
-  btns.forEach((b,i)=>{ const s=styles[vals[i]]; b.style.cssText=(vals[i]===val?s.on:s.off)+';border:1.5px solid;border-radius:4px;padding:2px 6px;font-size:12px;font-weight:700;cursor:pointer;min-width:26px'; });
-}
-
-// ── 드롭다운 ──
-
-// ── Canvas 드로잉 ──
+// ── Canvas 손그림 초기화 ──
 function initCanvas(id){
   const canvas = document.getElementById('cv_'+id);
   if(!canvas || canvas.dataset.init) return;
@@ -5184,25 +5193,41 @@ function clearCanvas(id){
   delete _chkCanvas[id];
 }
 
+// ── 버튼 토글 ──
+function chkToggle(groupId, val){
+  _chkState[groupId] = val;
+  const wrap = document.getElementById(groupId);
+  if(!wrap) return;
+  wrap.dataset.val = val;
+  const btns = wrap.querySelectorAll('button');
+  const styles = {
+    'Ο':{on:'background:#e6f9f0;color:#111;border-color:#276749',off:'background:var(--surface);color:#111;border-color:#9ae6b4'},
+    'Δ':{on:'background:#faeeda;color:#111;border-color:#b7791f',off:'background:var(--surface);color:#111;border-color:#fbd38d'},
+    'X':{on:'background:#fcebeb;color:#111;border-color:#c53030',off:'background:var(--surface);color:#111;border-color:#feb2b2'},
+  };
+  const vals=['Ο','Δ','X'];
+  btns.forEach((b,i)=>{ const s=styles[vals[i]]; b.style.cssText=(vals[i]===val?s.on:s.off)+';border:1.5px solid;border-radius:4px;padding:2px 6px;font-size:12px;font-weight:700;cursor:pointer;min-width:26px'; });
+}
+
+// ── 드롭다운 ──
+
+// ── Canvas 드로잉 ──
+
 // ── 전체 일괄 선택 ──
 function chkApplyAll(sym){
   CHK_ITEMS.forEach(it => { _chkState[it.id] = sym; });
 
-  if(_chkMode === 'handwriting'){
-    CHK_ITEMS.forEach(it => chkHwClick(it.id, sym));
-  } else if(_chkMode === 'toggle'){
+  if(_chkMode==='toggle'){
     CHK_ITEMS.forEach(it => chkToggle(it.id, sym));
-  } else if(_chkMode === 'canvas'){
-    // Canvas: 각 셀에 심볼 텍스트를 손글씨 스타일로 그려줌
+  } else { // canvas
     CHK_ITEMS.forEach(it => {
       clearCanvas(it.id);
       const canvas = document.getElementById('cv_'+it.id);
       if(!canvas) return;
       const ctx = canvas.getContext('2d');
-      const color = '#1a1a1a';
       ctx.clearRect(0,0,canvas.width,canvas.height);
       ctx.font = 'bold 18px serif';
-      ctx.fillStyle = color;
+      ctx.fillStyle = '#1a1a1a';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(sym, canvas.width/2, canvas.height/2);
@@ -5216,28 +5241,9 @@ function chkClearAll(){
   // _chkState 공란으로 초기화
   CHK_ITEMS.forEach(it => { _chkState[it.id] = ''; });
 
-  if(_chkMode === 'handwriting'){
-    // 손글씨 모드: _chkState 초기화 후 테이블 재빌드 (빈 SVG로 표시)
-    // buildChkTable이 없는 값은 기본 Ο로 채우므로, 재빌드 전 상태를 유지하되 SVG만 지움
-    CHK_ITEMS.forEach(it => {
-      const wrap = document.getElementById('hw_'+it.id);
-      if(!wrap) return;
-      // 모든 버튼 선택 해제 (비활성 스타일)
-      wrap.querySelectorAll('button').forEach(btn => {
-        const s = btn.dataset.sym || btn.textContent.trim().replace(/\s/g,'');
-        const isO = s.includes('Ο') || s === 'Ο';
-        const isDelta = s.includes('Δ') || s === 'Δ';
-        btn.style.background = 'var(--surface)';
-        btn.style.borderColor = 'var(--border)';
-        btn.innerHTML = `<span style="font-size:12px;font-weight:700;color:var(--t4)">${isO?'Ο':isDelta?'Δ':'X'}</span>`;
-      });
-    });
-  } else if(_chkMode === 'toggle'){
-    CHK_ITEMS.forEach(it => {
-      const el = document.getElementById(it.id+'_tog');
-      if(el){ el.textContent = '—'; el.dataset.val = ''; el.style.color = 'var(--t4)'; }
-    });
-  } else if(_chkMode === 'canvas'){
+  if(_chkMode==='toggle'){
+    CHK_ITEMS.forEach(it => chkToggle(it.id, ''));
+  } else { // canvas
     CHK_ITEMS.forEach(it => {
       clearCanvas(it.id);
       delete _chkCanvas[it.id];
@@ -5274,29 +5280,17 @@ function buildChkTable(){
 
     let resultCell='';
 
-    if(_chkMode==='handwriting'){
-      const mkHwBtn=(sym)=>{
-        const isSel=val===sym;
-        const selStyle=sym==='Ο'?'background:#e6f9f0;border-color:#1d9e75':sym==='Δ'?'background:#faeeda;border-color:#ba7517':'background:#fcebeb;border-color:#e53e3e';
-        const offStyle=sym==='Ο'?'border-color:#9ae6b4':sym==='Δ'?'border-color:#fac775':'border-color:#feb2b2';
-        const inner=isSel?_svgHandwrite(it.id,sym):`<span style="font-size:12px;font-weight:700;color:'#1a1a1a'">${sym}</span>`;
-        return `<button onclick="chkHwClick('${it.id}','${sym}')" style="${isSel?selStyle:offStyle};border:1.5px solid;border-radius:5px;padding:1px 3px;cursor:pointer;background:${isSel?(sym==='Ο'?'#e6f9f0':sym==='Δ'?'#faeeda':'#fcebeb'):'var(--surface)'};display:flex;align-items:center;justify-content:center;min-width:30px;height:26px">${inner}</button>`;
-      };
-      resultCell=`<td style="text-align:center;vertical-align:middle;border-bottom:1px solid var(--border);padding:3px 4px">
-        <div id="hw_${it.id}" style="display:flex;gap:3px;justify-content:center">${mkHwBtn('Ο')}${mkHwBtn('Δ')}${mkHwBtn('X')}</div>
-      </td>`;
-
-    } else if(_chkMode==='toggle'){
+    if(_chkMode==='toggle'){
       const mkTBtn=(sym,on,off)=>`<button onclick="chkToggle('${it.id}','${sym}')" style="${val===sym?on:off};border:1.5px solid;border-radius:4px;padding:2px 6px;font-size:12px;font-weight:700;cursor:pointer;min-width:26px">${sym}</button>`;
       resultCell=`<td style="text-align:center;vertical-align:middle;border-bottom:1px solid var(--border);padding:3px 4px">
         <div id="${it.id}" data-val="${val}" style="display:flex;gap:3px;justify-content:center">
-          ${mkTBtn('Ο','background:#276749;color:#fff;border-color:#276749','background:var(--surface);color:#276749;border-color:#9ae6b4')}
-          ${mkTBtn('Δ','background:#b7791f;color:#fff;border-color:#b7791f','background:var(--surface);color:#b7791f;border-color:#fbd38d')}
-          ${mkTBtn('X','background:#c53030;color:#fff;border-color:#c53030','background:var(--surface);color:#c53030;border-color:#feb2b2')}
+          ${mkTBtn('Ο','background:#e6f9f0;color:#111;border-color:#276749','background:var(--surface);color:#111;border-color:#9ae6b4')}
+          ${mkTBtn('Δ','background:#faeeda;color:#111;border-color:#b7791f','background:var(--surface);color:#111;border-color:#fbd38d')}
+          ${mkTBtn('X','background:#fcebeb;color:#111;border-color:#c53030','background:var(--surface);color:#111;border-color:#feb2b2')}
         </div>
       </td>`;
 
-    } else { // canvas
+    } else { // canvas 손그림
       resultCell=`<td style="text-align:center;vertical-align:middle;border-bottom:1px solid var(--border);padding:2px 3px">
         <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
           <canvas id="cv_${it.id}" width="54" height="28"
@@ -5344,23 +5338,28 @@ function buildInspPanels(){
         ${['vrs','vst','vtr'].map(f=>`
         <td style="padding:2px 2px;border-bottom:${bd}">
           <input class="inp-val" id="insp_${tag}_${f}" type="number" step="0.001" placeholder="kV"
+            oninput="SCADA_DATA['${tag}_${f}']=parseFloat(this.value)||null"
             style="width:100%;text-align:left;font-size:11px;padding:3px 3px;min-width:54px">
         </td>`).join('')}
         ${['ir','is','it'].map(f=>`
         <td style="padding:2px 2px;border-bottom:${bd}">
           <input class="inp-val" id="insp_${tag}_${f}" type="number" step="0.1" placeholder="A"
+            oninput="SCADA_DATA['${tag}_${f}']=parseFloat(this.value)||null"
             style="width:100%;text-align:left;font-size:11px;padding:3px 3px;min-width:46px">
         </td>`).join('')}
         <td style="padding:2px 2px;border-bottom:${bd}">
           <input class="inp-val" id="insp_${tag}_pf" type="number" step="0.01" placeholder="PF"
+            oninput="SCADA_DATA['${tag}_pf']=parseFloat(this.value)||null"
             style="width:100%;text-align:left;font-size:11px;padding:3px 3px;min-width:46px;color:#7c3aed">
         </td>
         <td style="padding:2px 2px;border-bottom:${bd}">
           <input class="inp-val" id="insp_${tag}_kw" type="number" step="0.1" placeholder="KW"
+            oninput="SCADA_DATA['${tag}_kw']=parseFloat(this.value)||null"
             style="width:100%;text-align:left;font-size:11px;padding:3px 3px;min-width:46px;color:#059669">
         </td>
         <td style="padding:2px 2px;border-bottom:${bd}">
           <input class="inp-val" id="insp_${tag}_mwh" type="number" step="0.01" placeholder="MWh"
+            oninput="SCADA_DATA['${tag}_mwh']=parseFloat(this.value)||null"
             style="width:100%;text-align:left;font-size:11px;padding:3px 3px;min-width:54px;color:#b45309">
         </td>
       </tr>`;
@@ -5383,23 +5382,28 @@ function buildInspPanels(){
         ${['vrs','vst','vtr'].map(f=>`
         <td style="padding:2px 2px;border-bottom:${bd}">
           <input class="inp-val" id="insp_${tag}_${f}" type="number" step="1" placeholder="V"
+            oninput="SCADA_DATA['${tag}_${f}']=parseFloat(this.value)||null"
             style="width:100%;text-align:left;font-size:11px;padding:3px 3px;min-width:46px">
         </td>`).join('')}
         ${['ir','is','it'].map(f=>`
         <td style="padding:2px 2px;border-bottom:${bd}">
           <input class="inp-val" id="insp_${tag}_${f}" type="number" step="0.1" placeholder="A"
+            oninput="SCADA_DATA['${tag}_${f}']=parseFloat(this.value)||null"
             style="width:100%;text-align:left;font-size:11px;padding:3px 3px;min-width:46px">
         </td>`).join('')}
         <td style="padding:2px 2px;border-bottom:${bd}">
           <input class="inp-val" id="insp_${tag}_pf" type="number" step="0.01" placeholder="PF"
+            oninput="SCADA_DATA['${tag}_pf']=parseFloat(this.value)||null"
             style="width:100%;text-align:left;font-size:11px;padding:3px 3px;min-width:46px;color:#7c3aed">
         </td>
         <td style="padding:2px 2px;border-bottom:${bd}">
           <input class="inp-val" id="insp_${tag}_kw" type="number" step="0.1" placeholder="KW"
+            oninput="SCADA_DATA['${tag}_kw']=parseFloat(this.value)||null"
             style="width:100%;text-align:left;font-size:11px;padding:3px 3px;min-width:46px;color:#059669">
         </td>
         <td style="padding:2px 2px;border-bottom:${bd}">
           <input class="inp-val" id="insp_${tag}_mwh" type="number" step="0.01" placeholder="MWh"
+            oninput="SCADA_DATA['${tag}_mwh']=parseFloat(this.value)||null"
             style="width:100%;text-align:left;font-size:11px;padding:3px 3px;min-width:54px;color:#b45309">
         </td>
       </tr>`;
@@ -5865,9 +5869,9 @@ const INSP_TEMPLATE_B64_BU = 'UEsDBBQABgAIAAAAIQBgknq+gAEAAAwGAAATAAgCW0NvbnRlbn
 // 미리보기용 값 수집 함수 (exportInspectionExcel과 동일 로직 공유)
 function collectXlsPreviewData(){
   const date    = document.getElementById('insp_date')?.value || '';
-  const weather = document.getElementById('insp_weather')?.value || '';
+  const weather = (typeof getWeatherValue==='function') ? getWeatherValue() : (document.getElementById('insp_weather')?.value || '');
   const tunnel  = document.getElementById('insp_tunnel')?.value || '청하터널(주)';
-  const manager = document.getElementById('insp_manager')?.value || '';
+  const manager = (typeof getManagerValue === 'function') ? getManagerValue() : (document.getElementById('insp_manager')?.value || '');
 
   // gv: SCADA_DATA 1순위 → DOM fallback (전력/비상발전기 등 직접 input 필드용)
   const gv=(id)=>{
@@ -6141,8 +6145,8 @@ async function exportInspectionExcel(){
 async function _doExportInspectionExcel(){
   const date   = document.getElementById('insp_date')?.value || new Date().toISOString().slice(0,10);
   const tunnel = document.getElementById('insp_tunnel')?.value || '청하터널(주)';
-  const weather= document.getElementById('insp_weather')?.value || '맑음';
-  const manager= document.getElementById('insp_manager')?.value || '';
+  const weather= (typeof getWeatherValue==='function') ? getWeatherValue() : (document.getElementById('insp_weather')?.value || '맑음');
+  const manager= (typeof getManagerValue === 'function') ? getManagerValue() : (document.getElementById('insp_manager')?.value || '');
   const note   = document.getElementById('insp_note')?.value || '';
   // gv: SCADA_DATA 1순위 → DOM fallback (전력/비상발전기 등 직접 input 필드용)
   const gv=(id)=>{
@@ -6428,7 +6432,7 @@ const FORM_SAVE_KEY = 'inspFormData';
 // 저장 대상 필드 목록
 const FORM_SAVE_IDS = [
   // 기본정보
-  'insp_date','insp_weather','insp_tunnel','insp_manager','insp_note',
+  'insp_date','insp_weather','insp_weather_txt','insp_manager','insp_manager_txt','insp_note', // insp_tunnel: 네비 탭 연동 자동 설정
   // 비상발전기
   'gen_hours','gen_reason',
   'gen_fuel_in','gen_fuel_use','gen_fuel_acc','gen_fuel_rem',
@@ -6472,7 +6476,11 @@ function restorePersistData(){
       if(!el) return;
       el.value = data[id];
       // select의 경우 수동입력 텍스트박스 표시 처리
-      if(el.tagName === 'SELECT') handleGenSelectRestore(el);
+      if(el.tagName === 'SELECT'){
+        if(id === 'insp_manager') handleManagerSelect(el);
+        else if(id === 'insp_weather') handleWeatherSelect(el);
+        else handleGenSelectRestore(el);
+      }
     });
   }catch(e){}
 }
@@ -6593,7 +6601,6 @@ window.addEventListener('DOMContentLoaded', ()=>{
   }
   syncDisplayToForm();
   setInspDate();
-  setCheckMode('handwriting');
 
   // ── 영구저장 복원 (날짜 무관: 사용누계·잔량·청결~히터) ──
   restorePersistData();
