@@ -656,6 +656,15 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
 .status-tag.ok {background:var(--green-lt);color:var(--green);border:1px solid var(--green-mid)}
 .status-tag.err{background:var(--red-lt);color:var(--red);border:1px solid #fca5a5}
 .status-tag.dim{background:var(--surface-3);color:var(--t4);border:1px solid var(--border)}
+/* 디밍 단계 설정값 인라인 편집 */
+.dim-editable:hover { background:var(--blue-lt);outline:1px dashed var(--blue); }
+.dim-editable.editing { padding:2px 6px !important;cursor:text; }
+.dim-edit-input {
+  width:100%;border:1.5px solid var(--blue);border-radius:4px;
+  padding:3px 6px;font-size:11px;font-family:var(--mono);
+  color:var(--t1);background:#fff;outline:none;box-sizing:border-box;
+}
+
 /* 디밍 배지 */
 .dim-badge{display:inline-flex;align-items:center;justify-content:center;padding:2px 9px;border-radius:4px;font-size:10px;font-weight:700;font-family:var(--mono)}
 .dim-badge.local{background:#dbeafe;color:var(--navy);border:1px solid #93c5fd}
@@ -1746,9 +1755,20 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
   <div class="sec-label">💡 조명설비 (Sheet2 · 25~31행)</div>
   <div class="inp-card-group">
 
-    <!-- 단계별 설정값 (Row 25~29) — 고정값 표시 -->
+    <!-- 단계별 설정값 (Row 25~29) — 인라인 편집 가능 -->
     <div class="card">
-      <div class="card-header"><div class="card-title">단계별 설정값 (디밍 제어기) <span style="font-size:10px;color:var(--t4);font-weight:400">· 행25~29</span></div></div>
+      <div class="card-header" style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+        <div class="card-title">단계별 설정값 (디밍 제어기) <span style="font-size:10px;color:var(--t4);font-weight:400">· 행25~29</span></div>
+        <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+          <span style="font-size:10px;color:var(--t4);font-family:var(--mono)">✏️ 클릭 편집</span>
+          <button onclick="dimResetAll()" title="모든 항목을 기본값으로 복원"
+            style="padding:3px 9px;font-size:10px;font-weight:700;border-radius:5px;
+                   border:1.5px solid var(--border-2);background:var(--surface-2);
+                   color:var(--t3);cursor:pointer;white-space:nowrap;font-family:var(--mono)">
+            ↺ 기본값
+          </button>
+        </div>
+      </div>
       <div style="overflow-x:auto">
         <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px;min-width:320px">
           <thead>
@@ -1760,23 +1780,23 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
           <tbody>
             <tr>
               <td style="padding:5px 10px;border-bottom:1px solid var(--surface-3);color:#c2410c;font-weight:700;font-size:10.5px;white-space:nowrap">D (주간등)</td>
-              <td style="padding:5px 10px;border-bottom:1px solid var(--surface-3);color:var(--t2);font-size:11px">1~18단계 (조도제어 70,000~6,000 Lux)</td>
+              <td class="dim-editable" id="dim_d" style="padding:5px 10px;border-bottom:1px solid var(--surface-3);color:var(--t2);font-size:11px;cursor:pointer" onclick="dimStartEdit(this)" title="클릭하여 편집">1~18단계 (조도제어 70,000~6,000 Lux)</td>
             </tr>
             <tr style="background:var(--surface-2)">
               <td style="padding:5px 10px;border-bottom:1px solid var(--surface-3);color:#c2410c;font-weight:700;font-size:10.5px;white-space:nowrap">MN (일몰일출등)</td>
-              <td style="padding:5px 10px;border-bottom:1px solid var(--surface-3);color:var(--t2);font-size:11px">19단계 (조도제어 1,000 Lux)</td>
+              <td class="dim-editable" id="dim_mn" style="padding:5px 10px;border-bottom:1px solid var(--surface-3);color:var(--t2);font-size:11px;cursor:pointer" onclick="dimStartEdit(this)" title="클릭하여 편집">19단계 (조도제어 1,000 Lux)</td>
             </tr>
             <tr>
               <td style="padding:5px 10px;border-bottom:1px solid var(--surface-3);color:#c2410c;font-weight:700;font-size:10.5px;white-space:nowrap">N (상시등)</td>
-              <td style="padding:5px 10px;border-bottom:1px solid var(--surface-3);color:var(--t2);font-size:11px">20단계 (상시등)</td>
+              <td class="dim-editable" id="dim_n" style="padding:5px 10px;border-bottom:1px solid var(--surface-3);color:var(--t2);font-size:11px;cursor:pointer" onclick="dimStartEdit(this)" title="클릭하여 편집">20단계 (상시등)</td>
             </tr>
             <tr style="background:var(--surface-2)">
               <td style="padding:5px 10px;border-bottom:1px solid var(--surface-3);color:#c2410c;font-weight:700;font-size:10.5px;white-space:nowrap">E (상시등)</td>
-              <td style="padding:5px 10px;border-bottom:1px solid var(--surface-3);color:var(--t2);font-size:11px">21단계 (상시등)</td>
+              <td class="dim-editable" id="dim_e" style="padding:5px 10px;border-bottom:1px solid var(--surface-3);color:var(--t2);font-size:11px;cursor:pointer" onclick="dimStartEdit(this)" title="클릭하여 편집">21단계 (상시등)</td>
             </tr>
             <tr>
               <td style="padding:5px 10px;color:#c2410c;font-weight:700;font-size:10.5px;white-space:nowrap">가로등</td>
-              <td style="padding:5px 10px;color:var(--t2);font-size:11px">시간제어 (보정값 +15/-10)</td>
+              <td class="dim-editable" id="dim_st" style="padding:5px 10px;color:var(--t2);font-size:11px;cursor:pointer" onclick="dimStartEdit(this)" title="클릭하여 편집">시간제어 (보정값 +15/-10)</td>
             </tr>
           </tbody>
         </table>
@@ -1874,6 +1894,7 @@ input.inp-val{font-family:'Noto Sans KR',sans-serif;font-weight:600;color:#11182
 
 <script>
 // ── Clock ──
+document.addEventListener("DOMContentLoaded", function(){ dimRestoreSteps(); });
 function tick(){
   const el = document.getElementById('clock');
   if(!el) return;
@@ -3767,6 +3788,73 @@ function toggleChkSection(){
   var isOpen = body.style.display !== 'none';
   body.style.display = isOpen ? 'none' : 'block';
   icon.style.transform = isOpen ? 'rotate(-90deg)' : 'rotate(0deg)';
+}
+
+// ── 단계별 설정값 인라인 편집 ──
+var DIM_DEFAULTS = {
+  dim_d:  '1~18단계 (조도제어 70,000~6,000 Lux)',
+  dim_mn: '19단계 (조도제어 1,000 Lux)',
+  dim_n:  '20단계 (상시등)',
+  dim_e:  '21단계 (상시등)',
+  dim_st: '시간제어 (보정값 +15/-10)'
+};
+function dimStartEdit(td) {
+  if (td.classList.contains('editing')) return;
+  td.classList.add('editing');
+  const prev = td.textContent.trim();
+  td.innerHTML = '<input class="dim-edit-input" type="text" value="' + prev.replace(/"/g, '&quot;') + '">';
+  const inp = td.querySelector('input');
+  inp.focus();
+  inp.select();
+  inp.addEventListener('blur', function() { dimEndEdit(td, inp, prev); });
+  inp.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { inp.blur(); }
+    if (e.key === 'Escape') {
+      td.textContent = prev;
+      td.classList.remove('editing');
+      td.onclick = function(){ dimStartEdit(td); };
+    }
+  });
+}
+function dimEndEdit(td, inp, prev) {
+  var val = inp.value.trim();
+  // C: 빈 값이면 기본값 자동 복원
+  if (!val) val = DIM_DEFAULTS[td.id] || prev;
+  td.textContent = val;
+  td.classList.remove('editing');
+  td.onclick = function() { dimStartEdit(td); };
+  if (td.id) localStorage.setItem('dimStep_' + td.id, val);
+}
+function dimResetAll() {
+  Object.keys(DIM_DEFAULTS).forEach(function(id) {
+    var td = document.getElementById(id);
+    if (td) {
+      td.textContent = DIM_DEFAULTS[id];
+      localStorage.removeItem('dimStep_' + id);
+    }
+  });
+  // 시각적 피드백
+  var btn = document.querySelector('[onclick="dimResetAll()"]');
+  if (btn) {
+    var orig = btn.textContent;
+    btn.textContent = '✅ 복원됨';
+    btn.style.background = 'var(--green-lt)';
+    btn.style.color = 'var(--green)';
+    btn.style.borderColor = 'var(--green-mid)';
+    setTimeout(function() {
+      btn.textContent = orig;
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.style.borderColor = '';
+    }, 1500);
+  }
+}
+function dimRestoreSteps() {
+  Object.keys(DIM_DEFAULTS).forEach(function(id) {
+    var saved = localStorage.getItem('dimStep_' + id);
+    var td = document.getElementById(id);
+    if (td) td.textContent = saved || DIM_DEFAULTS[id];
+  });
 }
 
 function setCheckMode(mode){
